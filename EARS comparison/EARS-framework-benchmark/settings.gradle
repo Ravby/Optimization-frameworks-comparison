@@ -1,0 +1,3 @@
+rootProject.name = 'EARS-framework-benchmark'
+include ':EARS'
+project(':EARS').projectDir = new File('D:/IdeaProjects/EARS')
