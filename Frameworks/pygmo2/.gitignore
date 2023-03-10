@@ -1,0 +1,21 @@
+# Build dirs.
+build*
+
+# Temp files.
+*~
+*.bak
+*.ipynb_checkpoints*
+*__pycache__*
+
+# Editor files
+*.vscode*
+
+# .orig files from patch.
+*.orig
+
+# Docs.
+doc/conf.py
+doc/_build
+
+# clangd bits.
+.cache

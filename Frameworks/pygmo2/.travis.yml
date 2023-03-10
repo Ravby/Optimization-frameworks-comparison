@@ -1,0 +1,19 @@
+language: cpp
+
+# Do not build branches of the form "pr/*". By prefixing pull requests coming
+# from branches inside the repository with pr/, this avoids building both the
+# branch push _and_ the pull request.
+branches:
+  except: /pr\/.*/
+
+env:
+matrix:
+  - env: PYGMO_BUILD_TYPE="ppc64"
+    os: linux
+    arch: ppc64le
+    dist: focal
+script:  
+    - if [[ "${PYGMO_BUILD_TYPE}" == ppc64 ]]; then bash tools/travis_ubuntu_ppc64.sh; fi
+
+notifications:
+  email: false
