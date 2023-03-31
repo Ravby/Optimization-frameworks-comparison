@@ -81,8 +81,6 @@ class OriginalSSpiderA(Optimizer):
         self.p_c = self.validator.check_float("p_c", p_c, (0, 1.0))
         self.p_m = self.validator.check_float("p_m", p_m, (0, 1.0))
         self.set_parameters(["epoch", "pop_size", "r_a", "p_c", "p_m"])
-
-        self.nfe_per_epoch = self.pop_size
         self.sort_flag = False
 
     def create_solution(self, lb=None, ub=None, pos=None):
@@ -142,6 +140,7 @@ class OriginalSSpiderA(Optimizer):
             agent[self.ID_POS] = self.amend_position(pos_new, self.problem.lb, self.problem.ub)
             if self.mode not in self.AVAILABLE_MODES:
                 agent[self.ID_TAR] = self.get_target_wrapper(agent[self.ID_POS])
+                pop_new.append(agent)
         pop_new = self.update_target_wrapper_population(pop_new)
 
         for idx in range(0, self.pop_size):

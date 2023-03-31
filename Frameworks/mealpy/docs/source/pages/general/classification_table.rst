@@ -1,26 +1,27 @@
 
-* Meta-heuristic Categories: (Based on `this article`_)
-    + Evolutionary-based: Idea from Darwin's law of natural selection, evolutionary computing
-    + Swarm-based: Idea from movement, interaction of birds, organization of social ...
-    + Physics-based: Idea from physics law such as Newton's law of universal gravitation, black hole, multiverse
-    + Human-based: Idea from human interaction such as queuing search, teaching learning, ...
-    + Biology-based: Idea from biology creature (or microorganism),...
-    + System-based: Idea from eco-system, immune-system, network-system, ...
-    + Math-based: Idea from mathematical form or mathematical law such as sin-cosin
-    + Music-based: Idea from music instrument
-    + Probabilistic-base: Probabilistic based algorithm
+* Meta-heuristic Algorithm's Categories: (Based on `this article`_)
+    + Evolutionary-based: inspired by Darwin's law of natural selection, evolutionary computing
+    + Swarm-based: inspired by movement, interaction, and organization of birds, social insects, and other animals
+    + Physics-based: inspired by physical laws such as Newton's law of universal gravitation, black holes, and multiverse
+    + Human-based: inspired by human interaction, such as queuing search, teaching-learning, and cultural algorithms
+    + Biology-based: inspired by biological creatures or microorganisms, such as genetic algorithms and artificial immune systems
+    + System-based: inspired by ecosystem, immune system, and network system.
+    + Math-based: inspired by mathematical forms or laws, such as sin-cosin functions, golden ratio.
+    + Music-based: inspired by music instruments, such as harmony search
+    + Probabilistic-base: inspired by probabilistic-based algorithms, such as Bayesian optimization and cross-entropy method
     + Dummy: Non-sense algorithms and Non-sense papers (code proofs)
+
 
 .. _this article: https://doi.org/10.1016/j.procs.2020.09.075
 
 
 * Difficulty - Difficulty Level (Personal Opinion): Objective observation from author. Depend on the number of parameters, number of equations, the original ideas, time spend for coding, source lines of code (SLOC).
-    + Easy: A few paras, few equations, SLOC very short
-    + Medium: more equations than Easy level, SLOC longer than Easy level
-    + Hard: Lots of equations, SLOC longer than Medium level, the paper hard to read.
-    + Hard* - Very hard: Lots of equations, SLOC too long, the paper is very hard to read.
+    + Easy: Few parameters, few equations, and very short SLOC (Source lines of code)
+    + Medium: More equations than the Easy level, longer SLOC than the Easy level
+    + Hard: Lots of equations, longer SLOC than the Medium level, and the paper is difficult to read.
+    + Hard* - Very hard:Lots of equations, SLOC is too long, and the paper is very difficult to read.
 
-**For newbie, I recommend to read the paper of algorithms which difficulty is "easy" or "medium" difficulty level.**
+**For newbies, it is recommended to start by reading papers on algorithms that are categorized as "easy" or "medium" difficulty level.**
 
 
 +---------------+--------------------------------------------------+-----------+-------------------+-------+--------+-------------+
@@ -112,6 +113,8 @@
 | Swarm         | African Vultures Optimization Algorithm          | AVOA      | OriginalAVOA      | 2022  | 7      | medium      |
 | Swarm         | Artificial Gorilla Troops Optimization           | AGTO      | OriginalAGTO      | 2021  | 5      | medium      |
 | Swarm         | Artificial Rabbits Optimization                  | ARO       | OriginalARO       | 2022  | 2      | easy        |
+| Swarm         | Dwarf Mongoose Optimization Algorithm            | DMOA      | OriginalDMOA      | 2022  | 4      | medium      |
+| Swarm         | -                                                | -         | DevDMOA           | -     | 3      | medium      |
 | -             | -                                                | -         | -                 | -     | -      | -           |
 | Physics       | Simulated Annealling                             | SA        | OriginalSA        | 1987  | 9      | medium      |
 | Physics       | Wind Driven Optimization                         | WDO       | OriginalWDO       | 2013  | 7      | easy        |
@@ -159,8 +162,6 @@
 | Human         | -                                                | -         | BaseBRO           | -     | 3      | medium      |
 | Human         | Student Psychology Based Optimization            | SPBO      | OriginalSPBO      | 2020  | 2      | medium      |
 | Human         | -                                                | -         | DevSPBO           |       | 2      | medium      |
-| Human         | Dwarf Mongoose Optimization Algorithm            | DMOA      | OriginalDMOA      | 2022  | 4      | medium      |
-| Human         | -                                                | -         | DevDMOA           | -     | 3      | medium      |
 | -             | -                                                | -         | -                 | -     | -      | -           |
 | Bio           | Invasive Weed Optimization                       | IWO       | OriginalIWO       | 2006  | 7      | easy        |
 | Bio           | Biogeography-Based Optimization                  | BBO       | OriginalBBO       | 2008  | 4      | easy        |
@@ -186,7 +187,7 @@
 | System        | -                                                | -         | EnhancedAEO       | 2020  | 2      | medium      |
 | System        | -                                                | -         | ModifiedAEO       | 2020  | 2      | medium      |
 | System        | -                                                | -         | ImprovedAEO       | 2021  | 2      | medium      |
-| System        | -                                                | -         | AdaptiveAEO       | -     | 2      | medium      |
+| System        | -                                                | -         | AugmentedAEO      | 2022  | 2      | medium      |
 | -             | -                                                | -         | -                 | -     | -      | -           |
 | Math          | Hill Climbing                                    | HC        | OriginalHC        | 1993  | 3      | easy        |
 | Math          | -                                                | -         | SwarmHC           | -     | 3      | easy        |

@@ -3,16 +3,3 @@
 #       Email: nguyenthieu2102@gmail.com            %
 #       Github: https://github.com/thieu1995        %
 # --------------------------------------------------%
-
-from . import BBO
-from . import EOA
-from . import IWO
-from . import SBO
-from . import SMA
-from . import TPO
-from . import VCS
-from . import WHO
-from . import BMO
-from . import SOS
-from . import SOA
-from . import TSA

@@ -81,13 +81,13 @@ class OriginalICA(Optimizer):
         self.zeta = self.validator.check_float("zeta", zeta, (0, 1.0))
         self.set_parameters(["epoch", "pop_size", "empire_count", "assimilation_coeff", "revolution_prob",
                              "revolution_rate", "revolution_step_size", "zeta"])
-
-        self.nfe_per_epoch = self.pop_size
         self.sort_flag = True
 
-    def revolution_country_(self, position, idx_list_variables, n_revoluted):
+    def revolution_country__(self, position, n_revoluted):
         pos_new = position + self.revolution_step_size * np.random.normal(0, 1, self.problem.n_dims)
-        idx_list = np.random.choice(idx_list_variables, n_revoluted, replace=False)
+        idx_list = np.random.choice(range(0, self.problem.n_dims), n_revoluted, replace=False)
+        if len(idx_list) == 0:
+            idx_list = np.append(idx_list, np.random.randint(0, self.problem.n_dims))
         position[idx_list] = pos_new[idx_list]  # Change only those selected index
         return position
 
@@ -97,7 +97,6 @@ class OriginalICA(Optimizer):
         self.pop, self.g_best = self.get_global_best_solution(self.pop)
         # Initialization
         self.n_revoluted_variables = int(round(self.revolution_rate * self.problem.n_dims))
-        self.idx_list_variables = list(range(0, self.problem.n_dims))
 
         # pop = Empires
         colony_count = self.pop_size - self.empire_count
@@ -129,7 +128,6 @@ class OriginalICA(Optimizer):
         Args:
             epoch (int): The current iteration
         """
-        nfe_epoch = 0
         # Assimilation
         for idx, colonies in self.empires.items():
             for idx_colony, colony in enumerate(colonies):
@@ -140,12 +138,11 @@ class OriginalICA(Optimizer):
                 if self.mode not in self.AVAILABLE_MODES:
                     self.empires[idx][idx_colony][self.ID_TAR] = self.get_target_wrapper(pos_new)
             self.empires[idx] = self.update_target_wrapper_population(self.empires[idx])
-            nfe_epoch += len(self.empires[idx])
 
         # Revolution
         for idx, colonies in self.empires.items():
             # Apply revolution to Imperialist
-            pos_new_em = self.revolution_country_(self.pop_empires[idx][self.ID_POS], self.idx_list_variables, self.n_revoluted_variables)
+            pos_new_em = self.revolution_country__(self.pop_empires[idx][self.ID_POS], self.n_revoluted_variables)
             pos_new_em = self.amend_position(pos_new_em, self.problem.lb, self.problem.ub)
             self.pop_empires[idx][self.ID_POS] = pos_new_em
             if self.mode not in self.AVAILABLE_MODES:
@@ -154,16 +151,14 @@ class OriginalICA(Optimizer):
             # Apply revolution to Colonies
             for idx_colony, colony in enumerate(colonies):
                 if np.random.rand() < self.revolution_prob:
-                    pos_new = self.revolution_country_(colony[self.ID_POS], self.idx_list_variables, self.n_revoluted_variables)
+                    pos_new = self.revolution_country__(colony[self.ID_POS], self.n_revoluted_variables)
                     pos_new = self.amend_position(pos_new, self.problem.lb, self.problem.ub)
                     self.empires[idx][idx_colony][self.ID_POS] = pos_new
                     if self.mode not in self.AVAILABLE_MODES:
                         self.empires[idx][idx_colony][self.ID_TAR] = self.get_target_wrapper(pos_new)
             self.empires[idx] = self.update_target_wrapper_population(self.empires[idx])
-            nfe_epoch+= len(self.empires[idx])
         self.pop_empires = self.update_target_wrapper_population(self.pop_empires)
         self.update_global_best_solution(self.pop_empires, save=False)
-        nfe_epoch += len(self.pop_empires)
 
         # Intra-Empire Competition
         for idx, colonies in self.empires.items():
