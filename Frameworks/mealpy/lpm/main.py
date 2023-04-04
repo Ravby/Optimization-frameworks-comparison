@@ -54,7 +54,7 @@ problems = [
     SumOfSquares(lb=[-10, ] * num_of_dimension_1, ub=[10, ] * num_of_dimension_1, minmax="min"),
     Schwefel12(lb=[-100, ] * num_of_dimension_1, ub=[100, ] * num_of_dimension_1, minmax="min"),
     Rastrigin(lb=[-5.12, ] * num_of_dimension_1, ub=[5.12, ] * num_of_dimension_1, minmax="min"),
-    Ackley(lb=[-32, ] * num_of_dimension_1, ub=[32, ] * num_of_dimension_1, minmax="min"),
+    Ackley(lb=[-32.768, ] * num_of_dimension_1, ub=[32.768, ] * num_of_dimension_1, minmax="min"),
     Griewank(lb=[-600, ] * num_of_dimension_1, ub=[600, ] * num_of_dimension_1, minmax="min"),
     Rosenbrock(lb=[-30, ] * num_of_dimension_1, ub=[30, ] * num_of_dimension_1, minmax="min"),
     Shekelfoxholes(lb=[-65.536, ] * num_of_dimension_2, ub=[65.536, ] * num_of_dimension_2, minmax="min"), # TODO check why no work
@@ -68,15 +68,31 @@ problems = [
 for file_path in glob.glob(directory_path + "*"):
     if file_path.__contains__('_' + str(test_run_num) + '_'):
         os.remove(file_path)
+if(1):
+    for x in range(num_of_reruns):
+        for index, model in enumerate(models):
+            best_fitnesses = []
+            for problem in problems:
+                # Find the best solution and add it to best_fitness_results
+                best_position, best_fitness = model.solve(problem, termination=term_dict1)
+                # Write best_fitness to file
+                with open(directory_path + framework_name + '_' + model.name + '_' + str(
+                        test_run_num) + '_' + problem.name + '.txt', 'a') as f:
+                    f.write(str(best_fitness) + '\n')
+                #print(f"Algorithm: {model.name}, Problem: {problem.name} --> Best solution: {best_position},\nBest fitness: {best_fitness}")
 
-for x in range(num_of_reruns):
-    for index, model in enumerate(models):
-        best_fitnesses = []
-        for problem in problems:
-            # Find the best solution and add it to best_fitness_results
-            best_position, best_fitness = model.solve(problem, termination=term_dict1)
-            # Write best_fitness to file
-            with open(directory_path + framework_name + '_' + model.name + '_' + str(
-                    test_run_num) + '_' + problem.name + '.txt', 'a') as f:
-                f.write(str(best_fitness) + '\n')
-            #print(f"Algorithm: {model.name}, Problem: {problem.name} --> Best solution: {best_position},\nBest fitness: {best_fitness}")
+
+if(0):
+    # Test run of algorithms
+    print(f"Sphere:  { problems[0].fit_func(np.array([0, ] * 10)) }")
+    print(f"SumOfSquares:  { problems[1].fit_func(np.array([0, ] * 10)) }")
+    print(f"Schwefel12:  { problems[2].fit_func(np.array([0, ] * 10)) }")
+    print(f"Rastrigin:  { problems[3].fit_func(np.array([0, ] * 10)) }")
+    print(f"Ackley:  { problems[4].fit_func(np.array([0, ] * 10)) }")
+    print(f"Griewank:  { problems[5].fit_func(np.array([0, ] * 10)) }")
+    print(f"Rosenbrock:  { problems[6].fit_func(np.array([1, ] * 10)) }")
+    print(f"Shekel’s Foxholes :  { problems[7].fit_func(np.array([-31.97833, -31.97833])) }")
+    print(f"Six-Hump Camel Back :  { problems[8].fit_func(np.array([0.0898, -0.7126])) }")
+    print(f"Branin :  { problems[9].fit_func(np.array([-np.pi,12.275])) }")
+    print(f"Goldstein-Price :  { problems[10].fit_func(np.array([0, -1])) }")
+    print(f"Hartman :  { problems[11].fit_func(np.array([0.114614,0.555649,0.852547])) }")

@@ -8,10 +8,12 @@ class Ackley(Problem):
         self.name = name
 
     def fit_func(self, solution):
-        d = solution.size
-        a = 20
+        a = 20.0
         b = 0.2
         c = 2 * np.pi
-        sum_sq_term = -a * np.exp(-b * np.sqrt(np.sum(solution ** 2) / d))
-        cos_term = -np.exp(np.sum(np.cos(c * solution)) / d)
-        return a + np.exp(1) + sum_sq_term + cos_term
+        sum1 = 0
+        sum2 = 0
+        for i in range(len(solution)):
+            sum1 += solution[i] ** 2
+            sum2 += np.cos(c * solution[i])
+        return -a * np.exp(-b * np.sqrt(1.0 / len(solution) * sum1)) - np.exp(1.0 / len(solution) * sum2) + a + np.e
