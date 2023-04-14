@@ -10,6 +10,10 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
  */
 public class Griewank extends AbstractDoubleProblem {
 
+  public Griewank() {
+    this(10);
+  }
+
   /**
    * Constructor
    * Creates a default instance of the Griewank problem

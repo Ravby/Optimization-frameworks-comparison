@@ -25,8 +25,8 @@ public class Sphere extends AbstractDoubleProblem {
     List<Double> upperLimit = new ArrayList<>(numberOfVariables) ;
 
     IntStream.range(0, numberOfVariables).forEach(i -> {
-      lowerLimit.add(-5.12);
-      upperLimit.add(5.12);
+      lowerLimit.add(-100.0);
+      upperLimit.add(100.0);
     });
 
     variableBounds(lowerLimit, upperLimit);

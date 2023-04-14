@@ -8,6 +8,9 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 
 public class Rosenbrock extends AbstractDoubleProblem {
 
+  public Rosenbrock() {
+    this(10);
+  }
   /**
    * Constructor
    * Creates a default instance of the Rosenbrock problem
@@ -23,8 +26,8 @@ public class Rosenbrock extends AbstractDoubleProblem {
     List<Double> upperLimit = new ArrayList<>(numberOfVariables) ;
 
     for (int i = 0; i < numberOfVariables; i++) {
-      lowerLimit.add(-5.12);
-      upperLimit.add(5.12);
+      lowerLimit.add(-30.0);
+      upperLimit.add(30.0);
     }
 
     variableBounds(lowerLimit, upperLimit);
