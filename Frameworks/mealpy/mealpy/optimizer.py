@@ -233,8 +233,8 @@ class Optimizer:
             if self.termination is not None:
                 es = self.history.get_global_repeated_times(self.ID_TAR, self.ID_FIT, self.termination.epsilon)
                 finished = self.termination.should_terminate(epoch, self.nfe_counter, time.perf_counter(), es)
-                if finished:
-                    self.logger.warning(self.termination.message)
+                #if finished:
+                #    self.logger.warning(self.termination.message)
             return finished
 
     def solve(self, problem=None, mode='single', starting_positions=None, n_workers=None, termination=None):
@@ -314,8 +314,8 @@ class Optimizer:
         div = np.mean(np.abs(np.median(pos_matrix, axis=0) - pos_matrix), axis=0)
         self.history.list_diversity.append(np.mean(div, axis=0))
         ## Print epoch
-        self.logger.info(f">Problem: {self.problem.name}, Epoch: {epoch}, Current best: {self.history.list_current_best[-1][self.ID_TAR][self.ID_FIT]}, "
-                         f"Global best: {self.history.list_global_best[-1][self.ID_TAR][self.ID_FIT]}, Runtime: {runtime:.5f} seconds")
+        #self.logger.info(f">Problem: {self.problem.name}, Epoch: {epoch}, Current best: {self.history.list_current_best[-1][self.ID_TAR][self.ID_FIT]}, "
+        #                 f"Global best: {self.history.list_global_best[-1][self.ID_TAR][self.ID_FIT]}, Runtime: {runtime:.5f} seconds")
 
     def track_optimize_process(self):
         """

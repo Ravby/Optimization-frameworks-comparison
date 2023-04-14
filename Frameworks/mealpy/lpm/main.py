@@ -21,66 +21,65 @@ from problems import Branin
 from problems import GoldsteinPrice
 from problems import Hartman
 
-framework_name = "MealPy"
-test_run_num = 1
+frameworkName = "MealPy"
 directory_path = "data/"
 
 term_dict1 = {
     #"max_epoch": 1000,
-    "max_fe": 100,  # 100000 number of function evaluation
+    "max_fe": 15000,  # 100000 number of function evaluation
     #"max_time": 100000,  # 10 seconds to run the program
     #"max_early_stop": 15  # 15 epochs if the best fitness is not getting better we stop the program
 }
 
-pop_size = 50
-num_of_reruns = 10
+num_of_reruns = 100
 
-print(f"ABC, DE, GA, GWO, PSO algorithms test")
+algorithmNames = ['PSO', 'DE']
+problemNames = ['Sphere', 'SumOfSquares','Schwefel','Rastrigin','Ackley','Griewank','Rosenbrock','ShekelsFoxholes','SixHumpCamelBack','Branin','GoldsteinPrice','Hartman']
+numOfDims = [30, 30, 30, 30, 30, 30, 30, 2, 2, 2, 2, 3]
 
 models = [
-        ABC.OriginalABC(pop_size=pop_size, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1)),
-        DE.BaseDE(pop_size=pop_size, wf=1.0, cr=0.9, strategy=0),
-        GA.BaseGA(pop_size=pop_size, pc=0.95, pm=0.025),
-        GWO.OriginalGWO(pop_size=pop_size),
-        PSO.OriginalPSO(pop_size=pop_size, c1=2.05, c2=2.05, w_min=0.4, w_max=0.9)
+        #ABC.OriginalABC(pop_size=125, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1), n_limits=100),
+        PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w_min=0.4, w_max=0.7),
+        DE.BaseDE(pop_size=50, wf=0.5, cr=0.9, strategy=0),
+        #GWO.OriginalGWO(pop_size=30),
+        #GA.BaseGA(pop_size=50, pc=0.95, pm=0.025) # TODO spremeni pop_size
 ]
-
-num_of_dimension_1 = 10
-num_of_dimension_2 = 2
-num_of_dimension_3 = 3
 
 problems = [
-    Sphere(lb=[-10, ] * num_of_dimension_1, ub=[10, ] * num_of_dimension_1, minmax="min"),
-    SumOfSquares(lb=[-10, ] * num_of_dimension_1, ub=[10, ] * num_of_dimension_1, minmax="min"),
-    Schwefel12(lb=[-100, ] * num_of_dimension_1, ub=[100, ] * num_of_dimension_1, minmax="min"),
-    Rastrigin(lb=[-5.12, ] * num_of_dimension_1, ub=[5.12, ] * num_of_dimension_1, minmax="min"),
-    Ackley(lb=[-32.768, ] * num_of_dimension_1, ub=[32.768, ] * num_of_dimension_1, minmax="min"),
-    Griewank(lb=[-600, ] * num_of_dimension_1, ub=[600, ] * num_of_dimension_1, minmax="min"),
-    Rosenbrock(lb=[-30, ] * num_of_dimension_1, ub=[30, ] * num_of_dimension_1, minmax="min"),
-    Shekelfoxholes(lb=[-65.536, ] * num_of_dimension_2, ub=[65.536, ] * num_of_dimension_2, minmax="min"), # TODO check why no work
-    SixHumpCamelBack(lb=[-5, ] * num_of_dimension_2, ub=[5, ] * num_of_dimension_2, minmax="min"),
+    Sphere(lb=[-10, ] * numOfDims[0], ub=[10, ] * numOfDims[0], minmax="min"),
+    SumOfSquares(lb=[-10, ] * numOfDims[1], ub=[10, ] * numOfDims[1], minmax="min"),
+    Schwefel12(lb=[-100, ] * numOfDims[2], ub=[100, ] * numOfDims[2], minmax="min"),
+    Rastrigin(lb=[-5.12, ] * numOfDims[3], ub=[5.12, ] * numOfDims[3], minmax="min"),
+    Ackley(lb=[-32.768, ] * numOfDims[4], ub=[32.768, ] * numOfDims[4], minmax="min"),
+    Griewank(lb=[-600, ] * numOfDims[5], ub=[600, ] * numOfDims[5], minmax="min"),
+    Rosenbrock(lb=[-30, ] * numOfDims[6], ub=[30, ] * numOfDims[6], minmax="min"),
+    Shekelfoxholes(lb=[-65.536, ] * numOfDims[7], ub=[65.536, ] * numOfDims[7], minmax="min"),  # TODO check why no work
+    SixHumpCamelBack(lb=[-5, ] * numOfDims[8], ub=[5, ] * numOfDims[8], minmax="min"),
     Branin(lb=[-5, 0], ub=[10, 15], minmax="min"),
-    GoldsteinPrice(lb=[-2, ] * num_of_dimension_2, ub=[2, ] * num_of_dimension_2, minmax="min"),
-    Hartman(lb=[-0, ] * num_of_dimension_3, ub=[1, ] * num_of_dimension_3, minmax="min")
+    GoldsteinPrice(lb=[-2, ] * numOfDims[10], ub=[2, ] * numOfDims[10], minmax="min"),
+    Hartman(lb=[-0, ] * numOfDims[11], ub=[1, ] * numOfDims[11], minmax="min")
 ]
 
-# Remove files if already exist for current test_run_num
+# Remove files
 for file_path in glob.glob(directory_path + "*"):
-    if file_path.__contains__('_' + str(test_run_num) + '_'):
-        os.remove(file_path)
+    os.remove(file_path)
+
 if(1):
-    for x in range(num_of_reruns):
-        for index, model in enumerate(models):
-            best_fitnesses = []
-            for problem in problems:
+    #for x in range(num_of_reruns):
+    for index, model in enumerate(models):
+        for j, problem in enumerate(problems):
+            best_fitnesses = np.zeros(num_of_reruns)
+            for x in range(num_of_reruns):
                 # Find the best solution and add it to best_fitness_results
                 best_position, best_fitness = model.solve(problem, termination=term_dict1)
-                # Write best_fitness to file
-                with open(directory_path + framework_name + '_' + model.name + '_' + str(
-                        test_run_num) + '_' + problem.name + '.txt', 'a') as f:
-                    f.write(str(best_fitness) + '\n')
-                #print(f"Algorithm: {model.name}, Problem: {problem.name} --> Best solution: {best_position},\nBest fitness: {best_fitness}")
+                best_fitnesses[x] = best_fitness
 
+            # Write best_fitness to file
+            filepath = directory_path + algorithmNames[index] + '-' + frameworkName + '_' + problemNames[j] + 'D' + str(numOfDims[j]) + '.txt'
+            np.savetxt(filepath, best_fitnesses, fmt='%.10f')
+            #with open(directory_path + frameworkName + '_' + model.name + '_' + str(test_run_num) + '_' + problem.name + '.txt', 'a') as f:
+            #with open(directory_path + algorithmNames[index] + '-' + frameworkName + '_' + problemNames[j] + 'D' + str(numOfDims[j]) + '.txt', 'a') as f:
+            #    f.write(str(best_fitness) + '\n')
 
 if(0):
     # Test run of algorithms

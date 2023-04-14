@@ -3,7 +3,7 @@ import math
 
 
 class Schwefel12(Problem):
-    def __init__(self, lb, ub, minmax, name="Schwefel12", **kwargs):
+    def __init__(self, lb, ub, minmax, name="Schwefel", **kwargs):
         super().__init__(lb, ub, minmax, **kwargs)
         self.name = name
 

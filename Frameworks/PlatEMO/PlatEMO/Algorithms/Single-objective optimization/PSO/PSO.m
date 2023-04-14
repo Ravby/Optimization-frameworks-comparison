@@ -1,7 +1,7 @@
 classdef PSO < ALGORITHM
 % <single> <real/integer> <large/none> <constrained/none>
 % Particle swarm optimization
-% W --- 0.4 --- Inertia weight
+% W --- 0.7 --- Inertia weight
 
 %------------------------------- Reference --------------------------------
 % R. Eberhart and J. Kennedy, A new optimizer using particle swarm theory,
@@ -19,7 +19,7 @@ classdef PSO < ALGORITHM
     methods
         function main(Algorithm,Problem)
             %% Parameter setting
-            W = Algorithm.ParameterSet(0.4);
+            W = Algorithm.ParameterSet(0.7);
             
             %% Generate random population
             Population = Problem.Initialization();
