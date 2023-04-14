@@ -8,6 +8,7 @@ import org.uma.jmetal.algorithm.singleobjective.particleswarmoptimization.Standa
 import org.uma.jmetal.operator.crossover.impl.DifferentialEvolutionCrossover;
 import org.uma.jmetal.problem.ProblemFactory;
 import org.uma.jmetal.problem.doubleproblem.DoubleProblem;
+import org.uma.jmetal.problem.singleobjective.*;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
@@ -30,26 +31,19 @@ public class MainRunner {
         Algorithm<DoubleSolution> algorithm;
         SolutionListEvaluator<DoubleSolution> evaluator;
 
-        ArrayList<String> problemNames = new ArrayList<>();
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Sphere");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.SumOfSquares");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Schwefel");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Rastrigin");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Ackley");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Griewank");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Rosenbrock");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.ShekelsFoxholes");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.SixHumpCamelBack");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Branin");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.GoldsteinPrice");
-        problemNames.add("org.uma.jmetal.problem.singleobjective.Hartman");
-
         ArrayList<DoubleProblem> problems = new ArrayList<>();
-
-
-        for (String problemName : problemNames) {
-            problems.add((DoubleProblem) ProblemFactory.<DoubleSolution>loadProblem(problemName));
-        }
+        problems.add(new Sphere(30));
+        problems.add(new SumOfSquares(30));
+        problems.add(new Schwefel(30));
+        problems.add(new Rastrigin(30));
+        problems.add(new Ackley(30));
+        problems.add(new Griewank(30));
+        problems.add(new Rosenbrock(30));
+        problems.add(new ShekelsFoxholes());
+        problems.add(new SixHumpCamelBack());
+        problems.add(new Branin());
+        problems.add(new GoldsteinPrice());
+        problems.add(new Hartman());
 
         evaluator = new SequentialSolutionListEvaluator<DoubleSolution>();
 
