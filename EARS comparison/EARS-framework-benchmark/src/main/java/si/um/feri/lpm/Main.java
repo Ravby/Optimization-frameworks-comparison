@@ -22,14 +22,14 @@ public class Main {
         String filesDir = parentDirFile + File.separator + "Algorithm results";
 
         ArrayList<NumberAlgorithm> players = new ArrayList<>();
-        players.add(new DummyAlgorithm("PSO-Test1", filesDir));
-        players.add(new DummyAlgorithm("PSO-Test2", filesDir));
+        players.add(new DummyAlgorithm("DE-jMetal", filesDir));
+        players.add(new DummyAlgorithm("PSO-jMetal", filesDir));
 
         FrameworksBenchmark frameworksBenchmark = new FrameworksBenchmark();
         frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
         frameworksBenchmark.run(50);
 
-        RatingIntervalPlot.displayChart(frameworksBenchmark.getResultArena().getPlayers(), RatingType.GLICKO2,  "Intervali zaupanja", 1200, 600); //2000 1400
+        RatingIntervalPlot.displayChart(frameworksBenchmark.getResultArena().getPlayers(), RatingType.GLICKO2,  "Rating intervals", 1200, 600); //2000 1400
     }
 }

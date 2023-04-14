@@ -54,7 +54,7 @@ public class StandardPSO2007 extends AbstractParticleSwarmOptimization<DoubleSol
    * @param numberOfParticlesToInform
    * @param evaluator
    */
-  public StandardPSO2007(DoubleProblem problem, int objectiveId, int swarmSize, int maxIterations,
+  public StandardPSO2007(DoubleProblem problem, int objectiveId, int swarmSize, double weight, int maxIterations,
                          int numberOfParticlesToInform, SolutionListEvaluator<DoubleSolution> evaluator) {
     this.problem = problem;
     this.swarmSize = swarmSize;
@@ -63,7 +63,7 @@ public class StandardPSO2007 extends AbstractParticleSwarmOptimization<DoubleSol
     this.evaluator = evaluator;
     this.objectiveId = objectiveId;
 
-    weight = 1.0 / (2.0 * Math.log(2));
+    this.weight = weight; //1.0 / (2.0 * Math.log(2));
     c = 1.0 / 2.0 + Math.log(2);
 
     fitnessComparator = new ObjectiveComparator<DoubleSolution>(objectiveId);
@@ -88,9 +88,9 @@ public class StandardPSO2007 extends AbstractParticleSwarmOptimization<DoubleSol
    * @param numberOfParticlesToInform
    * @param evaluator
    */
-  public StandardPSO2007(DoubleProblem problem, int swarmSize, int maxIterations,
+  public StandardPSO2007(DoubleProblem problem, int swarmSize, double weight, int maxIterations,
                          int numberOfParticlesToInform, SolutionListEvaluator<DoubleSolution> evaluator) {
-    this(problem, 0, swarmSize, maxIterations, numberOfParticlesToInform, evaluator);
+    this(problem, 0, swarmSize, weight, maxIterations, numberOfParticlesToInform, evaluator);
   }
 
   @Override
