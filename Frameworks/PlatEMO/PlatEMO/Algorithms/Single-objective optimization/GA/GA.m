@@ -21,7 +21,7 @@ classdef GA < ALGORITHM
     methods
         function main(Algorithm,Problem)
             %% Parameter setting
-            [proC,disC,proM,disM] = Algorithm.ParameterSet(1,20,1,20);
+            [proC,disC,proM,disM] = Algorithm.ParameterSet(0.95,20,0.025,20);
             
             %% Generate random population
             Population = Problem.Initialization();

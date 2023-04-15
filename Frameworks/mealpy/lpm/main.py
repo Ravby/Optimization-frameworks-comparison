@@ -33,16 +33,16 @@ term_dict1 = {
 
 num_of_reruns = 100
 
-algorithmNames = ['PSO', 'DE']
-problemNames = ['Sphere', 'SumOfSquares','Schwefel','Rastrigin','Ackley','Griewank','Rosenbrock','ShekelsFoxholes','SixHumpCamelBack','Branin','GoldsteinPrice','Hartman']
+algorithmNames = ['GWO', 'GA']
+problemNames = ['Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank', 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
 numOfDims = [30, 30, 30, 30, 30, 30, 30, 2, 2, 2, 2, 3]
 
 models = [
         #ABC.OriginalABC(pop_size=125, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1), n_limits=100),
-        PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w_min=0.4, w_max=0.7),
-        DE.BaseDE(pop_size=50, wf=0.5, cr=0.9, strategy=0),
-        #GWO.OriginalGWO(pop_size=30),
-        #GA.BaseGA(pop_size=50, pc=0.95, pm=0.025) # TODO spremeni pop_size
+        #PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w_min=0.4, w_max=0.7),
+        #DE.BaseDE(pop_size=50, wf=0.5, cr=0.9, strategy=0),
+        GWO.OriginalGWO(pop_size=30),
+        GA.BaseGA(pop_size=100, pc=0.95, pm=0.025)  # TODO spremeni pop_size
 ]
 
 problems = [
@@ -53,7 +53,7 @@ problems = [
     Ackley(lb=[-32.768, ] * numOfDims[4], ub=[32.768, ] * numOfDims[4], minmax="min"),
     Griewank(lb=[-600, ] * numOfDims[5], ub=[600, ] * numOfDims[5], minmax="min"),
     Rosenbrock(lb=[-30, ] * numOfDims[6], ub=[30, ] * numOfDims[6], minmax="min"),
-    Shekelfoxholes(lb=[-65.536, ] * numOfDims[7], ub=[65.536, ] * numOfDims[7], minmax="min"),  # TODO check why no work
+    Shekelfoxholes(lb=[-65.536, ] * numOfDims[7], ub=[65.536, ] * numOfDims[7], minmax="min"),
     SixHumpCamelBack(lb=[-5, ] * numOfDims[8], ub=[5, ] * numOfDims[8], minmax="min"),
     Branin(lb=[-5, 0], ub=[10, 15], minmax="min"),
     GoldsteinPrice(lb=[-2, ] * numOfDims[10], ub=[2, ] * numOfDims[10], minmax="min"),
@@ -61,8 +61,8 @@ problems = [
 ]
 
 # Remove files
-for file_path in glob.glob(directory_path + "*"):
-    os.remove(file_path)
+#for file_path in glob.glob(directory_path + "*"):
+#    os.remove(file_path)
 
 if(1):
     #for x in range(num_of_reruns):
