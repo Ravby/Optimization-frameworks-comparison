@@ -1,0 +1,3 @@
+sphere <- function(X) {
+  return (sum(X^2))
+}

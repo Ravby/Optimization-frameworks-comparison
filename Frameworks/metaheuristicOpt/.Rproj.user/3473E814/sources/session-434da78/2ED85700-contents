@@ -1,0 +1,19 @@
+sphere <- function(X) {
+  return (sum(X ^ 2))
+}
+
+
+# algorithms
+pso_algorithm(
+  pop_size = 30,
+  iterations = 500,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = sphere,
+  lb = -100,
+  ub = 100,
+  dim = 30,
+  file_name = "PSO-metaheuristicsOpt_SphereD30.txt"
+)
+

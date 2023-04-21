@@ -1,0 +1,15 @@
+pso_algorithm <- function(pop_size, iterations, omega, c1, c2, problem, lb, ub, dim, file_name) {
+  
+  rangeVar <- matrix(c(lb, ub), nrow = 2)
+  
+  control <- list(numPopulation=pop_size, maxIter=iterations, ci=c1, cg=c2, w=omega)
+  
+  results <- c()
+  
+  for (i in 1:1) {
+    best.variable <- metaOpt(problem, optimType="MIN", algorithm="PSO", dim, rangeVar, control)
+    results <- c(results, best.variable[["optimumValue"]])
+  }
+  
+  write.table(results, file=file_name, row.names = FALSE, col.names = FALSE)
+}

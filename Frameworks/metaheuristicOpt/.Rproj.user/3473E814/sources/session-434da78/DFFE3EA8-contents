@@ -1,0 +1,456 @@
+sphere <- function(xx)
+{
+  ##########################################################################
+  #
+  # SPHERE FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  sum <- sum(xx ^ 2)
+  
+  y <- sum
+  return(y)
+}
+
+
+sum_of_squares <- function(xx)
+{
+  ##########################################################################
+  #
+  # SUM SQUARES FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  ii <- c(1:length(xx))
+  sum <- sum(ii * xx ^ 2)
+  
+  y <- sum
+  return(y)
+}
+
+schwefel <- function(xx)
+{
+  ##########################################################################
+  #
+  # SCHWEFEL FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  d <- length(xx)
+  
+  sum <- sum(xx * sin(sqrt(abs(xx))))
+  
+  y <- 418.9829 * d - sum
+  return(y)
+}
+
+rastrigin <- function(xx)
+{
+  ##########################################################################
+  #
+  # RASTRIGIN FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  d <- length(xx)
+  
+  sum <- sum(xx ^ 2 - 10 * cos(2 * pi * xx))
+  
+  y <- 10 * d + sum
+  return(y)
+}
+
+ackley <- function(xx,
+                   a = 20,
+                   b = 0.2,
+                   c = 2 * pi)
+{
+  ##########################################################################
+  #
+  # ACKLEY FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUTS:
+  #
+  # xx = c(x1, x2, ..., xd)
+  # a = constant (optional), with default value 20
+  # b = constant (optional), with default value 0.2
+  # c = constant (optional), with default value 2*pi
+  #
+  ##########################################################################
+  
+  d <- length(xx)
+  
+  sum1 <- sum(xx ^ 2)
+  sum2 <- sum(cos(c * xx))
+  
+  term1 <- -a * exp(-b * sqrt(sum1 / d))
+  term2 <- -exp(sum2 / d)
+  
+  y <- term1 + term2 + a + exp(1)
+  return(y)
+}
+
+griewank <- function(xx)
+{
+  ##########################################################################
+  #
+  # GRIEWANK FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  ii <- c(1:length(xx))
+  sum <- sum(xx ^ 2 / 4000)
+  prod <- prod(cos(xx / sqrt(ii)))
+  
+  y <- sum - prod + 1
+  return(y)
+}
+
+rosebrock <- function(xx)
+{
+  ##########################################################################
+  #
+  # ROSENBROCK FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2, ..., xd)
+  #
+  ##########################################################################
+  
+  d <- length(xx)
+  xi <- xx[1:(d - 1)]
+  xnext <- xx[2:d]
+  
+  sum <- sum(100 * (xnext - xi ^ 2) ^ 2 + (xi - 1) ^ 2)
+  
+  y <- sum
+  return(y)
+}
+
+six_hump_camel_back <- function(xx)
+{
+  ##########################################################################
+  #
+  # SIX-HUMP CAMEL FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2)
+  #
+  ##########################################################################
+  
+  x1 <- xx[1]
+  x2 <- xx[2]
+  
+  term1 <- (4 - 2.1 * x1 ^ 2 + (x1 ^ 4) / 3) * x1 ^ 2
+  term2 <- x1 * x2
+  term3 <- (-4 + 4 * x2 ^ 2) * x2 ^ 2
+  
+  y <- term1 + term2 + term3
+  return(y)
+}
+
+branin <-
+  function(xx,
+           a = 1,
+           b = 5.1 / (4 * pi ^ 2),
+           c = 5 / pi,
+           r = 6,
+           s = 10,
+           t = 1 / (8 * pi))
+  {
+    ##########################################################################
+    #
+    # BRANIN FUNCTION
+    #
+    # Authors: Sonja Surjanovic, Simon Fraser University
+    #          Derek Bingham, Simon Fraser University
+    # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+    #
+    # Copyright 2013. Derek Bingham, Simon Fraser University.
+    #
+    # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+    # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+    # derivative works, such modified software should be clearly marked.
+    # Additionally, this program is free software; you can redistribute it
+    # and/or modify it under the terms of the GNU General Public License as
+    # published by the Free Software Foundation; version 2.0 of the License.
+    # Accordingly, this program is distributed in the hope that it will be
+    # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+    # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    # General Public License for more details.
+    #
+    # For function details and reference information, see:
+    # http://www.sfu.ca/~ssurjano/
+    #
+    ##########################################################################
+    #
+    # INPUTS:
+    #
+    # xx = c(x1, x2)
+    # a = constant (optional), with default value 1
+    # b = constant (optional), with default value 5.1/(4*pi^2)
+    # c = constant (optional), with default value 5/pi
+    # r = constant (optional), with default value 6
+    # s = constant (optional), with default value 10
+    # t = constant (optional), with default value 1/(8*pi)
+    #
+    ##########################################################################
+    
+    x1 <- xx[1]
+    x2 <- xx[2]
+    
+    term1 <- a * (x2 - b * x1 ^ 2 + c * x1 - r) ^ 2
+    term2 <- s * (1 - t) * cos(x1)
+    
+    y <- term1 + term2 + s
+    return(y)
+  }
+
+goldstein_price <- function(xx)
+{
+  ##########################################################################
+  #
+  # GOLDSTEIN-PRICE FUNCTION
+  #
+  # Authors: Sonja Surjanovic, Simon Fraser University
+  #          Derek Bingham, Simon Fraser University
+  # Questions/Comments: Please email Derek Bingham at dbingham@stat.sfu.ca.
+  #
+  # Copyright 2013. Derek Bingham, Simon Fraser University.
+  #
+  # THERE IS NO WARRANTY, EXPRESS OR IMPLIED. WE DO NOT ASSUME ANY LIABILITY
+  # FOR THE USE OF THIS SOFTWARE.  If software is modified to produce
+  # derivative works, such modified software should be clearly marked.
+  # Additionally, this program is free software; you can redistribute it
+  # and/or modify it under the terms of the GNU General Public License as
+  # published by the Free Software Foundation; version 2.0 of the License.
+  # Accordingly, this program is distributed in the hope that it will be
+  # useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+  # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  # General Public License for more details.
+  #
+  # For function details and reference information, see:
+  # http://www.sfu.ca/~ssurjano/
+  #
+  ##########################################################################
+  #
+  # INPUT:
+  #
+  # xx = c(x1, x2)
+  #
+  ##########################################################################
+  
+  x1 <- xx[1]
+  x2 <- xx[2]
+  
+  fact1a <- (x1 + x2 + 1) ^ 2
+  fact1b <- 19 - 14 * x1 + 3 * x1 ^ 2 - 14 * x2 + 6 * x1 * x2 + 3 * x2 ^
+    2
+  fact1 <- 1 + fact1a * fact1b
+  
+  fact2a <- (2 * x1 - 3 * x2) ^ 2
+  fact2b <- 18 - 32 * x1 + 12 * x1 ^ 2 + 48 * x2 - 36 * x1 * x2 + 27 * x2 ^
+    2
+  fact2 <- 30 + fact2a * fact2b
+  
+  y <- fact1 * fact2
+  return(y)
+}

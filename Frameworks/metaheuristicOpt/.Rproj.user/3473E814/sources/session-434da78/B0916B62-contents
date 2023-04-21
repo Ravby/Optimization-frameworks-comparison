@@ -1,0 +1,30 @@
+source("problems.R")
+source("pso_algorithm.R")
+
+pso_algorithm(
+  runs = 100,
+  pop_size = 30,
+  iterations = 500,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = sphere,
+  lb = -100,
+  ub = 100,
+  dim = 30,
+  file_name = "PSO-metaheuristicsOpt_SphereD30.txt"
+)
+
+pso_algorithm(
+  runs = 1,
+  pop_size = 30,
+  iterations = 500,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = sum_of_squares,
+  lb = -100,
+  ub = 100,
+  dim = 30,
+  file_name = "PSO-metaheuristicsOpt_SumOfSquareD30.txt"
+)
