@@ -4,11 +4,22 @@ import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.examples.AlgorithmRunner;
 import org.uma.jmetal.algorithm.singleobjective.differentialevolution.DifferentialEvolution;
 import org.uma.jmetal.algorithm.singleobjective.differentialevolution.DifferentialEvolutionBuilder;
+import org.uma.jmetal.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithmBuilder;
 import org.uma.jmetal.algorithm.singleobjective.particleswarmoptimization.StandardPSO2007;
+import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.crossover.impl.DifferentialEvolutionCrossover;
+import org.uma.jmetal.operator.crossover.impl.PMXCrossover;
+import org.uma.jmetal.operator.crossover.impl.SBXCrossover;
+import org.uma.jmetal.operator.crossover.impl.SinglePointCrossover;
+import org.uma.jmetal.operator.mutation.MutationOperator;
+import org.uma.jmetal.operator.mutation.impl.BitFlipMutation;
+import org.uma.jmetal.operator.mutation.impl.PolynomialMutation;
+import org.uma.jmetal.operator.selection.SelectionOperator;
+import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.ProblemFactory;
 import org.uma.jmetal.problem.doubleproblem.DoubleProblem;
 import org.uma.jmetal.problem.singleobjective.*;
+import org.uma.jmetal.solution.binarysolution.BinarySolution;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
@@ -47,6 +58,8 @@ public class MainRunner {
 
         evaluator = new SequentialSolutionListEvaluator<DoubleSolution>();
 
+        long start = System.nanoTime();
+
         double[] results = new double[NUMBER_OF_RUNS];
         for (DoubleProblem problem : problems) {
 
@@ -84,9 +97,31 @@ public class MainRunner {
 
             }
             writeResultsToFile( "DE-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
+
+            for (int i = 0; i < NUMBER_OF_RUNS; i++) {
+
+                CrossoverOperator<DoubleSolution> crossoverOperator = new SBXCrossover(0.95, 30.0);
+                MutationOperator<DoubleSolution> mutationOperator = new PolynomialMutation(0.025, 20.0);
+                GeneticAlgorithmBuilder<DoubleSolution> builder =
+                        new GeneticAlgorithmBuilder<>(problem, crossoverOperator, mutationOperator)
+                                .setPopulationSize(100)
+                                .setMaxEvaluations(MAX_EVALUATIONS);
+
+                algorithm = builder.build();
+
+                AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute();
+
+                DoubleSolution solution = algorithm.result();
+                results[i] = solution.objectives()[0];
+
+            }
+            writeResultsToFile( "GA-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
         }
 
+
         evaluator.shutdown();
+        long end = System.nanoTime();
+        System.out.println("Time: " + (end - start) / 1000000000.0);
     }
 
     private static void writeResultsToFile(String name, double[] results) {
