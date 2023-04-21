@@ -1,0 +1,462 @@
+<?xml version="1.0"?>
+<!DOCTYPE some_name [ 
+<!ENTITY nbsp "&#160;">
+<!ENTITY copy "&#169;">
+<!ENTITY epsilon "&#949;">
+]>
+
+<page>
+  <title>Examples using the MOEA Framework</title>
+  <description>Walk through introductory examples using the MOEA Framework</description>
+  <header>
+  	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="scripts/shBrushPlain.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreEclipse.css" />
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+  </header>
+  <content>
+<h2>Examples</h2>
+
+<p>
+  The following examples demonstrate the basic functionality provided by the
+  MOEA Framework.  Links to the full source code are provided alongside each
+  code snippet.  You may also find these and more examples in the demo
+  application on the <a href="downloads.html">downloads</a> page.
+</p>
+
+<ul>
+  <li><a href="#setup">Setup</a></li>
+  <li><a href="#example1">Example 1: Simple Run</a></li>
+  <li><a href="#example2">Example 2: Quality Indicators</a></li>
+  <li><a href="#example3">Example 3: Customizing Algorithms</a></li>
+  <li><a href="#example4">Example 4: Statistical Comparison of Algorithms</a></li>
+  <li><a href="#example5">Example 5: Collecting Runtime Dynamics</a></li>
+  <li><a href="#example6">Example 6: Defining New Problems</a></li>
+</ul>
+
+<div class="section">
+<a name="setup" />
+<h3>Setup</h3>
+
+<p>
+  In order to run these examples or use the MOEA Framework, Java 8 (or a later
+  version) must be installed on your computer.  The Java 8 development kit (JDK)
+  for Windows and Linux can be downloaded 
+  <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">here</a>.
+</p>
+
+<p>
+  To run these examples, first download and extract the latest compiled 
+  binaries from the <a href="downloads.html">downloads</a> page.  Windows users
+  may extract the downloaded file using
+  <a href="http://www.7-zip.org/">7-zip</a>.  The files will extract to a 
+  folder called MOEAFramework-%VERSION%.  This folder will look similar to:
+</p>
+
+<div class="files">
+  <ul>
+    <li class="folder">MOEAFramework-%VERSION%/</li>
+    <li class="empty">
+      <ul>
+        <li class="folder">docs/</li>
+        <li class="folder">examples/</li>
+        <li class="folder">javadoc/</li>
+        <li class="folder">lib/</li>
+        <li class="folder">licenses/</li>
+        <li class="folder">pf/</li>
+        <li>COPYING</li>
+        <li>launch-diagnostic-tool.bat</li>
+        <li>moeaframework.properties</li>
+        <li>README.md</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+  
+<p>
+  All of the examples below are in the examples/ folder.  You may compile and
+  run an example using the following commands.  Run these commands in the
+  Command Prompt from the MOEAFramework-%VERSION% folder.
+</p>
+
+<pre>
+              javac -cp "examples;lib/*" examples/Example1.java
+              java -cp "examples;lib/*" Example1</pre>
+
+<p>
+  If you receive the message <i>'javac' is not recognized as an internal or
+  external command, operable program or batch file</i>, try the following steps
+  to setup your environment on 
+  <a href="http://vietpad.sourceforge.net/javaonwindows.html">Windows</a> or
+  <a href="http://vietpad.sourceforge.net/javaonlinux.html">Linux</a>.
+  Unix/Linux users should replace the semicolons (;) with colons (:).
+</p>
+</div>
+
+<div class="section">
+<a name="example1" />
+<h3>Example 1: Simple Run</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example1.java">Example1.java</a></li>
+  </ul>
+</div>
+
+<p>
+  Create and solve the bi-objective DTLZ2 test problem using NSGA-II.  At the end,
+  we display the Pareto front.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+Problem problem = new DTLZ2(2);
+
+NSGAII algorithm = new NSGAII(problem);
+algorithm.run(10000);
+
+algorithm.getResult().display();
+]]>
+  </pre>
+</div>
+
+<p>
+  Displaying the Pareto front will print all the decision variables, objectives, an
+  constraints (if any).
+</p>
+
+<div class="code">
+  <pre class="brush: plain; toolbar: false;">
+Var1     Var2     Var3     Var4     Var5     Var6     Var7     Var8     Var9     Var10    Var11    Obj1     Obj2     
+-------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- 
+0.000001 0.499800 0.499459 0.493195 0.512840 0.501684 0.496219 0.510478 0.497724 0.490473 0.498708 1.000436 0.000002 
+1.000000 0.493931 0.496459 0.504963 0.492117 0.487517 0.495901 0.506916 0.498368 0.508016 0.504378 0.000000 1.000443 
+0.967343 0.500695 0.493870 0.493354 0.496931 0.489186 0.496910 0.489151 0.498778 0.499109 0.496012 0.051294 0.999038 
+0.570016 0.500760 0.493834 0.485232 0.492111 0.487856 0.498199 0.507383 0.498864 0.502869 0.504378 0.625569 0.780878 
+...
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<a name="example2" />
+<h3>Example 2: Quality Indicators</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example2.java">Example2.java</a></li>
+  </ul>
+</div>
+
+<p>
+  Quality indicators are used to compare results between different algorithms.  Here,
+  we calculate the hypervolume and generational distance relative to a reference set.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+Problem problem = new DTLZ2(2);
+
+NSGAII algorithm = new NSGAII(problem);
+algorithm.run(10000);
+
+NondominatedPopulation result = algorithm.getResult();
+
+NondominatedPopulation referenceSet = PopulationIO.readReferenceSet("pf/DTLZ2.2D.pf");
+Hypervolume hypervolume = new Hypervolume(problem, referenceSet);
+GenerationalDistance gd = new GenerationalDistance(problem, referenceSet);
+
+System.out.println("Hypervolume: " + hypervolume.evaluate(result));
+System.out.println("GD: " + gd.evaluate(result));
+]]>
+  </pre>
+</div>
+
+<p>
+  Running this program produces the following output:
+</p>
+
+<div class="code">
+  <pre class="brush: plain; toolbar: false;">
+Hypervolume: 0.20834956047273037
+GD: 0.001119315294859704
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<a name="example3" />
+<h3>Example 3: Customizing Algorithms</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example3.java">Example3.java</a></li>
+  </ul>
+</div>
+
+<p>
+  The examples above used default parameters for each algorithms.  But, each algorithms
+  is customizable!  In this example, we setup NSGA-II to use the Parent Centric Crossover (PCX)
+  operator, use a population size of 250, and include an archive to store the best solutions.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+Problem problem = new DTLZ2(2);
+NSGAII algorithm = new NSGAII(problem);
+
+algorithm.setInitialPopulationSize(250);
+algorithm.setVariation(new PCX(5, 2));
+algorithm.setArchive(new EpsilonBoxDominanceArchive(0.01));
+
+algorithm.run(10000);
+
+algorithm.getResult().display();
+]]>
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<a name="example4" />
+<h3>Example 4: Statistical Comparison of Algorithms</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example4.java">Example4.java</a></li>
+  </ul>
+</div>
+
+<p>
+  Larger experiments are performed using the Executor and Analyzer.  The Executor
+  is resonsible for configuring and running algorithms.  Unlike the previous example
+  where we solved one problem, the Executor is useful when running multiple seeds,
+  multiple algorithms, or different configurations.  The Analyzer performs the
+  statistical analysis.  It can compute various performance indicators, including
+  hypervolume, generational distance, inverted generational distance, additive
+  &epsilon;-indicator, spacing and contribution.  Additionally, Kruskal-Wallis and
+  Mann-Whitney U tests measure the statistical significance of results.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+String problem = "UF1";
+String[] algorithms = { "NSGAII", "GDE3", "eMOEA" };
+		
+//setup the experiment
+Executor executor = new Executor()
+    .withProblem(problem)
+    .withMaxEvaluations(10000);
+		
+Analyzer analyzer = new Analyzer()
+    .withProblem(problem)
+    .includeHypervolume()
+    .showStatisticalSignificance();
+
+//run each algorithm for 50 seeds
+for (String algorithm : algorithms) {
+    analyzer.addAll(algorithm, 
+        executor.withAlgorithm(algorithm).runSeeds(50));
+}
+
+//print the results
+analyzer.display();
+]]>
+  </pre>
+</div>
+
+<p>
+  Running this script produces the output shown below.  We can see that GDE3 and
+  NSGA-II produce the best (largest) hypervolume values.  Furthermore, we have
+  determined statistically that there is no significant difference in
+  performance between GDE3 and NSGA-II.
+</p>
+
+<div class="code">
+  <pre class="brush: plain; toolbar: false;">
+GDE3:
+    Hypervolume: 
+        Min: 0.4389785065649592
+        Median: 0.4974186560778636
+        Max: 0.535166930530847
+        Count: 50
+        Indifferent: [NSGAII]
+eMOEA:
+    Hypervolume: 
+        Min: 0.35003766343295073
+        Median: 0.47633216464734596
+        Max: 0.53311360537305
+        Count: 50
+        Indifferent: []
+NSGAII:
+    Hypervolume: 
+        Min: 0.38868701091987184
+        Median: 0.5040946740799506
+        Max: 0.5371138081508796
+        Count: 50
+        Indifferent: [GDE3]
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<a name="example5" />
+<h3>Example 5: Collecting Runtime Dynamics</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example5.java">Example5.java</a></li>
+  </ul>
+</div>
+
+<p>
+  Runtime dynamics provide insight into the behavior of an optimization
+  algorithm throughout a run.  For instance, one can observe how solution
+  quality changes with the number of function evaluations (NFE).  The 
+  Instrumenter class records the runtime dynamics.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+Instrumenter instrumenter = new Instrumenter()
+    .withProblem("UF1")
+    .withFrequency(100)
+    .attachElapsedTimeCollector()
+    .attachGenerationalDistanceCollector();
+		
+new Executor()
+    .withProblem("UF1")
+    .withAlgorithm("NSGAII")
+    .withMaxEvaluations(10000)
+    .withInstrumenter(instrumenter)
+    .run();
+		
+instrumenter.getObservations().display();
+]]>
+  </pre>
+</div>
+
+<p>
+  The output from this script, shown below, shows how the generational
+  distance metric changes over time.  We see that NSGA-II is rapidly converging
+  to the reference set (the optimal solutions) since its generational
+  distance is converging to 0.
+</p>
+
+<div class="code">
+  <pre class="brush: plain; toolbar: false">
+NFE   Elapsed Time GenerationalDistance 
+----- ------------ -------------------- 
+100   0.048455     0.554547             
+200   0.068240     0.486866             
+300   0.076951     0.876918             
+400   0.082156     0.690796             
+500   0.087247     0.542534             
+...                 
+9500  0.351868     0.044477             
+9600  0.354273     0.037876             
+9700  0.356552     0.038029             
+9800  0.358757     0.038815             
+9900  0.361296     0.032959             
+10000 0.363735     0.020477   
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<a name="example6" />
+<h3>Example 6: Defining New Problems</h3>
+
+<div class="files">
+  <ul>
+    <li><a href="Example6.java">Example6.java</a></li>
+  </ul>
+</div>
+
+<p>
+  While we provide many test problem suites for comparing optimization algorithms,
+  we can also introduce new problems.  As demonstrated below, we need to define
+  two methods: newSolution and evaluate.  The newSolution
+  method defines the problem representation (the number and types of its
+  decision variables).  The evaluate method takes a solution and computes its
+  objective function values.
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+public class Srinivas extends AbstractProblem {
+
+	public Srinivas() {
+		super(2, 2, 2);
+	}
+
+	@Override
+	public void evaluate(Solution solution) {
+		double[] x = EncodingUtils.getReal(solution);
+		double f1 = Math.pow(x[0] - 2.0, 2.0) + Math.pow(x[1] - 1.0, 2.0) + 2.0;
+		double f2 = 9.0*x[0] - Math.pow(x[1] - 1.0, 2.0);
+		double c1 = Math.pow(x[0], 2.0) + Math.pow(x[1], 2.0) - 225.0;
+		double c2 = x[0] - 3.0*x[1] + 10.0;
+		
+		// set the objective values - these are being minimized
+		solution.setObjective(0, f1);
+		solution.setObjective(1, f2);
+		
+		// set the constraint values - we treat any non-zero value as a constraint violation!
+		solution.setConstraint(0, c1 <= 0.0 ? 0.0 : c1);
+		solution.setConstraint(1, c2 <= 0.0 ? 0.0 : c2);
+	}
+
+	@Override
+	public Solution newSolution() {
+		Solution solution = new Solution(2, 2, 2);
+		
+		solution.setVariable(0, new RealVariable(-20.0, 20.0));
+		solution.setVariable(1, new RealVariable(-20.0, 20.0));
+		
+		return solution;
+	}
+		
+}
+]]>
+  </pre>
+</div>
+
+<p>
+  Then, we can solve this problem using:
+</p>
+
+<div class="code">
+  <pre class="brush: java; toolbar: false;">
+<![CDATA[
+Problem problem = new Srinivas();
+
+NSGAII algorithm = new NSGAII(problem);
+algorithm.run(10000);
+
+algorithm.getResult().display();
+]]>
+  </pre>
+</div>
+</div>
+
+<div class="section">
+<h3>Conclusion</h3>
+
+<p>
+  In addition to the above examples, we provide many more inside the
+  <a href="https://github.com/MOEAFramework/MOEAFramework/tree/master/examples">examples</a> folder.
+  Navigate to the <a href="downloads.html">downloads</a> page to download the MOEA Framework or
+  visit our <a href="https://github.com/MOEAFramework/MOEAFramework">GitHub page</a> for more information.
+</p>
+</div>
+  </content>
+</page>
