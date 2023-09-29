@@ -1,0 +1,61 @@
+TrueSkill One-On-One rating:
+DE-MOEA - Mean(μ)=-92.06, Std-Dev(σ)=0.75 RI=[-93.57, -90.56]
+DE-MEALPY - Mean(μ)=-92.2, Std-Dev(σ)=0.75 RI=[-93.71, -90.69]
+DE-EARS - Mean(μ)=-92.59, Std-Dev(σ)=0.77 RI=[-94.13, -91.06]
+DE-jMetal - Mean(μ)=-92.8, Std-Dev(σ)=0.76 RI=[-94.32, -91.28]
+DE-Author-Java - Mean(μ)=-93.32, Std-Dev(σ)=0.75 RI=[-94.82, -91.81]
+DE-DEAP - Mean(μ)=-94.84, Std-Dev(σ)=0.77 RI=[-96.39, -93.3]
+DE-pagmo2 - Mean(μ)=-94.85, Std-Dev(σ)=0.78 RI=[-96.41, -93.29]
+DE-NiaPy - Mean(μ)=-95.77, Std-Dev(σ)=0.78 RI=[-97.32, -94.22]
+DE-PlatEMO - Mean(μ)=-97.19, Std-Dev(σ)=0.8 RI=[-98.79, -95.59]
+
+TrueSkill Free-For-All rating:
+DE-MEALPY - Mean(μ)=27.87, Std-Dev(σ)=0.62 RI=[26.62, 29.12]
+DE-MOEA - Mean(μ)=26.65, Std-Dev(σ)=0.62 RI=[25.42, 27.88]
+DE-EARS - Mean(μ)=26.27, Std-Dev(σ)=0.61 RI=[25.04, 27.5]
+DE-pagmo2 - Mean(μ)=26.15, Std-Dev(σ)=0.63 RI=[24.89, 27.41]
+DE-jMetal - Mean(μ)=25.91, Std-Dev(σ)=0.61 RI=[24.69, 27.14]
+DE-Author-Java - Mean(μ)=25.5, Std-Dev(σ)=0.61 RI=[24.27, 26.73]
+DE-DEAP - Mean(μ)=24.44, Std-Dev(σ)=0.62 RI=[23.2, 25.68]
+DE-NiaPy - Mean(μ)=21.97, Std-Dev(σ)=0.62 RI=[20.73, 23.2]
+DE-PlatEMO - Mean(μ)=20.1, Std-Dev(σ)=0.64 RI=[18.82, 21.38]
+
+Glicko2 rating:
+DE-MEALPY - Rating=1,650.8 RD=50 ro=0.06 RI=[1550.85, 1750.85]
+DE-EARS - Rating=1,601.5 RD=50 ro=0.06 RI=[1501.54, 1701.54]
+DE-MOEA - Rating=1,593.3 RD=50 ro=0.06 RI=[1493.32, 1693.32]
+DE-jMetal - Rating=1,583.4 RD=50 ro=0.06 RI=[1483.37, 1683.37]
+DE-pagmo2 - Rating=1,577.4 RD=50 ro=0.06 RI=[1477.42, 1677.42]
+DE-Author-Java - Rating=1,555 RD=50 ro=0.06 RI=[1455.04, 1655.04]
+DE-DEAP - Rating=1,430.6 RD=50 ro=0.06 RI=[1330.58, 1530.58]
+DE-NiaPy - Rating=1,296.5 RD=50 ro=0.06 RI=[1196.49, 1396.49]
+DE-PlatEMO - Rating=1,211.4 RD=50 ro=0.06 RI=[1111.39, 1311.39]
+
+Game results:
+DE-MEALPY [win=2358, lose=963, draw=1479]
+	 Against:{DE-Author-Java=[win=271, lose=130, draw=199], DE-NiaPy=[win=339, lose=16, draw=245], DE-EARS=[win=262, lose=139, draw=199], DE-pagmo2=[win=354, lose=196, draw=50], DE-jMetal=[win=264, lose=137, draw=199], DE-DEAP=[win=239, lose=122, draw=239], DE-MOEA=[win=256, lose=145, draw=199], DE-PlatEMO=[win=373, lose=78, draw=149]}
+	 Problems:{SchwefelD30=[win=135, lose=265, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=369, lose=31, draw=0], ShekelsFoxholesD2=[win=63, lose=8, draw=329], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=0, lose=300, draw=100], AckleyD30=[win=391, lose=9, draw=0], RastriginD30=[win=234, lose=166, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=316, lose=84, draw=0], SumOfSquaresD30=[win=400, lose=0, draw=0], SphereD30=[win=400, lose=0, draw=0]}
+DE-EARS [win=2102, lose=1163, draw=1535]
+	 Against:{DE-Author-Java=[win=217, lose=133, draw=250], DE-NiaPy=[win=379, lose=25, draw=196], DE-pagmo2=[win=263, lose=287, draw=50], DE-jMetal=[win=197, lose=153, draw=250], DE-DEAP=[win=294, lose=116, draw=190], DE-MOEA=[win=176, lose=174, draw=250], DE-MEALPY=[win=139, lose=262, draw=199], DE-PlatEMO=[win=437, lose=13, draw=150]}
+	 Problems:{SchwefelD30=[win=343, lose=57, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=208, lose=192, draw=0], ShekelsFoxholesD2=[win=65, lose=0, draw=335], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=250, lose=0, draw=150], AckleyD30=[win=227, lose=173, draw=0], RastriginD30=[win=199, lose=201, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=267, lose=133, draw=0], SumOfSquaresD30=[win=246, lose=154, draw=0], SphereD30=[win=247, lose=153, draw=0]}
+DE-MOEA [win=2064, lose=1201, draw=1535]
+	 Against:{DE-Author-Java=[win=210, lose=140, draw=250], DE-NiaPy=[win=381, lose=23, draw=196], DE-EARS=[win=174, lose=176, draw=250], DE-pagmo2=[win=250, lose=300, draw=50], DE-jMetal=[win=174, lose=176, draw=250], DE-DEAP=[win=293, lose=117, draw=190], DE-MEALPY=[win=145, lose=256, draw=199], DE-PlatEMO=[win=437, lose=13, draw=150]}
+	 Problems:{SchwefelD30=[win=341, lose=59, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=228, lose=172, draw=0], ShekelsFoxholesD2=[win=65, lose=0, draw=335], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=250, lose=0, draw=150], AckleyD30=[win=251, lose=149, draw=0], RastriginD30=[win=191, lose=209, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=241, lose=159, draw=0], SumOfSquaresD30=[win=217, lose=183, draw=0], SphereD30=[win=230, lose=170, draw=0]}
+DE-jMetal [win=2018, lose=1247, draw=1535]
+	 Against:{DE-Author-Java=[win=201, lose=149, draw=250], DE-NiaPy=[win=375, lose=29, draw=196], DE-EARS=[win=153, lose=197, draw=250], DE-pagmo2=[win=252, lose=298, draw=50], DE-DEAP=[win=293, lose=117, draw=190], DE-MOEA=[win=176, lose=174, draw=250], DE-MEALPY=[win=137, lose=264, draw=199], DE-PlatEMO=[win=431, lose=19, draw=150]}
+	 Problems:{SchwefelD30=[win=325, lose=75, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=206, lose=194, draw=0], ShekelsFoxholesD2=[win=65, lose=0, draw=335], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=250, lose=0, draw=150], AckleyD30=[win=242, lose=158, draw=0], RastriginD30=[win=164, lose=236, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=261, lose=139, draw=0], SumOfSquaresD30=[win=219, lose=181, draw=0], SphereD30=[win=236, lose=164, draw=0]}
+DE-pagmo2 [win=2558, lose=1842, draw=400]
+	 Against:{DE-Author-Java=[win=315, lose=235, draw=50], DE-NiaPy=[win=434, lose=116, draw=50], DE-EARS=[win=287, lose=263, draw=50], DE-jMetal=[win=298, lose=252, draw=50], DE-DEAP=[win=344, lose=206, draw=50], DE-MOEA=[win=300, lose=250, draw=50], DE-MEALPY=[win=196, lose=354, draw=50], DE-PlatEMO=[win=384, lose=166, draw=50]}
+	 Problems:{SchwefelD30=[win=0, lose=400, draw=0], SixHumpCamelBackD2=[win=400, lose=0, draw=0], GriewankD30=[win=230, lose=170, draw=0], ShekelsFoxholesD2=[win=15, lose=385, draw=0], BraninD2=[win=400, lose=0, draw=0], HartmanD3=[win=150, lose=250, draw=0], AckleyD30=[win=310, lose=90, draw=0], RastriginD30=[win=166, lose=234, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=312, lose=88, draw=0], SumOfSquaresD30=[win=298, lose=102, draw=0], SphereD30=[win=277, lose=123, draw=0]}
+DE-Author-Java [win=1887, lose=1378, draw=1535]
+	 Against:{DE-NiaPy=[win=377, lose=27, draw=196], DE-EARS=[win=133, lose=217, draw=250], DE-pagmo2=[win=235, lose=315, draw=50], DE-jMetal=[win=149, lose=201, draw=250], DE-DEAP=[win=286, lose=124, draw=190], DE-MOEA=[win=140, lose=210, draw=250], DE-MEALPY=[win=130, lose=271, draw=199], DE-PlatEMO=[win=437, lose=13, draw=150]}
+	 Problems:{SchwefelD30=[win=287, lose=113, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=190, lose=210, draw=0], ShekelsFoxholesD2=[win=65, lose=0, draw=335], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=250, lose=0, draw=150], AckleyD30=[win=227, lose=173, draw=0], RastriginD30=[win=206, lose=194, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=216, lose=184, draw=0], SumOfSquaresD30=[win=184, lose=216, draw=0], SphereD30=[win=212, lose=188, draw=0]}
+DE-DEAP [win=1366, lose=2008, draw=1426]
+	 Against:{DE-Author-Java=[win=124, lose=286, draw=190], DE-NiaPy=[win=199, lose=164, draw=237], DE-EARS=[win=116, lose=294, draw=190], DE-pagmo2=[win=206, lose=344, draw=50], DE-jMetal=[win=117, lose=293, draw=190], DE-MOEA=[win=117, lose=293, draw=190], DE-MEALPY=[win=122, lose=239, draw=239], DE-PlatEMO=[win=365, lose=95, draw=140]}
+	 Problems:{SchwefelD30=[win=199, lose=201, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=304, lose=96, draw=0], ShekelsFoxholesD2=[win=45, lose=79, draw=276], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=0, lose=300, draw=100], AckleyD30=[win=53, lose=347, draw=0], RastriginD30=[win=400, lose=0, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=56, lose=344, draw=0], SumOfSquaresD30=[win=151, lose=249, draw=0], SphereD30=[win=108, lose=292, draw=0]}
+DE-NiaPy [win=728, lose=2610, draw=1462]
+	 Against:{DE-Author-Java=[win=27, lose=377, draw=196], DE-EARS=[win=25, lose=379, draw=196], DE-pagmo2=[win=116, lose=434, draw=50], DE-jMetal=[win=29, lose=375, draw=196], DE-DEAP=[win=164, lose=199, draw=237], DE-MOEA=[win=23, lose=381, draw=196], DE-MEALPY=[win=16, lose=339, draw=245], DE-PlatEMO=[win=328, lose=126, draw=146]}
+	 Problems:{SchwefelD30=[win=50, lose=350, draw=0], SixHumpCamelBackD2=[win=50, lose=50, draw=300], GriewankD30=[win=63, lose=337, draw=0], ShekelsFoxholesD2=[win=56, lose=32, draw=312], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=0, lose=300, draw=100], AckleyD30=[win=98, lose=302, draw=0], RastriginD30=[win=135, lose=265, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=112, lose=288, draw=0], SumOfSquaresD30=[win=80, lose=320, draw=0], SphereD30=[win=84, lose=316, draw=0]}
+DE-PlatEMO [win=523, lose=3192, draw=1085]
+	 Against:{DE-Author-Java=[win=13, lose=437, draw=150], DE-NiaPy=[win=126, lose=328, draw=146], DE-EARS=[win=13, lose=437, draw=150], DE-pagmo2=[win=166, lose=384, draw=50], DE-jMetal=[win=19, lose=431, draw=150], DE-DEAP=[win=95, lose=365, draw=140], DE-MOEA=[win=13, lose=437, draw=150], DE-MEALPY=[win=78, lose=373, draw=149]}
+	 Problems:{SchwefelD30=[win=120, lose=280, draw=0], SixHumpCamelBackD2=[win=0, lose=400, draw=0], GriewankD30=[win=2, lose=398, draw=0], ShekelsFoxholesD2=[win=65, lose=0, draw=335], BraninD2=[win=0, lose=50, draw=350], HartmanD3=[win=200, lose=200, draw=0], AckleyD30=[win=1, lose=399, draw=0], RastriginD30=[win=105, lose=295, draw=0], GoldsteinPriceD2=[win=0, lose=0, draw=400], RosenbrockD30=[win=19, lose=381, draw=0], SumOfSquaresD30=[win=5, lose=395, draw=0], SphereD30=[win=6, lose=394, draw=0]}

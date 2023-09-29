@@ -1,0 +1,2 @@
+org.moeaframework.algorithm.DefaultAlgorithms
+org.moeaframework.algorithm.pisa.PISAAlgorithms

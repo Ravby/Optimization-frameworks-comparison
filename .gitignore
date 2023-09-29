@@ -1,0 +1,11 @@
+*.class
+*.log
+*.bin
+*.lock
+
+cmake-build-*/
+.idea/
+.gradle/
+build/
+out/
+.Rproj.user

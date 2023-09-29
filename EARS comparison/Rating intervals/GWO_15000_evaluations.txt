@@ -1,0 +1,37 @@
+TrueSkill One-On-One rating:
+GWO-pagmo2 - Mean(μ)=-18.93, Std-Dev(σ)=0.75 RI=[-20.43, -17.43]
+GWO-NiaPy - Mean(μ)=-19.02, Std-Dev(σ)=0.74 RI=[-20.5, -17.55]
+GWO-EARS - Mean(μ)=-19.45, Std-Dev(σ)=0.75 RI=[-20.95, -17.96]
+GWO-Author-Matlab - Mean(μ)=-19.49, Std-Dev(σ)=0.74 RI=[-20.97, -18.02]
+GWO-MEALPY - Mean(μ)=-19.94, Std-Dev(σ)=0.76 RI=[-21.46, -18.42]
+
+TrueSkill Free-For-All rating:
+GWO-pagmo2 - Mean(μ)=25.59, Std-Dev(σ)=0.64 RI=[24.31, 26.88]
+GWO-NiaPy - Mean(μ)=25.48, Std-Dev(σ)=0.64 RI=[24.21, 26.76]
+GWO-Author-Matlab - Mean(μ)=25.07, Std-Dev(σ)=0.64 RI=[23.79, 26.35]
+GWO-EARS - Mean(μ)=24.93, Std-Dev(σ)=0.64 RI=[23.65, 26.21]
+GWO-MEALPY - Mean(μ)=24.31, Std-Dev(σ)=0.64 RI=[23.03, 25.59]
+
+Glicko2 rating:
+GWO-pagmo2 - Rating=1,550.4 RD=50 ro=0.06 RI=[1450.37, 1650.37]
+GWO-NiaPy - Rating=1,528.3 RD=50 ro=0.06 RI=[1428.32, 1628.32]
+GWO-EARS - Rating=1,504.3 RD=50 ro=0.06 RI=[1404.32, 1604.32]
+GWO-Author-Matlab - Rating=1,483.8 RD=50 ro=0.06 RI=[1383.79, 1583.79]
+GWO-MEALPY - Rating=1,433.2 RD=50 ro=0.06 RI=[1333.2, 1533.2]
+
+Game results:
+GWO-pagmo2 [win=916, lose=683, draw=801]
+	 Against:{GWO-EARS=[win=229, lose=153, draw=218], GWO-NiaPy=[win=226, lose=189, draw=185], GWO-Author-Matlab=[win=216, lose=181, draw=203], GWO-MEALPY=[win=245, lose=160, draw=195]}
+	 Problems:{SchwefelD30=[win=110, lose=52, draw=38], SixHumpCamelBackD2=[win=200, lose=0, draw=0], GriewankD30=[win=21, lose=77, draw=102], BraninD2=[win=152, lose=41, draw=7], HartmanD3=[win=94, lose=106, draw=0], ShekelsFoxholesD2=[win=97, lose=99, draw=4], AckleyD30=[win=0, lose=0, draw=200], RastriginD30=[win=25, lose=135, draw=40], RosenbrockD30=[win=136, lose=64, draw=0], GoldsteinPriceD2=[win=81, lose=109, draw=10], SphereD30=[win=0, lose=0, draw=200], SumOfSquaresD30=[win=0, lose=0, draw=200]}
+GWO-NiaPy [win=809, lose=678, draw=913]
+	 Against:{GWO-EARS=[win=170, lose=159, draw=271], GWO-pagmo2=[win=189, lose=226, draw=185], GWO-Author-Matlab=[win=223, lose=173, draw=204], GWO-MEALPY=[win=227, lose=120, draw=253]}
+	 Problems:{SchwefelD30=[win=81, lose=90, draw=29], SixHumpCamelBackD2=[win=77, lose=50, draw=73], GriewankD30=[win=34, lose=48, draw=118], BraninD2=[win=129, lose=62, draw=9], HartmanD3=[win=144, lose=56, draw=0], ShekelsFoxholesD2=[win=86, lose=98, draw=16], AckleyD30=[win=0, lose=0, draw=200], RastriginD30=[win=48, lose=84, draw=68], RosenbrockD30=[win=146, lose=54, draw=0], GoldsteinPriceD2=[win=64, lose=136, draw=0], SphereD30=[win=0, lose=0, draw=200], SumOfSquaresD30=[win=0, lose=0, draw=200]}
+GWO-EARS [win=713, lose=693, draw=994]
+	 Against:{GWO-NiaPy=[win=159, lose=170, draw=271], GWO-pagmo2=[win=153, lose=229, draw=218], GWO-Author-Matlab=[win=202, lose=169, draw=229], GWO-MEALPY=[win=199, lose=125, draw=276]}
+	 Problems:{SchwefelD30=[win=153, lose=0, draw=47], SixHumpCamelBackD2=[win=68, lose=60, draw=72], GriewankD30=[win=45, lose=23, draw=132], BraninD2=[win=111, lose=80, draw=9], HartmanD3=[win=11, lose=189, draw=0], ShekelsFoxholesD2=[win=29, lose=164, draw=7], AckleyD30=[win=0, lose=0, draw=200], RastriginD30=[win=86, lose=0, draw=114], RosenbrockD30=[win=80, lose=120, draw=0], GoldsteinPriceD2=[win=130, lose=57, draw=13], SphereD30=[win=0, lose=0, draw=200], SumOfSquaresD30=[win=0, lose=0, draw=200]}
+GWO-Author-Matlab [win=737, lose=812, draw=851]
+	 Against:{GWO-EARS=[win=169, lose=202, draw=229], GWO-NiaPy=[win=173, lose=223, draw=204], GWO-pagmo2=[win=181, lose=216, draw=203], GWO-MEALPY=[win=214, lose=171, draw=215]}
+	 Problems:{SchwefelD30=[win=85, lose=87, draw=28], SixHumpCamelBackD2=[win=0, lose=200, draw=0], GriewankD30=[win=37, lose=41, draw=122], BraninD2=[win=42, lose=153, draw=5], HartmanD3=[win=127, lose=73, draw=0], ShekelsFoxholesD2=[win=127, lose=69, draw=4], AckleyD30=[win=0, lose=0, draw=200], RastriginD30=[win=50, lose=76, draw=74], RosenbrockD30=[win=135, lose=65, draw=0], GoldsteinPriceD2=[win=134, lose=48, draw=18], SphereD30=[win=0, lose=0, draw=200], SumOfSquaresD30=[win=0, lose=0, draw=200]}
+GWO-MEALPY [win=576, lose=885, draw=939]
+	 Against:{GWO-EARS=[win=125, lose=199, draw=276], GWO-NiaPy=[win=120, lose=227, draw=253], GWO-pagmo2=[win=160, lose=245, draw=195], GWO-Author-Matlab=[win=171, lose=214, draw=215]}
+	 Problems:{SchwefelD30=[win=0, lose=200, draw=0], SixHumpCamelBackD2=[win=53, lose=88, draw=59], GriewankD30=[win=52, lose=0, draw=148], BraninD2=[win=48, lose=146, draw=6], HartmanD3=[win=124, lose=76, draw=0], ShekelsFoxholesD2=[win=140, lose=49, draw=11], AckleyD30=[win=0, lose=0, draw=200], RastriginD30=[win=86, lose=0, draw=114], RosenbrockD30=[win=3, lose=197, draw=0], GoldsteinPriceD2=[win=70, lose=129, draw=1], SphereD30=[win=0, lose=0, draw=200], SumOfSquaresD30=[win=0, lose=0, draw=200]}

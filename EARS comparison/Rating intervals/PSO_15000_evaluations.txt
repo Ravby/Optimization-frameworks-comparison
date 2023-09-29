@@ -1,0 +1,49 @@
+TrueSkill One-On-One rating:
+PSO-pagmo2 - Mean(μ)=-83.78, Std-Dev(σ)=0.79 RI=[-85.37, -82.19]
+PSO-jMetal - Mean(μ)=-86.56, Std-Dev(σ)=0.79 RI=[-88.14, -84.98]
+PSO-EARS - Mean(μ)=-88, Std-Dev(σ)=0.79 RI=[-89.57, -86.42]
+PSO-DEAP - Mean(μ)=-88.02, Std-Dev(σ)=0.79 RI=[-89.6, -86.43]
+PSO-NiaPy - Mean(μ)=-90.24, Std-Dev(σ)=0.79 RI=[-91.82, -88.66]
+PSO-PlatEMO - Mean(μ)=-90.44, Std-Dev(σ)=0.81 RI=[-92.06, -88.83]
+PSO-MEALPY - Mean(μ)=-92.77, Std-Dev(σ)=0.84 RI=[-94.46, -91.09]
+
+TrueSkill Free-For-All rating:
+PSO-pagmo2 - Mean(μ)=30.94, Std-Dev(σ)=0.67 RI=[29.59, 32.29]
+PSO-DEAP - Mean(μ)=26.75, Std-Dev(σ)=0.64 RI=[25.47, 28.02]
+PSO-jMetal - Mean(μ)=26.45, Std-Dev(σ)=0.62 RI=[25.2, 27.7]
+PSO-EARS - Mean(μ)=25.26, Std-Dev(σ)=0.63 RI=[24.01, 26.52]
+PSO-PlatEMO - Mean(μ)=23.25, Std-Dev(σ)=0.63 RI=[21.99, 24.51]
+PSO-NiaPy - Mean(μ)=22.58, Std-Dev(σ)=0.64 RI=[21.3, 23.86]
+PSO-MEALPY - Mean(μ)=20.67, Std-Dev(σ)=0.65 RI=[19.36, 21.98]
+
+Glicko2 rating:
+PSO-pagmo2 - Rating=1,852.6 RD=50 ro=0.06 RI=[1752.61, 1952.61]
+PSO-jMetal - Rating=1,618.6 RD=50 ro=0.06 RI=[1518.64, 1718.64]
+PSO-DEAP - Rating=1,571.9 RD=50 ro=0.06 RI=[1471.93, 1671.93]
+PSO-EARS - Rating=1,530.6 RD=50 ro=0.06 RI=[1430.56, 1630.56]
+PSO-NiaPy - Rating=1,353.8 RD=50 ro=0.06 RI=[1253.82, 1453.82]
+PSO-PlatEMO - Rating=1,345.8 RD=50 ro=0.06 RI=[1245.75, 1445.75]
+PSO-MEALPY - Rating=1,226.7 RD=50 ro=0.06 RI=[1126.68, 1326.68]
+
+Game results:
+PSO-pagmo2 [win=2941, lose=495, draw=164]
+	 Against:{PSO-PlatEMO=[win=533, lose=53, draw=14], PSO-EARS=[win=408, lose=142, draw=50], PSO-MEALPY=[win=549, lose=51, draw=0], PSO-NiaPy=[win=490, lose=60, draw=50], PSO-jMetal=[win=431, lose=119, draw=50], PSO-DEAP=[win=530, lose=70, draw=0]}
+	 Problems:{SchwefelD30=[win=4, lose=296, draw=0], SixHumpCamelBackD2=[win=300, lose=0, draw=0], GriewankD30=[win=300, lose=0, draw=0], HartmanD3=[win=204, lose=96, draw=0], BraninD2=[win=300, lose=0, draw=0], ShekelsFoxholesD2=[win=206, lose=93, draw=1], AckleyD30=[win=300, lose=0, draw=0], RastriginD30=[win=290, lose=10, draw=0], GoldsteinPriceD2=[win=137, lose=0, draw=163], RosenbrockD30=[win=300, lose=0, draw=0], SumOfSquaresD30=[win=300, lose=0, draw=0], SphereD30=[win=300, lose=0, draw=0]}
+PSO-jMetal [win=1983, lose=1160, draw=457]
+	 Against:{PSO-PlatEMO=[win=505, lose=67, draw=28], PSO-EARS=[win=306, lose=80, draw=214], PSO-pagmo2=[win=119, lose=431, draw=50], PSO-MEALPY=[win=438, lose=162, draw=0], PSO-NiaPy=[win=353, lose=97, draw=150], PSO-DEAP=[win=262, lose=323, draw=15]}
+	 Problems:{SchwefelD30=[win=101, lose=199, draw=0], SixHumpCamelBackD2=[win=150, lose=50, draw=100], GriewankD30=[win=182, lose=118, draw=0], HartmanD3=[win=254, lose=0, draw=46], BraninD2=[win=137, lose=50, draw=113], ShekelsFoxholesD2=[win=153, lose=112, draw=35], AckleyD30=[win=198, lose=102, draw=0], RastriginD30=[win=197, lose=103, draw=0], GoldsteinPriceD2=[win=137, lose=0, draw=163], RosenbrockD30=[win=197, lose=103, draw=0], SumOfSquaresD30=[win=149, lose=151, draw=0], SphereD30=[win=128, lose=172, draw=0]}
+PSO-DEAP [win=2030, lose=1531, draw=39]
+	 Against:{PSO-PlatEMO=[win=414, lose=183, draw=3], PSO-EARS=[win=320, lose=260, draw=20], PSO-pagmo2=[win=70, lose=530, draw=0], PSO-MEALPY=[win=553, lose=46, draw=1], PSO-NiaPy=[win=350, lose=250, draw=0], PSO-jMetal=[win=323, lose=262, draw=15]}
+	 Problems:{SchwefelD30=[win=300, lose=0, draw=0], SixHumpCamelBackD2=[win=56, lose=244, draw=0], GriewankD30=[win=250, lose=50, draw=0], HartmanD3=[win=31, lose=269, draw=0], BraninD2=[win=78, lose=222, draw=0], ShekelsFoxholesD2=[win=174, lose=87, draw=39], AckleyD30=[win=250, lose=50, draw=0], RastriginD30=[win=69, lose=231, draw=0], GoldsteinPriceD2=[win=72, lose=228, draw=0], RosenbrockD30=[win=250, lose=50, draw=0], SumOfSquaresD30=[win=250, lose=50, draw=0], SphereD30=[win=250, lose=50, draw=0]}
+PSO-EARS [win=1674, lose=1462, draw=464]
+	 Against:{PSO-PlatEMO=[win=422, lose=148, draw=30], PSO-pagmo2=[win=142, lose=408, draw=50], PSO-MEALPY=[win=441, lose=158, draw=1], PSO-NiaPy=[win=329, lose=122, draw=149], PSO-jMetal=[win=80, lose=306, draw=214], PSO-DEAP=[win=260, lose=320, draw=20]}
+	 Problems:{SchwefelD30=[win=48, lose=252, draw=0], SixHumpCamelBackD2=[win=150, lose=50, draw=100], GriewankD30=[win=163, lose=137, draw=0], HartmanD3=[win=241, lose=13, draw=46], BraninD2=[win=134, lose=55, draw=111], ShekelsFoxholesD2=[win=256, lose=0, draw=44], AckleyD30=[win=96, lose=204, draw=0], RastriginD30=[win=86, lose=214, draw=0], GoldsteinPriceD2=[win=137, lose=0, draw=163], RosenbrockD30=[win=153, lose=147, draw=0], SumOfSquaresD30=[win=86, lose=214, draw=0], SphereD30=[win=124, lose=176, draw=0]}
+PSO-NiaPy [win=1105, lose=2119, draw=376]
+	 Against:{PSO-PlatEMO=[win=222, lose=351, draw=27], PSO-EARS=[win=122, lose=329, draw=149], PSO-pagmo2=[win=60, lose=490, draw=50], PSO-MEALPY=[win=354, lose=246, draw=0], PSO-jMetal=[win=97, lose=353, draw=150], PSO-DEAP=[win=250, lose=350, draw=0]}
+	 Problems:{SchwefelD30=[win=158, lose=142, draw=0], SixHumpCamelBackD2=[win=150, lose=50, draw=100], GriewankD30=[win=4, lose=296, draw=0], HartmanD3=[win=153, lose=147, draw=0], BraninD2=[win=137, lose=50, draw=113], ShekelsFoxholesD2=[win=0, lose=300, draw=0], AckleyD30=[win=58, lose=242, draw=0], RastriginD30=[win=259, lose=41, draw=0], GoldsteinPriceD2=[win=137, lose=0, draw=163], RosenbrockD30=[win=49, lose=251, draw=0], SumOfSquaresD30=[win=0, lose=300, draw=0], SphereD30=[win=0, lose=300, draw=0]}
+PSO-PlatEMO [win=1214, lose=2284, draw=102]
+	 Against:{PSO-EARS=[win=148, lose=422, draw=30], PSO-pagmo2=[win=53, lose=533, draw=14], PSO-MEALPY=[win=412, lose=188, draw=0], PSO-NiaPy=[win=351, lose=222, draw=27], PSO-jMetal=[win=67, lose=505, draw=28], PSO-DEAP=[win=183, lose=414, draw=3]}
+	 Problems:{SchwefelD30=[win=250, lose=50, draw=0], SixHumpCamelBackD2=[win=93, lose=207, draw=0], GriewankD30=[win=105, lose=195, draw=0], HartmanD3=[win=51, lose=249, draw=0], BraninD2=[win=63, lose=196, draw=41], ShekelsFoxholesD2=[win=98, lose=193, draw=9], AckleyD30=[win=128, lose=172, draw=0], RastriginD30=[win=149, lose=151, draw=0], GoldsteinPriceD2=[win=59, lose=189, draw=52], RosenbrockD30=[win=100, lose=200, draw=0], SumOfSquaresD30=[win=65, lose=235, draw=0], SphereD30=[win=53, lose=247, draw=0]}
+PSO-MEALPY [win=851, lose=2747, draw=2]
+	 Against:{PSO-PlatEMO=[win=188, lose=412, draw=0], PSO-EARS=[win=158, lose=441, draw=1], PSO-pagmo2=[win=51, lose=549, draw=0], PSO-NiaPy=[win=246, lose=354, draw=0], PSO-jMetal=[win=162, lose=438, draw=0], PSO-DEAP=[win=46, lose=553, draw=1]}
+	 Problems:{SchwefelD30=[win=189, lose=111, draw=0], SixHumpCamelBackD2=[win=1, lose=299, draw=0], GriewankD30=[win=46, lose=254, draw=0], HartmanD3=[win=70, lose=230, draw=0], BraninD2=[win=12, lose=288, draw=0], ShekelsFoxholesD2=[win=98, lose=200, draw=2], AckleyD30=[win=20, lose=280, draw=0], RastriginD30=[win=0, lose=300, draw=0], GoldsteinPriceD2=[win=19, lose=281, draw=0], RosenbrockD30=[win=1, lose=299, draw=0], SumOfSquaresD30=[win=200, lose=100, draw=0], SphereD30=[win=195, lose=105, draw=0]}
