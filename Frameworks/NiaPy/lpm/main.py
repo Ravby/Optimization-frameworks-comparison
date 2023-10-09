@@ -88,68 +88,69 @@ def run_abc(problem, problem_name):
     print("[ABC] " + problem_name + " finish")
 
 
-sphere = Sphere(dimension=30, lower=-100, upper=100)
-sum_of_squares = SumSquares(dimension=30, lower=-100, upper=100)
-schwefel2 = Schwefel2(dimension=30, lower=-100, upper=100)
-rastrigin = Rastrigin(dimension=30, lower=-5.12, upper=5.12)
-ackley = Ackley(dimension=30, lower=-32, upper=32)
-griewank = Griewank(dimension=30, lower=-600, upper=600)
-rosenbrock = Rosenbrock(dimension=30, lower=-30, upper=30)
+
+sphere = Sphere(dimension=60, lower=-100, upper=100)
+sum_of_squares = SumSquares(dimension=60, lower=-100, upper=100)
+schwefel2 = Schwefel2(dimension=60, lower=-100, upper=100)
+rastrigin = Rastrigin(dimension=60, lower=-5.12, upper=5.12)
+ackley = Ackley(dimension=60, lower=-32, upper=32)
+griewank = Griewank(dimension=60, lower=-600, upper=600)
+rosenbrock = Rosenbrock(dimension=60, lower=-30, upper=30)
 shekels_foxholes = ShekelsFoxholes(dimension=2, lower=-65536, upper=65536)
 six_hump_camel_back = SixHumpCamelBack(dimension=2, lower=-5, upper=5)
 branin = Branin(dimension=2, lower=np.array([-5, 0]), upper=np.array([10, 15]))
 goldstein_price = GoldsteinPrice(dimension=2, lower=-2, upper=2)
 hartman = Hartman(dimension=3, lower=0, upper=1)
 
-"""
+""""""
 run_de(sphere, 'Sphere')
 run_ga(sphere, 'Sphere')
 run_abc(sphere, 'Sphere')
 run_gwo(sphere, 'Sphere')
 run_pso(sphere, 'Sphere')
-"""
-"""
+""""""
+""""""
 run_de(sum_of_squares, 'SumOfSquares')
 run_ga(sum_of_squares, 'SumOfSquares')
 run_abc(sum_of_squares, 'SumOfSquares')
 run_gwo(sum_of_squares, 'SumOfSquares')
 run_pso(sum_of_squares, 'SumOfSquares')
-"""
-"""
+""""""
+""""""
 run_de(schwefel2, 'Schwefel')
 run_ga(schwefel2, 'Schwefel')
 run_abc(schwefel2, 'Schwefel')
 run_gwo(schwefel2, 'Schwefel')
 run_pso(schwefel2, 'Schwefel')
-"""
-"""
+""""""
+""""""
 run_de(rastrigin, 'Rastrigin')
 run_ga(rastrigin, 'Rastrigin')
 run_abc(rastrigin, 'Rastrigin')
 run_gwo(rastrigin, 'Rastrigin')
 run_pso(rastrigin, 'Rastrigin')
-"""
-"""
+""""""
+""""""
 run_de(ackley, 'Ackley')
 run_ga(ackley, 'Ackley')
 run_abc(ackley, 'Ackley')
 run_gwo(ackley, 'Ackley')
 run_pso(ackley, 'Ackley')
-"""
-"""
+""""""
+""""""
 run_de(griewank, 'Griewank')
 run_ga(griewank, 'Griewank')
 run_abc(griewank, 'Griewank')
 run_gwo(griewank, 'Griewank')
 run_pso(griewank, 'Griewank')
-"""
-"""
+""""""
+""""""
 run_de(rosenbrock, 'Rosenbrock')
 run_ga(rosenbrock, 'Rosenbrock')
 run_abc(rosenbrock, 'Rosenbrock')
 run_gwo(rosenbrock, 'Rosenbrock')
 run_pso(rosenbrock, 'Rosenbrock')
-"""
+""""""
 """
 run_de(shekels_foxholes, 'ShekelsFoxholes')
 run_ga(shekels_foxholes, 'ShekelsFoxholes')
@@ -185,7 +186,7 @@ run_abc(hartman, 'Hartman')
 run_gwo(hartman, 'Hartman')
 run_pso(hartman, 'Hartman')
 """
-
+"""
 run_ga(sphere, 'Sphere')
 run_ga(sum_of_squares, 'SumOfSquares')
 run_ga(schwefel2, 'Schwefel')
@@ -198,3 +199,4 @@ run_ga(six_hump_camel_back, 'SixHumpCamelBack')
 run_ga(branin, 'Branin')
 run_ga(goldstein_price, 'GoldsteinPrice')
 run_ga(hartman, 'Hartman')
+"""
