@@ -25,13 +25,13 @@ public class Main {
         final int MAX_EVALUATIONS = 15000;
 
         ArrayList<AbstractProblem> problems = new ArrayList<>();
-        problems.add(new Sphere(30));
-        problems.add(new SumOfSquares(30));
-        problems.add(new Schwefel(30));
-        problems.add(new Rastrigin(30));
-        problems.add(new Ackley(30));
-        problems.add(new Griewank(30));
-        problems.add(new Rosenbrock(30));
+        problems.add(new Sphere(60));
+        problems.add(new SumOfSquares(60));
+        problems.add(new Schwefel(60));
+        problems.add(new Rastrigin(60));
+        problems.add(new Ackley(60));
+        problems.add(new Griewank(60));
+        problems.add(new Rosenbrock(60));
         problems.add(new ShekelsFoxholes());
         problems.add(new SixHumpCamelBack());
         problems.add(new Branin());

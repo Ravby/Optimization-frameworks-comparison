@@ -18,6 +18,8 @@ public class Main {
         DummyAlgorithm.readFromJson = false;
         boolean displayRatingCharts = false;
 
+        int numberOfRuns = 50;
+
         String projectDirectory = System.getProperty("user.dir");
         File projectDirFile = new File(projectDirectory);
         File parentDirFile = projectDirFile.getParentFile();
@@ -37,7 +39,7 @@ public class Main {
         FrameworksBenchmark frameworksBenchmark = new FrameworksBenchmark();
         frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
-        frameworksBenchmark.run(50);
+        frameworksBenchmark.run(numberOfRuns);
         TournamentResults tournamentResults = frameworksBenchmark.getTournamentResults();
         tournamentResults.saveToFile(ratingIntervalsDir + File.separator + "PSO_15000_evaluations");
         if (displayRatingCharts) {
@@ -53,8 +55,9 @@ public class Main {
         players.add(new DummyAlgorithm("ABC-Author-Matlab", algorithmResultsDir));
 
         frameworksBenchmark = new FrameworksBenchmark();
+        frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
-        frameworksBenchmark.run(50);
+        frameworksBenchmark.run(numberOfRuns);
         tournamentResults = frameworksBenchmark.getTournamentResults();
         tournamentResults.saveToFile(ratingIntervalsDir + File.separator + "ABC_15000_evaluations");
         if (displayRatingCharts) {
@@ -71,8 +74,9 @@ public class Main {
         players.add(new DummyAlgorithm("GA-pagmo2", algorithmResultsDir));
 
         frameworksBenchmark = new FrameworksBenchmark();
+        frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
-        frameworksBenchmark.run(50);
+        frameworksBenchmark.run(numberOfRuns);
         tournamentResults = frameworksBenchmark.getTournamentResults();
         tournamentResults.saveToFile(ratingIntervalsDir + File.separator + "GA_15000_evaluations");
         if (displayRatingCharts) {
@@ -91,8 +95,9 @@ public class Main {
         players.add(new DummyAlgorithm("DE-Author-Java", algorithmResultsDir));
 
         frameworksBenchmark = new FrameworksBenchmark();
+        frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
-        frameworksBenchmark.run(50);
+        frameworksBenchmark.run(numberOfRuns);
         tournamentResults = frameworksBenchmark.getTournamentResults();
         tournamentResults.saveToFile(ratingIntervalsDir + File.separator + "DE_15000_evaluations");
         if (displayRatingCharts) {
@@ -107,8 +112,9 @@ public class Main {
         players.add(new DummyAlgorithm("GWO-Author-Matlab", algorithmResultsDir));
 
         frameworksBenchmark = new FrameworksBenchmark();
+        frameworksBenchmark.setDisplayRatingCharts(false);
         frameworksBenchmark.addAlgorithms(players);
-        frameworksBenchmark.run(50);
+        frameworksBenchmark.run(numberOfRuns);
         tournamentResults = frameworksBenchmark.getTournamentResults();
         tournamentResults.saveToFile(ratingIntervalsDir + File.separator + "GWO_15000_evaluations");
         if (displayRatingCharts) {

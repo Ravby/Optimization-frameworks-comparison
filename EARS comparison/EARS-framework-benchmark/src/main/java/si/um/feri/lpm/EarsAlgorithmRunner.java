@@ -21,13 +21,13 @@ public class EarsAlgorithmRunner {
         NumberAlgorithm algorithm;
 
         ArrayList<DoubleProblem> problems = new ArrayList<>();
-        problems.add(new Sphere(30));
-        problems.add(new SumOfSquares(30));
-        problems.add(new Schwefel12(30));
-        problems.add(new Rastrigin(30));
-        problems.add(new Ackley1(30));
-        problems.add(new Griewank(30));
-        problems.add(new RosenbrockD2a(30));
+        problems.add(new Sphere(60));
+        problems.add(new SumOfSquares(60));
+        problems.add(new Schwefel12(60));
+        problems.add(new Rastrigin(60));
+        problems.add(new Ackley1(60));
+        problems.add(new Griewank(60));
+        problems.add(new RosenbrockD2a(60));
         problems.add(new Foxholes());
         problems.add(new SixHumpCamelBack());
         problems.add(new Branin1());

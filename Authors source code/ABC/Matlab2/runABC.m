@@ -33,13 +33,13 @@ maxEval=15000; %/*The number of cycles for foraging {a stopping criteria}*/
 %/* Problem specific variables*/
 
 functions = {
-    {'Sphere', 30, ones(1,30)*100, ones(1,30)*(-100)}, 
-    {'SumOfSquares', 30, ones(1,30)*100, ones(1,30)*(-100)}, 
-    {'Schwefel', 30, ones(1,30)*100, ones(1,30)*(-100)},
-    {'Rastrigin', 30, ones(1,30)*5.12, ones(1,30)*(-5.12)},
-    {'Ackley', 30, ones(1,30)*32.0, ones(1,30)*(-32.0)},
-    {'Griewank', 30, ones(1,30)*600.0, ones(1,30)*(-600.0)},
-    {'Rosenbrock', 30, ones(1,30)*30.0, ones(1,30)*(-30.0)},
+    {'Sphere', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
+    {'SumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
+    {'Schwefel', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'Rastrigin', 60, ones(1,60)*5.12, ones(1,60)*(-5.12)},
+    {'Ackley', 60, ones(1,60)*32.0, ones(1,60)*(-32.0)},
+    {'Griewank', 60, ones(1,60)*600.0, ones(1,60)*(-600.0)},
+    {'Rosenbrock', 60, ones(1,60)*30.0, ones(1,60)*(-30.0)},
     {'ShekelsFoxholes', 2, ones(1,2)*65.536, ones(1,2)*(-65.536)},
     {'SixHumpCamelBack', 2, ones(1,2)*5.0, ones(1,2)*(-5.0)},
     {'Branin', 2, [10.0, 15.0], [-5.0, 0.0]},

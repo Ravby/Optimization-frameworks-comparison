@@ -27,17 +27,17 @@ public class FrameworksBenchmark extends SOBenchmark<NumberSolution<Double>, Num
     @Override
     public void initAllProblems() {
 
-        addTask(new DummyProblem("AckleyD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("AckleyD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
         addTask(new DummyProblem("BraninD2", false), stopCriterion, maxEvaluations, 0, maxIterations);
         addTask(new DummyProblem("GoldsteinPriceD2", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("GriewankD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("GriewankD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
         addTask(new DummyProblem("HartmanD3", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("RastriginD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("RosenbrockD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("SchwefelD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("RastriginD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("RosenbrockD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("SchwefelD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
         addTask(new DummyProblem("ShekelsFoxholesD2", false), stopCriterion, maxEvaluations, 0, maxIterations);
         addTask(new DummyProblem("SixHumpCamelBackD2", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("SphereD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
-        addTask(new DummyProblem("SumOfSquaresD30", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("SphereD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
+        addTask(new DummyProblem("SumOfSquaresD60", false), stopCriterion, maxEvaluations, 0, maxIterations);
     }
 }
