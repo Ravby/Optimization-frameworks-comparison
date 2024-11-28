@@ -29,13 +29,15 @@ import typing
 
 
 frameworkName = "DEAP"
-directoryPath = "../../lpm/data/"
+#directoryPath = "../../lpm/data/"
+directoryPath = "../../../../EARS comparison/Algorithm results/"
 fitnesEvals = 15000
 numOfReruns = 100
 algorithmName = 'DE'
-numOfDims = [30, 30, 30, 30, 30, 30, 30, 2, 2, 2, 2, 3]
+numOfDims = [60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3]
 popSize = 50
-problems = [benchmarks.sphere, benchmarks.sumOfSquares, benchmarks.swefel12, benchmarks.rastrigin, benchmarks.ackley, benchmarks.griewank, benchmarks.rosenbrock, benchmarks.shekelFoxholes, benchmarks.sixHumpCamelBack, benchmarks.branin, benchmarks.goldsteinPrice, benchmarks.hartman]
+#problems = [benchmarks.sphere, benchmarks.sumOfSquares, benchmarks.swefel12, benchmarks.rastrigin, benchmarks.ackley, benchmarks.griewank, benchmarks.rosenbrock, benchmarks.shekelFoxholes, benchmarks.sixHumpCamelBack, benchmarks.branin, benchmarks.goldsteinPrice, benchmarks.hartman]
+problems = [benchmarks.sphere, benchmarks.sumOfSquares, benchmarks.swefel12, benchmarks.rastrigin, benchmarks.ackley, benchmarks.griewank, benchmarks.rosenbrock]
 problemNames = ['Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank', 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
 lbs = [-100, -100, -100, -5.12, -32, -600, -30, -65.536, -5, [-5, 0], -2, 0]
 ubs = [100, 100, 100, 5.12, 32, 600, 30, 65.536, 5, [10, 15], 2, 1]

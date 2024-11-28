@@ -74,19 +74,20 @@ int main()
 
     std::vector<algorithm> algorithms{algABC, algPSO, algDE, algGWO, algSGA};
     //std::vector<algorithm> algorithms{algSGA};
-    std::vector<problem> problems {probSphere,     probSumOfSquares,   proSschwefel,  probRastrigin, probAckley,         probGriewank,     probRosenbrock,     probShekelFoxHoles,probCamelBack, probBranin,       probFoldsteinPrice, probHartman    };
-    //std::vector<problem> problems{probSphere};
+    
+    //std::vector<problem> problems {probSphere,     probSumOfSquares,   proSschwefel,  probRastrigin, probAckley,         probGriewank,     probRosenbrock,     probShekelFoxHoles,probCamelBack, probBranin,       probFoldsteinPrice, probHartman    };
+    std::vector<problem> problems {probSphere,     probSumOfSquares,   proSschwefel,  probRastrigin, probAckley,         probGriewank,     probRosenbrock};
 
     std::string frameworkName = "pagmo2";
     std::vector<std::string> algorithmNames{"ABC", "PSO", "DE", "GWO", "GA"}; 
-    //std::vector<std::string> algorithmNames{"ABC"}; 
+
     std::vector<std::string> problemNames{
         "Sphere", "SumOfSquares", "Schwefel", "Rastrigin", "Ackley", "Griewank",
         "Rosenbrock", "ShekelsFoxholes", "SixHumpCamelBack", "Branin", "GoldsteinPrice", "Hartman",
     }; 
-    std::vector<int> dims{30, 30, 30, 30, 30, 30, 30, 2, 2, 2, 2, 3}; 
+    std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
     std::vector<int> numOfIndividuals{ 125, 30, 50, 30, 100};
-    //std::vector<int> numOfIndividuals{ 100};
+
 
     unsigned numberOfRepeates = 100u;
 

@@ -22,7 +22,7 @@ from problems import GoldsteinPrice
 from problems import Hartman
 
 frameworkName = "MEALPY"
-directory_path = "data/"
+directory_path = "../../../EARS comparison/Algorithm results/"
 
 term_dict1 = {
     #"max_epoch": 1000,
@@ -34,16 +34,15 @@ term_dict1 = {
 num_of_reruns = 100
 
 algorithmNames = ['ABC', 'PSO', 'DE', 'GWO', 'GA']
-#problemNames = ['Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank', 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
-problemNames = ['Schwefel']
-numOfDims = [30, 30, 30, 30, 30, 30, 30, 2, 2, 2, 2, 3]
+problemNames = ['Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank', 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
+numOfDims = [60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3]
 
 models = [
         ABC.OriginalABC(pop_size=125, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1), n_limits=100),
         PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w_min=0.4, w_max=0.7),
         DE.BaseDE(pop_size=50, wf=0.5, cr=0.9, strategy=0),
         GWO.OriginalGWO(pop_size=30),
-        GA.BaseGA(pop_size=100, pc=0.95, pm=0.025)  # TODO spremeni pop_size
+        GA.BaseGA(pop_size=100, pc=0.95, pm=0.025)
 ]
 
 problems = [
@@ -65,7 +64,7 @@ problems = [
 #for file_path in glob.glob(directory_path + "*"):
 #    os.remove(file_path)
 
-"""if(1):
+if(1):
     #for x in range(num_of_reruns):
     for index, model in enumerate(models):
         for j, problem in enumerate(problems):
@@ -96,17 +95,3 @@ if(0):
     print(f"Branin :  { problems[9].fit_func(np.array([-np.pi,12.275])) }")
     print(f"Goldstein-Price :  { problems[10].fit_func(np.array([0, -1])) }")
     print(f"Hartman :  { problems[11].fit_func(np.array([0.114614,0.555649,0.852547])) }")
-"""
-
-print(f"Sphere:  {problems[0].fit_func(np.array([0, ] * 10))}")
-print(f"SumOfSquares:  {problems[1].fit_func(np.array([0, ] * 10))}")
-print(f"Schwefel12:  {problems[2].fit_func(np.array([0, ] * 10))}")
-print(f"Rastrigin:  {problems[3].fit_func(np.array([0, ] * 10))}")
-print(f"Ackley:  {problems[4].fit_func(np.array([0, ] * 10))}")
-print(f"Griewank:  {problems[5].fit_func(np.array([0, ] * 10))}")
-print(f"Rosenbrock:  {problems[6].fit_func(np.array([1, ] * 10))}")
-print(f"Shekel’s Foxholes :  {problems[7].fit_func(np.array([-31.97833, -31.97833]))}")
-print(f"Six-Hump Camel Back :  {problems[8].fit_func(np.array([0.0898, -0.7126]))}")
-print(f"Branin :  {problems[9].fit_func(np.array([-np.pi, 12.275]))}")
-print(f"Goldstein-Price :  {problems[10].fit_func(np.array([0, -1]))}")
-print(f"Hartman :  {problems[11].fit_func(np.array([0.114614, 0.555649, 0.852547]))}")
