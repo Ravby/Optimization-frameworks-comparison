@@ -49,6 +49,12 @@ runtime=100;
 % end
 
 functions = {
+    {'ShiftedSphere', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
+    {'ShiftedSumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
+    {'ShiftedSchwefel', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'ShiftedRastrigin', 60, ones(1,60)*5.12, ones(1,60)*(-5.12)},
+    {'ShiftedAckley', 60, ones(1,60)*32.0, ones(1,60)*(-32.0)},
+    {'ShiftedGriewank', 60, ones(1,60)*600.0, ones(1,60)*(-600.0)}
     {'Sphere', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
     {'SumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
     {'Schwefel', 60, ones(1,60)*100, ones(1,60)*(-100)},
