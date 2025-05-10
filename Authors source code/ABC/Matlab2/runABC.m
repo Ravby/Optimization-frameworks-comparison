@@ -19,7 +19,6 @@
 %Bahriye Basturk Akay (bahriye@erciyes.edu.tr)
 %*/
 
-
 clear all
 close all
 clc
@@ -33,8 +32,14 @@ maxEval=15000; %/*The number of cycles for foraging {a stopping criteria}*/
 %/* Problem specific variables*/
 
 functions = {
-    {'Sphere', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
-    {'SumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)}, 
+    {'ShiftedSphere', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'ShiftedSumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'ShiftedSchwefel', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'ShiftedRastrigin', 60, ones(1,60)*5.12, ones(1,60)*(-5.12)},
+    {'ShiftedAckley', 60, ones(1,60)*32.0, ones(1,60)*(-32.0)},
+    {'ShiftedGriewank', 60, ones(1,60)*600.0, ones(1,60)*(-600.0)}
+    {'Sphere', 60, ones(1,60)*100, ones(1,60)*(-100)},
+    {'SumOfSquares', 60, ones(1,60)*100, ones(1,60)*(-100)},
     {'Schwefel', 60, ones(1,60)*100, ones(1,60)*(-100)},
     {'Rastrigin', 60, ones(1,60)*5.12, ones(1,60)*(-5.12)},
     {'Ackley', 60, ones(1,60)*32.0, ones(1,60)*(-32.0)},
@@ -45,7 +50,7 @@ functions = {
     {'Branin', 2, [10.0, 15.0], [-5.0, 0.0]},
     {'GoldsteinPrice', 2, ones(1,2)*2.0, ones(1,2)*(-2.0)},
     {'Hartman', 3, ones(1,3)*1.0, ones(1,3)*(0.0)}
-};
+    };
 
 runtime=100;
 
@@ -55,13 +60,13 @@ for f = 1:length(functions)
     D = functions{f}{2};
     ub = functions{f}{3};
     lb = functions{f}{4};
-
+    
     fprintf('Problem %s\n', objfun);
     
     GlobalMins=zeros(1,runtime);
     
     for r=1:runtime
-
+        
         [GlobalMin, currentEval] = ABC(objfun, D, ub, lb, NP, limit, maxEval);
         if currentEval ~= maxEval
             fprintf('Error: algorithm consumed more evaluations than allowed!\n');
