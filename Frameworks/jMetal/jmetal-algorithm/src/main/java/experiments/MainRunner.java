@@ -1,35 +1,25 @@
 package experiments;
 
+
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.examples.AlgorithmRunner;
-import org.uma.jmetal.algorithm.singleobjective.differentialevolution.DifferentialEvolution;
 import org.uma.jmetal.algorithm.singleobjective.differentialevolution.DifferentialEvolutionBuilder;
+import org.uma.jmetal.algorithm.singleobjective.evolutionstrategy.CovarianceMatrixAdaptationEvolutionStrategy;
 import org.uma.jmetal.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithmBuilder;
 import org.uma.jmetal.algorithm.singleobjective.particleswarmoptimization.StandardPSO2007;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
 import org.uma.jmetal.operator.crossover.impl.DifferentialEvolutionCrossover;
-import org.uma.jmetal.operator.crossover.impl.PMXCrossover;
 import org.uma.jmetal.operator.crossover.impl.SBXCrossover;
-import org.uma.jmetal.operator.crossover.impl.SinglePointCrossover;
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uma.jmetal.operator.mutation.impl.BitFlipMutation;
 import org.uma.jmetal.operator.mutation.impl.PolynomialMutation;
-import org.uma.jmetal.operator.selection.SelectionOperator;
-import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
-import org.uma.jmetal.problem.ProblemFactory;
 import org.uma.jmetal.problem.doubleproblem.DoubleProblem;
 import org.uma.jmetal.problem.singleobjective.*;
-import org.uma.jmetal.solution.binarysolution.BinarySolution;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
-import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.evaluator.SolutionListEvaluator;
-import org.uma.jmetal.util.evaluator.impl.MultiThreadedSolutionListEvaluator;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
-import org.uma.jmetal.util.fileoutput.SolutionListOutput;
-import org.uma.jmetal.util.fileoutput.impl.DefaultFileOutputContext;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainRunner {
 
@@ -42,6 +32,13 @@ public class MainRunner {
         SolutionListEvaluator<DoubleSolution> evaluator;
 
         ArrayList<DoubleProblem> problems = new ArrayList<>();
+
+        problems.add(new ShiftedSphere(60));
+        problems.add(new ShiftedSumOfSquares(60));
+        problems.add(new ShiftedSchwefel(60));
+        problems.add(new ShiftedRastrigin(60));
+        problems.add(new ShiftedAckley(60));
+        problems.add(new ShiftedGriewank(60));
         problems.add(new Sphere(60));
         problems.add(new SumOfSquares(60));
         problems.add(new Schwefel(60));
@@ -66,13 +63,29 @@ public class MainRunner {
 
             for (int i = 0; i < NUMBER_OF_RUNS; i++) {
 
+                CovarianceMatrixAdaptationEvolutionStrategy.Builder
+                        builder = new CovarianceMatrixAdaptationEvolutionStrategy.Builder(problem)
+                        .setMaxEvaluations(MAX_EVALUATIONS)
+                        .setLambda(30) //population size
+                        .setSigma(0.5);
+
+                algorithm = builder.build();
+
+                AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute();
+
+                DoubleSolution solution = algorithm.result();
+                results[i] = solution.objectives()[0];
+            }
+            writeResultsToFile( "CMA-ES-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
+
+            for (int i = 0; i < NUMBER_OF_RUNS; i++) {
+
                 algorithm = new StandardPSO2007(problem,30,0.7, MAX_EVALUATIONS / 30,3,evaluator);
 
                 AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute();
 
                 DoubleSolution solution = algorithm.result();
                 results[i] = solution.objectives()[0];
-
             }
             writeResultsToFile( "PSO-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
 
@@ -93,7 +106,6 @@ public class MainRunner {
 
                 DoubleSolution solution = algorithm.result();
                 results[i] = solution.objectives()[0];
-
             }
             writeResultsToFile( "DE-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
 
@@ -112,7 +124,6 @@ public class MainRunner {
 
                 DoubleSolution solution = algorithm.result();
                 results[i] = solution.objectives()[0];
-
             }
             writeResultsToFile( "GA-jMetal_" + problem.name()+"D"+problem.numberOfVariables(), results);
         }
