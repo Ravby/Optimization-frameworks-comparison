@@ -17,6 +17,13 @@ public class Main {
         final int MAX_EVALUATIONS = 15000;
 
         ArrayList<DEProblem> problems = new ArrayList<>();
+
+        problems.add(new ShiftedSphere(60));
+        problems.add(new ShiftedSumOfSquares(60));
+        problems.add(new ShiftedSchwefel(60));
+        problems.add(new ShiftedRastrigin(60));
+        problems.add(new ShiftedAckley(60));
+        problems.add(new ShiftedGriewank(60));
         problems.add(new Sphere(60));
         problems.add(new SumOfSquares(60));
         problems.add(new Schwefel(60));
