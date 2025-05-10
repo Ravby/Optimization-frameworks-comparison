@@ -16,11 +16,17 @@
 // Problems
 #include <pagmo/problem.hpp>
 #include <pagmo/problems/sphere.hpp>
+#include <pagmo/problems/sphere_shifted.hpp>
 #include <pagmo/problems/sum_of_squares.hpp>
+#include <pagmo/problems/sum_of_squares_shifted.hpp>
 #include <pagmo/problems/schwefel.hpp>
+#include <pagmo/problems/schwefel_shifted.hpp>
 #include <pagmo/problems/rastrigin.hpp>
+#include <pagmo/problems/rastrigin_shifted.hpp>
 #include <pagmo/problems/ackley.hpp>
+#include <pagmo/problems/ackley_shifted.hpp>
 #include <pagmo/problems/griewank.hpp>
+#include <pagmo/problems/griewank_shifted.hpp>
 #include <pagmo/problems/rosenbrock.hpp>
 #include <pagmo/problems/shekel_fox_holes.hpp>
 #include <pagmo/problems/camel_back.hpp>
@@ -35,11 +41,24 @@ int main()
 {
     // 1 - Instantiate a pagmo problem constructing it from a UDP
     problem probSphere{sphere(60)};
+    problem probSphereShifted{sphereShifted(60)};
+
     problem probSumOfSquares{sumOfSquares(60)};
+    problem probSumOfSquaresShifted{sumOfSquaresShifted(60)};
+
     problem proSschwefel{schwefel(60)};
+    problem proSschwefelShifted{schwefelShifted(60)};
+
     problem probRastrigin{rastrigin(60)};
+    problem probRastriginShifted{rastriginShifted(60)};
+
     problem probAckley{ackley(60)};
+    problem probAckleyShifted{ackleyShifted(60)};
+
     problem probGriewank{griewank(60)};
+    problem probGriewankShifted{griewankShifted(60)};
+
+
     problem probRosenbrock{rosenbrock(60)};
     problem probShekelFoxHoles{shekelsFoxHoles(2)};
     problem probCamelBack{camelBack(2)};
@@ -64,7 +83,12 @@ int main()
     std::vector<algorithm> algorithms{algABC, algPSO, algDE, algGWO, algSGA, algCMAES};
     //std::vector<algorithm> algorithms{algABC, algCMAES};
     
-    std::vector<problem> problems {probSphere,     probSumOfSquares,   proSschwefel,  probRastrigin, probAckley,         probGriewank,     probRosenbrock,     probShekelFoxHoles,probCamelBack, probBranin,       probFoldsteinPrice, probHartman    };
+    std::vector<problem> problems{
+        probSphere,          probSumOfSquares,     proSschwefel,      probRastrigin,
+        probAckley,          probGriewank,         probSphereShifted, probSumOfSquaresShifted,
+        proSschwefelShifted, probRastriginShifted, probAckleyShifted, probGriewankShifted, 
+        probRosenbrock,      probShekelFoxHoles,   probCamelBack,     probBranin,
+        probFoldsteinPrice, probHartman};
     //std::vector<problem> problems {probSphere,     probSumOfSquares,   proSschwefel,  probRastrigin, probAckley,         probGriewank,     probRosenbrock};
 
     std::string frameworkName = "pagmo2";
@@ -72,10 +96,14 @@ int main()
     std::vector<std::string> algorithmNames{"ABC", "PSO", "DE", "GWO", "GA", "CMAES"};  
 
     std::vector<std::string> problemNames{
-        "Sphere", "SumOfSquares", "Schwefel", "Rastrigin", "Ackley", "Griewank",
-        "Rosenbrock", "ShekelsFoxholes", "SixHumpCamelBack", "Branin", "GoldsteinPrice", "Hartman",
+        "Sphere",          "SumOfSquares",     "Schwefel",         "Rastrigin",
+        "Ackley",          "Griewank",         "ShiftedSphere",    "ShiftedSumOfSquares",
+        "ShiftedSchwefel", "ShiftedRastrigin", "ShiftedAckley",    "ShiftedGriewank",
+        "Rosenbrock",      "ShekelsFoxholes",  "SixHumpCamelBack", "Branin",
+        "GoldsteinPrice",  "Hartman",
     }; 
-    std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
+
+    std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
     
     std::vector<int> numOfIndividuals{ 125, 30, 50, 30, 100, 30};
     //std::vector<int> numOfIndividuals{125, 30};
