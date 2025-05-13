@@ -4,6 +4,7 @@ if (!require("metaheuristicOpt")) {
 }
 
 source("problems.R")
+source("shifted_problems.R")
 source("abc_algorithm.R")
 source("de_algorithm.R")
 source("ga_algorithm.R")

@@ -42,7 +42,7 @@ de_algorithm <-
     )
   }
 
-runs = 100
+runs = 50
 
 de_algorithm(
   runs = runs,
@@ -52,11 +52,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = sphere,
+  problem = shifted_sphere,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_SphereD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedSphereD60.txt"
 )
 
 de_algorithm(
@@ -67,11 +67,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = sum_of_squares,
+  problem = shifted_sum_of_squares,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_SumOfSquaresD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
 )
 
 de_algorithm(
@@ -82,11 +82,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = schwefel2,
+  problem = shifted_schwefel2,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_SchwefelD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedSchwefelD60.txt"
 )
 
 de_algorithm(
@@ -97,11 +97,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = rastrigin,
+  problem = shifted_rastrigin,
   lb = -5.12,
   ub = 5.12,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_RastriginD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedRastriginD60.txt"
 )
 
 de_algorithm(
@@ -112,11 +112,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = ackley,
+  problem = shifted_ackley,
   lb = -32,
   ub = 32,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_AckleyD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedAckleyD30.txt"
 )
 
 de_algorithm(
@@ -127,11 +127,11 @@ de_algorithm(
   CR = 0.9,
   variant = "classical",
   # RAND_1_BIN
-  problem = griewank,
+  problem = shifted_griewank,
   lb = -600,
   ub = 600,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_GriewankD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_ShiftedGriewankD30.txt"
 )
 
 de_algorithm(
@@ -145,8 +145,8 @@ de_algorithm(
   problem = rosenbrock,
   lb = -30,
   ub = 30,
-  dim = 30,
-  file_name = "DE-metaheuristicOpt_RosenbrockD30.txt"
+  dim = 60,
+  file_name = "DE-metaheuristicOpt_RosenbrockD60.txt"
 )
 
 de_algorithm(

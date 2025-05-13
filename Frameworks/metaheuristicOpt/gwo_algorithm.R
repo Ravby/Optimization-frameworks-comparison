@@ -34,72 +34,72 @@ gwo_algorithm <-
     )
   }
 
-runs = 100
+runs = 50
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = sphere,
+  problem = shifted_sphere,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_SphereD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedSphereD60.txt"
 )
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = sum_of_squares,
+  problem = shifted_sum_of_squares,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_SumOfSquaresD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
 )
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = schwefel2,
+  problem = shifted_schwefel2,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_SchwefelD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedSchwefelD60.txt"
 )
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = rastrigin,
+  problem = shifted_rastrigin,
   lb = -5.12,
   ub = 5.12,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_RastriginD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedRastriginD60.txt"
 )
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = ackley,
+  problem = shifted_ackley,
   lb = -32,
   ub = 32,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_AckleyD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedAckleyD60.txt"
 )
 
 gwo_algorithm(
   runs = runs,
   pop_size = 30,
   iterations = 500,
-  problem = griewank,
+  problem = shifted_griewank,
   lb = -600,
   ub = 600,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_GriewankD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_ShiftedGriewankD60.txt"
 )
 
 gwo_algorithm(
@@ -109,8 +109,8 @@ gwo_algorithm(
   problem = rosenbrock,
   lb = -30,
   ub = 30,
-  dim = 30,
-  file_name = "GWO-metaheuristicOpt_RosenbrockD30.txt"
+  dim = 60,
+  file_name = "GWO-metaheuristicOpt_RosenbrockD60.txt"
 )
 
 gwo_algorithm(

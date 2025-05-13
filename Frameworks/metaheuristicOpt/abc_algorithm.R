@@ -36,18 +36,18 @@ abc_algorithm <-
     )
   }
 
-runs = 100
+runs = 50
 
 abc_algorithm(
   runs = runs,
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = sphere,
+  problem = shifted_sphere,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_SphereD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShiftedSphereD60.txt"
 )
 
 abc_algorithm(
@@ -55,11 +55,11 @@ abc_algorithm(
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = sum_of_squares,
+  problem = shifted_sum_of_squares,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_SumOfSquaresD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
 )
 
 abc_algorithm(
@@ -67,11 +67,11 @@ abc_algorithm(
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = schwefel2,
+  problem = shifted_schwefel2,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_SchwefelD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShfitedSchwefelD60.txt"
 )
 
 abc_algorithm(
@@ -79,11 +79,11 @@ abc_algorithm(
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = rastrigin,
+  problem = shifted_rastrigin,
   lb = -5.12,
   ub = 5.12,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_RastriginD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShiftedRastriginD60.txt"
 )
 
 abc_algorithm(
@@ -91,11 +91,11 @@ abc_algorithm(
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = ackley,
+  problem = shifted_ackley,
   lb = -32,
   ub = 32,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_AckleyD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShfitedckleyD60.txt"
 )
 
 abc_algorithm(
@@ -103,12 +103,85 @@ abc_algorithm(
   pop_size = 125,
   iterations = 120,
   limit = 100,
-  problem = griewank,
+  problem = shifted_griewank,
   lb = -600,
   ub = 600,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_GriewankD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_ShiftedGriewankD60.txt"
 )
+
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = sphere,
+#   lb = -100,
+#   ub = 100,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_SphereD60.txt"
+# )
+# 
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = sum_of_squares,
+#   lb = -100,
+#   ub = 100,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_SumOfSquaresD60.txt"
+# )
+# 
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = schwefel2,
+#   lb = -100,
+#   ub = 100,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_SchwefelD60.txt"
+# )
+# 
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = rastrigin,
+#   lb = -5.12,
+#   ub = 5.12,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_RastriginD60.txt"
+# )
+# 
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = ackley,
+#   lb = -32,
+#   ub = 32,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_AckleyD60.txt"
+# )
+# 
+# abc_algorithm(
+#   runs = runs,
+#   pop_size = 125,
+#   iterations = 120,
+#   limit = 100,
+#   problem = griewank,
+#   lb = -600,
+#   ub = 600,
+#   dim = 60,
+#   file_name = "ABC-metaheuristicOpt_GriewankD60.txt"
+# )
+
 
 abc_algorithm(
   runs = runs,
@@ -118,8 +191,8 @@ abc_algorithm(
   problem = rosenbrock,
   lb = -30,
   ub = 30,
-  dim = 30,
-  file_name = "ABC-metaheuristicOpt_RosenbrockD30.txt"
+  dim = 60,
+  file_name = "ABC-metaheuristicOpt_RosenbrockD60.txt"
 )
 
 abc_algorithm(

@@ -43,7 +43,7 @@ pso_algorithm <-
     )
   }
 
-runs = 100
+runs = 50
 
 pso_algorithm(
   runs = runs,
@@ -52,11 +52,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = sphere,
+  problem = shifted_sphere,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_SphereD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedSphereD60.txt"
 )
 
 pso_algorithm(
@@ -66,11 +66,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = sum_of_squares,
+  problem = shifted_sum_of_squares,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_SumOfSquaresD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
 )
 
 pso_algorithm(
@@ -80,11 +80,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = schwefel2,
+  problem = shifted_schwefel2,
   lb = -100,
   ub = 100,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_SchwefelD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedSchwefelD60.txt"
 )
 
 pso_algorithm(
@@ -94,11 +94,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = rastrigin,
+  problem = shifted_rastrigin,
   lb = -5.12,
   ub = 5.12,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_RastriginD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedRastriginD60.txt"
 )
 
 pso_algorithm(
@@ -108,11 +108,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = ackley,
+  problem = shifted_ackley,
   lb = -32,
   ub = 32,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_AckleyD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedAckleyD60.txt"
 )
 
 pso_algorithm(
@@ -122,11 +122,11 @@ pso_algorithm(
   omega = 0.7,
   c1 = 2,
   c2 = 2,
-  problem = griewank,
+  problem = shifted_griewank,
   lb = -600,
   ub = 600,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_GriewankD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_ShiftedGriewankD60.txt"
 )
 
 pso_algorithm(
@@ -139,8 +139,8 @@ pso_algorithm(
   problem = rosenbrock,
   lb = -30,
   ub = 30,
-  dim = 30,
-  file_name = "PSO-metaheuristicOpt_RosenbrockD30.txt"
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_RosenbrockD60.txt"
 )
 
 pso_algorithm(
