@@ -103,7 +103,7 @@ int main()
         "GoldsteinPrice",  "Hartman",
     }; 
 
-    std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
+    std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
     
     std::vector<int> numOfIndividuals{ 125, 30, 50, 30, 100, 30};
     //std::vector<int> numOfIndividuals{125, 30};

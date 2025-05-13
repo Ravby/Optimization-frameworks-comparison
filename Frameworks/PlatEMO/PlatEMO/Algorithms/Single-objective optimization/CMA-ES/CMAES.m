@@ -38,7 +38,7 @@ classdef CMAES < ALGORITHM
             ps    = zeros(1,Problem.D);
             pc    = zeros(1,Problem.D);
             C     = eye(Problem.D);
-            sigma = 0.1*(Problem.upper-Problem.lower);
+            sigma = 0.5; %0.1*(Problem.upper-Problem.lower);
             Population = Problem.Initialization(1);
             
             %% Optimization
