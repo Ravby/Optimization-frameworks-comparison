@@ -4,12 +4,15 @@
 #       Github: https://github.com/thieu1995        %                         
 # --------------------------------------------------%
 
+from typing import Union, List, Tuple, Dict
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from pathlib import Path
-from mealpy.optimizer import Optimizer
-from mealpy.utils.problem import Problem
 from mealpy.utils.termination import Termination
+from mealpy.optimizer import Optimizer
+from mealpy.utils.agent import Agent
+from mealpy.utils.problem import Problem
 from mealpy.utils.validator import Validator
 from collections import abc
 from functools import partial, reduce
@@ -17,6 +20,7 @@ from itertools import product
 import concurrent.futures as parallel
 import operator
 import os
+import platform
 
 
 class ParameterGrid:
@@ -70,8 +74,7 @@ class ParameterGrid:
                 if isinstance(value, str) or not isinstance(value, (np.ndarray, abc.Sequence)):
                     raise TypeError(
                         f"Parameter grid for parameter {key!r} needs to be a list or a"
-                        f" numpy array, but got {value!r} (of type "
-                        f"{type(value).__name__}) instead. Single values "
+                        f" numpy array, but got {value!r} (of type {type(value).__name__}) instead. Single values "
                         "need to be wrapped in a list with one element.")
                 if len(value) == 0:
                     raise ValueError(f"Parameter grid for parameter {key!r} need to be a non-empty sequence, got: {value!r}")
@@ -83,16 +86,14 @@ class ParameterGrid:
         Returns
         -------
         params : iterator over dict of str to any
-            Yields dictionaries mapping each estimator parameter to one of its
-            allowed values.
+            Yields dictionaries mapping each estimator parameter to one of its allowed values.
         """
         for p in self.param_grid:
-            # Always sort the keys of a dictionary, for reproducibility
-            items = sorted(p.items())
-            if not items:
+            ## My version: Don't sort the key here. Keep it as it is
+            if not p.items():
                 yield {}
             else:
-                keys, values = zip(*items)
+                keys, values = zip(*p.items())
                 for v in product(*values):
                     params = dict(zip(keys, v))
                     yield params
@@ -116,8 +117,7 @@ class ParameterGrid:
         params : dict of str to any
             Equal to list(self)[ind]
         """
-        # This is used to make discrete sampling without replacement memory
-        # efficient.
+        # This is used to make discrete sampling without replacement memory efficient.
         for sub_grid in self.param_grid:
             # XXX: could memoize information used here
             if not sub_grid:
@@ -128,7 +128,9 @@ class ParameterGrid:
                     continue
 
             # Reverse so most frequent cycling parameter comes first
-            keys, values_lists = zip(*sorted(sub_grid.items())[::-1])
+            # keys, values_lists = zip(*sorted(sub_grid.items())[::-1])
+            ## My version: Don't sort the values and don't reverse here. Keep it as it is
+            keys, values_lists = zip(*sub_grid.items())
             sizes = [len(v_list) for v_list in values_lists]
             total = np.product(sizes)
 
@@ -160,8 +162,54 @@ class Tuner:
         n_trials (int): number of repetitions
         mode (str): set the mode to run (sequential, thread, process), default="sequential"
         n_workers (int): effected only when mode is "thread" or "process".
+
+    Examples
+    --------
+    >>> from opfunu.cec_based.cec2017 import F52017
+    >>> from mealpy import FloatVar, BBO, Tuner
+    >>>
+    >>> f1 = F52017(30, f_bias=0)
+    >>>
+    >>> p1 = {
+    >>>     "bounds": FloatVar(lb=f1.lb, ub=f1.ub),
+    >>>     "obj_func": f1.evaluate,
+    >>>     "minmax": "min",
+    >>>     "name": "F5",
+    >>>     "log_to": "console",
+    >>> }
+    >>>
+    >>> paras_bbo_grid = {
+    >>>     "epoch": [10, 20, 30],
+    >>>     "pop_size": [30, 50, 100],
+    >>>     "n_elites": [2, 3, 4, 5],
+    >>>     "p_m": [0.01, 0.02, 0.05]
+    >>> }
+    >>> term = {
+    >>>     "max_epoch": 200,
+    >>>     "max_time": 20,
+    >>>     "max_fe": 10000
+    >>> }
+    >>> if __name__ == "__main__":
+    >>>     model = BBO.OriginalBBO()
+    >>>     tuner = Tuner(model, paras_bbo_grid)
+    >>>     tuner.execute(problem=p1, termination=term, n_trials=5, n_jobs=4, mode="thread", n_workers=6, verbose=True)
+    >>>
+    >>>     print(tuner.best_row)
+    >>>     print(tuner.best_score)
+    >>>     print(tuner.best_params)
+    >>>     print(type(tuner.best_params))
+    >>>
+    >>>     print(tuner.best_algorithm)
+    >>>     tuner.export_results(save_path="history/results", save_as="csv")
+    >>>     tuner.export_figures()
+    >>>
+    >>>     g_best = tuner.resolve(mode="thread", n_workers=4, termination=term)
+    >>>     print(g_best.solution, g_best.target.fitness)
+    >>>     print(tuner.algorithm.problem.get_name())
+    >>>     print(tuner.best_algorithm.get_name())
     """
-    def __init__(self, algorithm=None, param_grid=None, **kwargs):
+
+    def __init__(self, algorithm: Union[str, Optimizer] = None, param_grid: Union[Dict, List] = None, **kwargs: object) -> None:
         self.__set_keyword_arguments(kwargs)
         self.validator = Validator(log_to="console", log_file=None)
         self.algorithm = self.validator.check_is_instance("algorithm", algorithm, Optimizer)
@@ -193,53 +241,134 @@ class Tuner:
         self.algorithm.set_parameters(self._best_params)
         return self.algorithm
 
-    def export_results(self, save_path="history/results", save_as="csv"):
+    def export_results(self, save_path=None, file_name="tuning_best_fit.csv"):
         """Export results to various file type
 
         Args:
-            save_path (str): The path to the folder with the file name that hold results
-            save_as (str): Saved file type (e.g. dataframe, json, csv) (default: "csv")
+            save_path (str): The path to the folder, default None
+            file_name (str): The file name (with file type, e.g. dataframe, json, csv; default: "tuning_best_fit.csv") that hold results
 
         Raises:
             TypeError: Raises TypeError if export type is not supported
 
         """
         ## Check parent directories
+        if save_path is None:
+            save_path = f"history/{self.algorithm.get_name()}"
         Path(save_path).mkdir(parents=True, exist_ok=True)
-        save_as = self.validator.check_str("save_as", save_as, ["csv", "json", "dataframe"])
-        if save_as == "json":
-            self.results.to_json(f"{save_path}.json")
-        elif save_as == "dataframe":
-            self.results.to_pickle(f"{save_path}.pkl")
+        if type(file_name) is not str:
+            raise ValueError("file_name should be a string and contains the extensions, e.g. dataframe, json, csv")
+        ext = file_name.split(".")[-1]
+        filename = "-".join(file_name.split(".")[:-1])
+        if ext == "json":
+            self.df_fit.to_json(f"{save_path}/{filename}.json")
+        elif ext == "dataframe":
+            self.df_fit.to_pickle(f"{save_path}/{filename}.pkl")
         else:
-            self.results.to_csv(f"{save_path}.csv", header=True, index=False)
+            self.df_fit.to_csv(f"{save_path}/{filename}.csv", header=True, index=False)
+
+    def export_figures(self, save_path=None, file_name="tuning_epoch_fit.csv",
+                       color=None, x_label=None, y_label=None, exts=(".png", ".pdf"), verbose=False):
+        """Export results to various file type
+
+        Args:
+            save_path (str): The path to the folder, default None
+            file_name (str): The file name (with file type, e.g. dataframe, json, csv; default: "tuning_epoch_fit.csv") that hold results
+
+        Raises:
+            TypeError: Raises TypeError if export type is not supported
+
+        """
+        ## Check parent directories
+        if save_path is None:
+            save_path = f"history/{self.algorithm.get_name()}"
+        Path(save_path).mkdir(parents=True, exist_ok=True)
+        if type(file_name) is not str:
+            raise ValueError("file_name should be a string and contains the extensions, e.g. dataframe, json, csv")
+        ext = file_name.split(".")[-1]
+        filename = "-".join(file_name.split(".")[:-1])
+        if ext == "json":
+            self.df_loss.to_json(f"{save_path}/{filename}.json")
+        elif ext == "dataframe":
+            self.df_loss.to_pickle(f"{save_path}/{filename}.pkl")
+        else:
+            self.df_loss.to_csv(f"{save_path}/{filename}.csv", header=True, index=False)
+
+        ## Draw and save convergence figures
+        para_columns = list(self.param_grid.keys())
+        group_trials = self.df_loss.groupby("trial")
+        for trial, groups in group_trials:
+            save_path_new = f"{save_path}/trial{trial}"
+            Path(save_path_new).mkdir(parents=True, exist_ok=True)
+            for idx_para, para in enumerate(para_columns):
+                selected_paras = para_columns[:idx_para] + para_columns[idx_para + 1:]
+                group_paras = groups.groupby(selected_paras)
+                for idx_group, group_df in group_paras:
+                    if len(group_df) <= 1:
+                        continue
+                    cols = list(group_df.columns.difference(['trial', ] + selected_paras, sort=False))
+                    df_final = group_df[cols]
+                    legends = df_final[para].values.tolist()
+                    legends = [f"{para} = {item}" for item in legends]
+                    # Remove the elites column if it exists
+                    df_final = df_final.drop(para, axis=1)
+                    # Plot a line chart for each elite parameter
+                    title = f'Convergence chart for {para} parameter'
+                    if x_label is None:
+                        x_label = "Epoch"
+                    if y_label is None:
+                        y_label = "Global best fitness value"
+                    if color is None:
+                        df_final.T.plot(kind='line', title=title)
+                    else:
+                        if len(color) != df_final.values.shape[0]:
+                            raise ValueError("color parameter should be a list with length equal to number of lines.")
+                        else:
+                            df_final.T.plot(kind='line', color=color, title=title)
+                    plt.xlabel(x_label)
+                    plt.ylabel(y_label)
+                    plt.legend(legends)
+                    fname = "-".join([f"{x}_{y}" for x, y in zip(selected_paras, idx_group)])
+                    for idx, ext in enumerate(exts):
+                        plt.savefig(f"{save_path_new}/{fname}{ext}", bbox_inches='tight')
+                    if platform.system() != "Linux" and verbose:
+                        plt.show()
+                    plt.close()
 
     def __run__(self, id_trial, mode="single", n_workers=None, termination=None):
-        _, best_fitness = self.algorithm.solve(self.problem, mode=mode, n_workers=n_workers, termination=termination)
-        return id_trial, best_fitness
+        g_best = self.algorithm.solve(self.problem, mode=mode, n_workers=n_workers, termination=termination)
+        self.problem = self.algorithm.problem
+        return id_trial, g_best, self.algorithm.history.list_global_best_fit
 
-    def execute(self, problem=None, termination=None, n_trials=2, mode="single", n_workers=2, n_jobs=None, verbose=True):
-        """Execute Tuner utility.
+    def __generate_dict_from_list(self, my_list):
+        keys = np.arange(1, len(my_list)+1)
+        return dict(zip(keys, my_list))
+
+    def __generate_dict_result(self, params, trial, loss_list):
+        result_dict = dict(params)
+        result_dict["trial"] = trial
+        result_dict = {**result_dict, **self.__generate_dict_from_list(loss_list)}
+        return result_dict
+
+    def execute(self, problem: Union[Dict, Problem] = None, termination: Union[Dict, Termination] = None,
+                n_trials: int = 2, n_jobs: int = None, mode: str = "single", n_workers: int = 2, verbose: bool = True) -> None:
+        """Execute Tuner utility
 
         Args:
             problem (dict, Problem): An instance of Problem class or problem dictionary
             termination (None, dict, Termination): An instance of Termination class or termination dictionary
             n_trials (int): Number of trials on the Problem
+            n_jobs (int, None): Speed up this task (run multiple trials at the same time) by using multiple processes. (<=1 or None: sequential, >=2: parallel)
             mode (str): Apply on current Problem ("single", "swarm", "thread", "process"), default="single".
             n_workers (int): Apply on current Problem, number of processes if mode is "thread" or "process'
-            n_jobs (int, None): Speed up this task (run multiple trials at the same time) by using multiple processes. (<=1 or None: sequential, >=2: parallel)
             verbose (bool): Switch for verbose logging (default: False)
 
         Raises:
             TypeError: Raises TypeError if problem type is not dictionary or an instance Problem class
 
         """
-        if not isinstance(problem, Problem):
-            if type(problem) is dict:
-                self.problem = Problem(**problem)
-            else:
-                raise TypeError(f"Problem is not an instance of Problem class or a Python dict.")
-        n_trials = self.validator.check_int("n_trials", n_trials, [1, 100000])
+        self.problem = problem
+        self.n_trials = self.validator.check_int("n_trials", n_trials, [1, 100000])
         n_cpus = None
         if (n_jobs is not None) and (n_jobs >= 1):
             n_cpus = self.validator.check_int("n_jobs", n_jobs, [2, min(61, os.cpu_count() - 1)])
@@ -248,61 +377,64 @@ class Tuner:
             mode = "single"
 
         list_params_grid = list(ParameterGrid(self.param_grid))
-        trial_columns = [f"trial_{id_trial}" for id_trial in range(1, n_trials + 1)]
-        ascending = True if self.problem.minmax == "min" else False
+        trial_columns = [f"trial_{id_trial}" for id_trial in range(1, self.n_trials + 1)]
+        ascending = True if self.problem["minmax"] == "min" else False
 
         best_fit_results = []
+        loss_results = []
         for id_params, params in enumerate(list_params_grid):
 
             self.algorithm.set_parameters(params)
             best_fit_results.append({"params": params})
 
-            trial_list = list(range(0, n_trials))
+            trial_list = list(range(0, self.n_trials))
             if n_cpus is not None:
                 with parallel.ProcessPoolExecutor(n_cpus) as executor:
                     list_results = executor.map(partial(self.__run__, n_workers=n_workers, mode=mode, termination=termination), trial_list)
-                    for (idx, best_fitness) in list_results:
-                        best_fit_results[-1][trial_columns[idx]] = best_fitness
+                    for (idx, g_best, loss_epoch) in list_results:
+                        best_fit_results[-1][trial_columns[idx]] = g_best.target.fitness
+                        loss_results.append(self.__generate_dict_result(params, idx, loss_epoch))
                         if verbose:
-                            print(f"Algorithm: {self.algorithm.get_name()}, with params: {params}, trial: {idx + 1}, best fitness: {best_fitness}")
+                            print(f"Algorithm: {self.algorithm.get_name()}, with params: {params}, trial: {idx + 1}, best fitness: {g_best.target.fitness}")
             else:
                 for idx in trial_list:
-                    idx, best_fitness = self.__run__(idx, mode=mode, n_workers=n_workers, termination=termination)
-                    best_fit_results[-1][trial_columns[idx]] = best_fitness
+                    idx, g_best, loss_epoch = self.__run__(idx, mode=mode, n_workers=n_workers, termination=termination)
+                    best_fit_results[-1][trial_columns[idx]] = g_best.target.fitness
+                    loss_results.append(self.__generate_dict_result(params, idx, loss_epoch))
                     if verbose:
-                        print(f"Algorithm: {self.algorithm.get_name()}, with params: {params}, trial: {idx+1}, best fitness: {best_fitness}")
+                        print(f"Algorithm: {self.algorithm.get_name()}, with params: {params}, trial: {idx+1}, best fitness: {g_best.target.fitness}")
 
-        df = pd.DataFrame(best_fit_results)
-        df["trial_mean"] = df[trial_columns].mean(axis=1)
-        df["trial_std"] = df[trial_columns].std(axis=1)
-        df["rank_mean"] = df["trial_mean"].rank(ascending=ascending)
-        df["rank_std"] = df["trial_std"].rank(ascending=ascending)
-        df["rank_mean_std"] = df[["rank_mean", "rank_std"]].apply(tuple, axis=1).rank(method='dense', ascending=ascending)
-
-        self._best_row = df[df["rank_mean_std"] == df["rank_mean_std"].min()]
+        self.df_fit = pd.DataFrame(best_fit_results)
+        self.df_fit["trial_mean"] = self.df_fit[trial_columns].mean(axis=1)
+        self.df_fit["trial_std"] = self.df_fit[trial_columns].std(axis=1)
+        self.df_fit["rank_mean"] = self.df_fit["trial_mean"].rank(ascending=ascending)
+        self.df_fit["rank_std"] = self.df_fit["trial_std"].rank(ascending=ascending)
+        self.df_fit["rank_mean_std"] = self.df_fit[["rank_mean", "rank_std"]].apply(tuple, axis=1).rank(method='dense', ascending=ascending)
+        self._best_row = self.df_fit[self.df_fit["rank_mean_std"] == self.df_fit["rank_mean_std"].min()]
         self._best_params = self._best_row["params"].values[0]
         self._best_score = self._best_row["trial_mean"].values[0]
-        self.results = df
+        self.df_loss = pd.DataFrame(loss_results)
 
-    def resolve(self, mode='single', starting_positions=None, n_workers=None, termination=None):
+    def resolve(self, mode: str = 'single', starting_solutions: Union[List, Tuple, np.ndarray] = None,
+                n_workers: int = None, termination: Union[Dict, Termination] = None) -> Agent:
         """
         Resolving the problem with the best parameters
 
         Args:
-            mode (str): Parallel: 'process', 'thread'; Sequential: 'swarm', 'single'.
+            mode: Parallel: 'process', 'thread'; Sequential: 'swarm', 'single'.
 
                 * 'process': The parallel mode with multiple cores run the tasks
                 * 'thread': The parallel mode with multiple threads run the tasks
                 * 'swarm': The sequential mode that no effect on updating phase of other agents
                 * 'single': The sequential mode that effect on updating phase of other agents, default
 
-            starting_positions(list, np.ndarray): List or 2D matrix (numpy array) of starting positions with length equal pop_size parameter
-            n_workers (int): The number of workers (cores or threads) to do the tasks (effect only on parallel mode)
-            termination (dict, None): The termination dictionary or an instance of Termination class
+            starting_solutions: List or 2D matrix (numpy array) of starting positions with length equal pop_size parameter
+            n_workers: The number of workers (cores or threads) to do the tasks (effect only on parallel mode)
+            termination: The termination dictionary or an instance of Termination class
 
         Returns:
-            list: [position, fitness value]
+            g_best: Agent, the best agent found
         """
         self.algorithm.set_parameters(self.best_params)
         return self.algorithm.solve(problem=self.problem, mode=mode, n_workers=n_workers,
-                                    starting_positions=starting_positions, termination=termination)
+                                    starting_solutions=starting_solutions, termination=termination)

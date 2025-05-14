@@ -2,7 +2,7 @@ Welcome to MEALPY's documentation!
 ==================================
 
 
-.. image:: https://img.shields.io/badge/release-2.5.2-yellow.svg
+.. image:: https://img.shields.io/badge/release-3.0.1-yellow.svg
    :target: https://github.com/thieu1995/mealpy/releases
 
 .. image:: https://img.shields.io/pypi/wheel/gensim.svg
@@ -23,7 +23,7 @@ Welcome to MEALPY's documentation!
 .. image:: https://github.com/thieu1995/mealpy/actions/workflows/publish-package.yaml/badge.svg
    :target: https://github.com/thieu1995/mealpy/actions/workflows/publish-package.yaml
 
-.. image:: https://pepy.tech/badge/mealpy
+.. image:: https://static.pepy.tech/badge/mealpy
    :target: https://pepy.tech/project/mealpy
 
 .. image:: https://img.shields.io/github/release-date/thieu1995/mealpy.svg
@@ -48,7 +48,7 @@ Welcome to MEALPY's documentation!
    :target: https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3711948.svg
-   :target: https://doi.org/10.5281/zenodo.3711948
+   :target: https://doi.org/10.1016/j.sysarc.2023.102871
 
 .. image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0

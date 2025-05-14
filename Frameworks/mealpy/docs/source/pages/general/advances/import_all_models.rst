@@ -3,24 +3,25 @@ Import All Models
 
 .. code-block:: python
 
-	from mealpy.bio_based import BBO, EOA, IWO, SBO, SMA, TPO, VCS, WHO
-	from mealpy.evolutionary_based import CRO, DE, EP, ES, FPA, GA, MA
-	from mealpy.human_based import BRO, BSO, CA, CHIO, FBIO, GSKA, ICA, LCO, QSA, SARO, SSDO, TLO
-	from mealpy.math_based import AOA, CEM, CGO, GBO, HC, PSS, SCA
-	from mealpy.music_based import HS
-	from mealpy.physics_based import ArchOA, ASO, EFO, EO, HGSO, MVO, NRO, SA, TWO, WDO
-	from mealpy.system_based import AEO, GCO, WCA
-	from mealpy.swarm_based import ABC, ACOR, ALO, AO, BA, BeesA, BES, BFO, BSA, COA, CSA, CSO, DO, EHO, FA, FFA, FOA, GOA, GWO, HGS
-	from mealpy.swarm_based import HHO, JA, MFO, MRFO, MSA, NMRA, PFA, PSO, SFO, SHO, SLO, SRSR, SSA, SSO, SSpiderA, SSpiderO, WOA
+	from mealpy import BBO, PSO, GA, ALO, AO, ARO, AVOA, BA, BBOA, BMO, EOA, IWO
+	from mealpy import SBO, SMA, SOA, SOS, TPO, TSA, VCS, WHO, AOA, CEM, CGO, CircleSA, GBO, HC, INFO, PSS, RUN, SCA
+	from mealpy import SHIO, TS, HS, AEO, GCO, WCA, CRO, DE, EP, ES, FPA, MA, SHADE, BRO, BSO, CA, CHIO, FBIO, GSKA, HBO
+	from mealpy import HCO, ICA, LCO, WarSO, TOA, TLO, SSDO, SPBO, SARO, QSA, ArchOA, ASO, CDO, EFO, EO, EVO, FLA
+	from mealpy import HGSO, MVO, NRO, RIME, SA, WDO, TWO, ABC, ACOR, AGTO, BeesA, BES, BFO, ZOA, WOA, WaOA, TSO
+	from mealpy import TDO, STO, SSpiderO, SSpiderA, SSO, SSA, SRSR, SLO, SHO, SFO, ServalOA, SeaHO, SCSO, POA
+	from mealpy import PFA, OOA, NGO, NMRA, MSA, MRFO, MPA, MGO, MFO, JA, HHO, HGS, HBA, GWO, GTO, GOA
+	from mealpy import GJO, FOX, FOA, FFO, FFA, FA, ESOA, EHO, DO, DMOA, CSO, CSA, CoatiOA, COA, BSA
+	from mealpy import StringVar, FloatVar, BoolVar, PermutationVar, MixedSetVar, IntegerVar, BinaryVar
+	from mealpy import Tuner, Multitask, Problem, Optimizer, Termination, ParameterGrid
+	from mealpy import get_all_optimizers, get_optimizer_by_name
 	import numpy as np
 
-	def fitness_function(solution):
+	def objective_function(solution):
 	    return np.sum(solution ** 2)
 
 	problem = {
-	    "fit_func": fitness_function,
-	    "lb": [-3]*20,
-	    "ub": [5]*20,
+	    "obj_func": objective_function,
+	    "bounds": FloatVar(lb=[-3] * 20, ub=[5] * 20),
 	    "name": "Squared Problem",
 	    "log_to": "file",
 	    "log_file": "results.log"
@@ -449,7 +450,7 @@ Import All Models
 	    "pf_min": 0.,
 	    "pf_max": 10.,
 	}
-	paras_modified_ba = {
+	paras_dev_ba = {
 	    "epoch": 20,
 	    "pop_size": 50,
 	    "pulse_rate": 0.95,
@@ -728,25 +729,25 @@ Import All Models
 	}
 
 	if __name__ == "__main__":
-	    model = BBO.BaseBBO(**paras_bbo)
+		model = BBO.DevBBO(**paras_bbo)
 		model = BBO.OriginalBBO(**paras_bbo)
 		model = EOA.OriginalEOA(**paras_eoa)
 		model = IWO.OriginalIWO(**paras_eoa)
-		model = SBO.BaseSBO(**paras_sbo)
+		model = SBO.DevSBO(**paras_sbo)
 		model = SBO.OriginalSBO(**paras_sbo)
-		model = SMA.BaseSMA(**paras_sma)
+		model = SMA.DevSMA(**paras_sma)
 		model = SMA.OriginalSMA(**paras_sma)
-		model = VCS.BaseVCS(**paras_vcs)
+		model = VCS.DevVCS(**paras_vcs)
 		model = VCS.OriginalVCS(**paras_vcs)
 		model = WHO.OriginalWHO(**paras_vcs)
 
 		model = CRO.OriginalCRO(**paras_cro)
 		model = CRO.OCRO(**paras_ocro)
-		model = DE.BaseDE(**paras_de)
+		# model = DE.BaseDE(**paras_de)
 		model = DE.JADE(**paras_jade)
 		model = DE.SADE(**paras_sade)
-		model = DE.SHADE(**paras_shade)
-		model = DE.L_SHADE(**paras_lshade)
+		model = SHADE.OriginalSHADE(**paras_shade)
+		model = SHADE.L_SHADE(**paras_lshade)
 		model = DE.SAP_DE(**paras_sap_de)
 		model = EP.OriginalEP(**paras_ep)
 		model = EP.LevyEP(**paras_levy_ep)
@@ -758,30 +759,30 @@ Import All Models
 		model = GA.MultiGA(**paras_multi_ga)
 		model = MA.OriginalMA(**paras_ma)
 
-		model = BRO.BaseBRO(**paras_bro)
+		model = BRO.DevBRO(**paras_bro)
 		model = BRO.OriginalBRO(**paras_bro)
 		model = BSO.OriginalBSO(**paras_bso)
 		model = BSO.ImprovedBSO(**paras_improved_bso)
 		model = CA.OriginalCA(**paras_ca)
-		model = CHIO.BaseCHIO(**paras_chio)
+		model = CHIO.DevCHIO(**paras_chio)
 		model = CHIO.OriginalCHIO(**paras_chio)
-		model = FBIO.BaseFBIO(**paras_fbio)
+		model = FBIO.DevFBIO(**paras_fbio)
 		model = FBIO.OriginalFBIO(**paras_fbio)
-		model = GSKA.BaseGSKA(**paras_base_gska)
+		model = GSKA.DevGSKA(**paras_base_gska)
 		model = GSKA.OriginalGSKA(**paras_gska)
 		model = ICA.OriginalICA(**paras_ica)
-		model = LCO.BaseLCO(**paras_lco)
+		model = LCO.DevLCO(**paras_lco)
 		model = LCO.OriginalLCO(**paras_lco)
 		model = LCO.ImprovedLCO(**paras_improved_lco)
-		model = QSA.BaseQSA(**paras_qsa)
+		model = QSA.DevQSA(**paras_qsa)
 		model = QSA.OriginalQSA(**paras_qsa)
 		model = QSA.OppoQSA(**paras_qsa)
 		model = QSA.LevyQSA(**paras_qsa)
 		model = QSA.ImprovedQSA(**paras_qsa)
-		model = SARO.BaseSARO(**paras_saro)
+		model = SARO.DevSARO(**paras_saro)
 		model = SARO.OriginalSARO(**paras_saro)
 		model = SSDO.OriginalSSDO(**paras_ssdo)
-		model = TLO.BaseTLO(**paras_tlo)
+		model = TLO.DevTLO(**paras_tlo)
 		model = TLO.OriginalTLO(**paras_tlo)
 		model = TLO.ImprovedTLO(**paras_improved_tlo)
 
@@ -793,9 +794,9 @@ Import All Models
 		model = HC.SwarmHC(**paras_swarm_hc)
 		model = PSS.OriginalPSS(**paras_pss)
 		model = SCA.OriginalSCA(**paras_sca)
-		model = SCA.BaseSCA(**paras_sca)
+		model = SCA.DevSCA(**paras_sca)
 
-		model = HS.BaseHS(**paras_hs)
+		model = HS.DevHS(**paras_hs)
 		model = HS.OriginalHS(**paras_hs)
 
 		model = AEO.OriginalAEO(**paras_aeo)
@@ -803,14 +804,14 @@ Import All Models
 		model = AEO.ModifiedAEO(**paras_aeo)
 		model = AEO.ImprovedAEO(**paras_aeo)
 		model = AEO.AugmentedAEO(**paras_aeo)
-		model = GCO.BaseGCO(**paras_aeo)
+		model = GCO.DevGCO(**paras_aeo)
 		model = GCO.OriginalGCO(**paras_aeo)
 		model = WCA.OriginalWCA(**paras_wca)
 
 		model = ArchOA.OriginalArchOA(**paras_archoa)
 		model = ASO.OriginalASO(**paras_aso)
 		model = EFO.OriginalEFO(**paras_efo)
-		model = EFO.BaseEFO(**paras_efo)
+		model = EFO.DevEFO(**paras_efo)
 		model = EO.OriginalEO(**paras_eo)
 		model = EO.AdaptiveEO(**paras_eo)
 		model = EO.ModifiedEO(**paras_eo)
@@ -818,6 +819,8 @@ Import All Models
 		model = MVO.OriginalMVO(**paras_mvo)
 		model = NRO.OriginalNRO(**paras_nro)
 		model = SA.OriginalSA(**paras_sa)
+		model = SA.SwarmSA(**paras_sa)
+		model = SA.GaussianSA(**paras_sa)
 		model = TWO.OriginalTWO(**paras_two)
 		model = TWO.OppoTWO(**paras_two)
 		model = TWO.LevyTWO(**paras_two)
@@ -828,10 +831,10 @@ Import All Models
 		model = ACOR.OriginalACOR(**paras_acor)
 		model = ALO.OriginalALO(**paras_alo)
 		model = AO.OriginalAO(**paras_ao)
-		model = ALO.BaseALO(**paras_alo)
+		model = ALO.DevALO(**paras_alo)
 		model = BA.OriginalBA(**paras_ba)
 		model = BA.AdaptiveBA(**paras_adaptive_ba)
-		model = BA.ModifiedBA(**paras_modified_ba)
+		model = BA.DevBA(**paras_dev_ba)
 		model = BeesA.OriginalBeesA(**paras_beesa)
 		model = BeesA.ProbBeesA(**paras_prob_beesa)
 		model = BES.OriginalBES(**paras_bes)
@@ -846,7 +849,7 @@ Import All Models
 		model = FA.OriginalFA(**paras_fa)
 		model = FFA.OriginalFFA(**paras_ffa)
 		model = FOA.OriginalFOA(**paras_foa)
-		model = FOA.BaseFOA(**paras_foa)
+		model = FOA.DevFOA(**paras_foa)
 		model = FOA.WhaleFOA(**paras_foa)
 		model = GOA.OriginalGOA(**paras_goa)
 		model = GWO.OriginalGWO(**paras_gwo)
@@ -854,17 +857,17 @@ Import All Models
 		model = HGS.OriginalHGS(**paras_hgs)
 		model = HHO.OriginalHHO(**paras_hho)
 		model = JA.OriginalJA(**paras_ja)
-		model = JA.BaseJA(**paras_ja)
+		model = JA.DevJA(**paras_ja)
 		model = JA.LevyJA(**paras_ja)
 		model = MFO.OriginalMFO(**paras_mfo)
-		model = MFO.BaseMFO(**paras_mfo)
+		# model = MFO.BaseMFO(**paras_mfo)
 		model = MRFO.OriginalMRFO(**paras_mrfo)
 		model = MSA.OriginalMSA(**paras_msa)
 		model = NMRA.ImprovedNMRA(**paras_improved_nmra)
 		model = NMRA.OriginalNMRA(**paras_nmra)
 		model = PFA.OriginalPFA(**paras_pfa)
 		model = PSO.OriginalPSO(**paras_pso)
-		model = PSO.PPSO(**paras_ppso)
+		model = PSO.P_PSO(**paras_ppso)
 		model = PSO.HPSO_TVAC(**paras_hpso_tvac)
 		model = PSO.C_PSO(**paras_cpso)
 		model = PSO.CL_PSO(**paras_clpso)
@@ -876,18 +879,18 @@ Import All Models
 		model = SLO.ImprovedSLO(**paras_improved_slo)
 		model = SRSR.OriginalSRSR(**paras_srsr)
 		model = SSA.OriginalSSA(**paras_ssa)
-		model = SSA.BaseSSA(**paras_ssa)
+		model = SSA.DevSSA(**paras_ssa)
 		model = SSO.OriginalSSO(**paras_sso)
 		model = SSpiderA.OriginalSSpiderA(**paras_sspidera)
 		model = SSpiderO.OriginalSSpiderO(**paras_sspidero)
 		model = WOA.OriginalWOA(**paras_woa)
 		model = WOA.HI_WOA(**paras_hi_woa)
 
-		best_position, best_fitness = model.solve(P1)
+		g_best = model.solve(problem)
 		print(model.get_parameters())
 		print(model.get_name())
 		print(model.problem.get_name())
-		print(model.get_attributes()["solution"])
+		print(model.get_attributes()["g_best"])
 
 
 .. toctree::

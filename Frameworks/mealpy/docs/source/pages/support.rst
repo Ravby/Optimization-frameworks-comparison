@@ -1,28 +1,38 @@
-=======
-Cite Us
-=======
+================
+Citation Request
+================
 
-If you are using mealpy in your project, we would appreciate citations:
+Please include these citations if you plan to use this library::
 
-::
-
-   @software{nguyen_van_thieu_2022_6684223,
-      author       = {Nguyen Van Thieu and Seyedali Mirjalili},
-      title        = {{MEALPY: a Framework of The State-of-The-Art Meta-Heuristic Algorithms in Python}},
-      month        = jun,
-      year         = 2022,
-      publisher    = {Zenodo},
-      version      = {v2.5.0},
-      doi          = {10.5281/zenodo.6684223},
-      url          = {https://doi.org/10.5281/zenodo.6684223}
+   @article{van2023mealpy,
+      title={MEALPY: An open-source library for latest meta-heuristic algorithms in Python},
+      author={Van Thieu, Nguyen and Mirjalili, Seyedali},
+      journal={Journal of Systems Architecture},
+      year={2023},
+      publisher={Elsevier},
+      doi={10.1016/j.sysarc.2023.102871}
    }
+
+   @article{van2023groundwater,
+      title={Groundwater level modeling using Augmented Artificial Ecosystem Optimization},
+      author={Van Thieu, Nguyen and Barma, Surajit Deb and Van Lam, To and Kisi, Ozgur and Mahesha, Amai},
+      journal={Journal of Hydrology},
+      volume={617},
+      pages={129034},
+      year={2023},
+      publisher={Elsevier},
+      doi={10.1016/j.jhydrol.2022.129034}
+   }
+```
+
 
 If you have an open-ended or a research question, you can contact me via nguyenthieu2102@gmail.com
 
 
-===============
-Important links
-===============
+==============
+Official Links
+==============
+
 
 * Official source code repo: https://github.com/thieu1995/mealpy
 * Official document: https://mealpy.readthedocs.io/
@@ -30,11 +40,17 @@ Important links
 * Issue tracker: https://github.com/thieu1995/mealpy/issues
 * Notable changes log: https://github.com/thieu1995/mealpy/blob/master/ChangeLog.md
 * Examples with different meapy version: https://github.com/thieu1995/mealpy/blob/master/EXAMPLES.md
+* Official chat/support group: https://t.me/+fRVCJGuGJg1mNDg1
 
-* This project also related to my another projects which are "meta-heuristics" and "neural-network", check it here
-    * https://github.com/thieu1995/opfunu
-    * https://github.com/thieu1995/metaheuristics
-    * https://github.com/aiir-team
+* This project also related to our another projects which are "meta-heuristics" and "machine learning", check it here:
+   * https://github.com/thieu1995/opfunu
+   * https://github.com/thieu1995/metaheuristics
+   * https://github.com/thieu1995/enoppy
+   * https://github.com/thieu1995/MetaCluster
+   * https://github.com/thieu1995/pfevaluator
+   * https://github.com/mafese
+   * https://github.com/permetrics
+   * https://github.com/aiir-team
 
 
 ====================

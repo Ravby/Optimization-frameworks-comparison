@@ -7,7 +7,88 @@ Different versions of mealpy in terms of passing hyper-parameters. So please car
   * mealpy == 2.2.0 
   * mealpy == 2.3.0 
   * 2.4.0 <= mealpy <= 2.4.2 (From this version, algorithms can solve discrete problem)
-  * mealpy >= 2.5.1 (Define model 1 time, solve multiple problems)
+  * mealpy >= 2.5.1 <= 2.5.4 (Define model 1 time, solve multiple problems)
+  * mealpy >= 3.0.0 (Everything is wrapped inside class and object)
+
+
+# Version 3.0.1
+
++ Add transfer function module (please read [this paper](https://www.sciencedirect.com/science/article/abs/pii/S2210650212000648) )
++ Add two new datatypes: `TransferBinaryVar` and `TransferBoolVar`.
++ Fix bug un-order variables in `PermutationVar` data type.
++ Update data type of encoded solution in `BoolVar` data type.
++ Update correct function in `BoolVar` and `BinaryVar`.
++ Fix bug reproduce results in `GA`, `WCA`, and `EHO` optimizers.
++ Fix bug higher probability of 0 value in `IntegerVar` data type.
+
+
+
+# Version 3.0.0
+
+**Based on our new proposed classes, solving continuous and discrete problems is never that easy.**
+
+### Add
++ `space` module with: FloatVar, IntegerVar, StringVar, BoolVar, PermutationVar, BinaryVar, and MixedSetVar classes
+  * **FloatVar**: handle problem with solution's format as float value
+  * **IntegerVar**: handle problem with solution's format as integer value
+  * **StringVar**: handle problem with solution's format as string value
+  * **BoolVar**: handle problem with solution's format as boolean value (True or False)
+  * **PermutationVar**: handle problem with solution's format as permutation value 
+  * **BinaryVar**: handle problem with solution's format as binary value (0 or 1)
+  * **MixedSetVar**: handle problem with solution's format as mixed discrete set
++ `target` module with **Target** class contains: 
+  * `objectives` (list), `weights` (list) to calculate fitness, and `fitness` (number)
++ `agent` module with: **Agent**te class that is a placeholder for a search agent, it contains at least two attributes: 
+  * `solution` (position - np.ndarray), and a `target` object
+
+### Update
++ Convert all optimizers to use new classes
++ Convert Tuner and MultiTask classes
++ Rename all un-official (developed by our team) optimizers to `DevOptimizerName`
++ Update tests and documents 
++ Update some examples, not all examples have converted yet (utils and applications folders)
+
+
+# Version 2.5.4
+
+### Update
++ Remove deepcopy() to improve the computational speed
++ Update the parameter's order in Tuner class  
++ Update the saving's bug when using Termination in Multitask
++ Remove ILA optimizer 
++ Rename "amend_position()" definition in some algorithms to "bounded_position()".
++ Add a "amend_position()" function in Optimizer class. This function will call two functions.
+  + bounded_position() from optimizer. This means for optimizer level (get in valid range of position)
+  + amend_position() from problem. This means for problem level (transform to the correct solution)
++ Fix bugs coefficients in GWO-based optimizers.
++ Fig bug cls.epoch in SCSO optimizer.
++ Fix bug cls.dyn_pop_size when pop_size is small value
++ Move SHADE-based optimizers from DE to SHADE module in evolutionary_based group
++ Add Improved Grey Wolf Optimization (IGWO) in GWO algorithm
++ Add Tabu Search (TS) to math-based group
++ Add get_all_optimizers() and get_optimizer_by_name() in Mealpy
++ Rename the OriginalSA to SwarmSA in SA optimizer
++ Add the OriginalSA and GaussianSA in SA optimizer
++ Update parameters in OriginalHC and SwarmHC
++ Update ParameterGrid class to produce the dict with same order as original input
++ Add export_figures() to Tuner class. It can draw the hyperparameter tuning process. 
++ Fix several bugs in docs folders. 
+
+
+# Version 2.5.3
+
+### Update 
++ Fix bug in roulette-wheel-selection in Optimizer
++ Update multitask with input modes and terminations
++ Update Tuner with more input parameters
++ Add Lévy flight, and the selective opposition version of the artificial rabbit algorithm (LARO)
++ Add Modified Gorilla Troops Optimization (MGTO)
++ Update Giant Trevally Optimizer as requested by the authors
+  + Matlab101GTO: This version was used to produce the results presented in the paper.
+  + Matlab102GTO: This is a new version provided by the authors (Matlab link), which has been updated recently to 
+    reduce computation time.
+  + OriginalGTO: This version is implemented exactly as described in the paper.
+
 
 
 
@@ -52,7 +133,7 @@ Different versions of mealpy in terms of passing hyper-parameters. So please car
 
 + Evolutionary-based group:
   + Add CMA-ES and Simple-CMA-ES 
-    + Ref: Completely derandomized self-adaptation in evolution strategies.
+    + Ref: Completely derandomized cls-adaptation in evolution strategies.
 
 + Swarm-based group:
   + Add Wavelet Mutation and Quadratic Interpolation MRFO (WMQIMRFO)
@@ -70,7 +151,7 @@ Different versions of mealpy in terms of passing hyper-parameters. So please car
   + Add Giant Trevally Optimizer (GTO)
     + Ref: Giant Trevally Optimizer (GTO): A Novel Metaheuristic Algorithm for Global Optimization and Challenging Engineering Problems
     
-+ **Warning**: The list of all algorithms below we should avoid to use it
++ **Warning**: Please check the original paper before you want to use these algorithms.
   + Add Zebra Optimization Algorithm (ZOA)
     + Ref: Zebra Optimization Algorithm: A New Bio-Inspired Optimization Algorithm for Solving Optimization Algorithm
   + Add Osprey Optimization Algorithm (OOA)
@@ -94,12 +175,7 @@ Different versions of mealpy in terms of passing hyper-parameters. So please car
   + Add Teamwork Optimization Algorithm (TOA)
     + Ref: Teamwork Optimization Algorithm: A New Optimization Approach for Function Minimization/Maximization
 
-+ **Notes on plagiarism and fake algorithm:**
-    + OOA and STO with the same exact code 
-    + POA ServalOA, NGO, WaOA, and TDO with almost the same exact code 
-    + ZOA and CoatiOA with almost the same exact code 
-    + FFO is swap two phases of POA
-    + TOA is kinda same as OOA and POA 
+
 
 
 ---------------------------------------------------------------------
@@ -152,7 +228,7 @@ Different versions of mealpy in terms of passing hyper-parameters. So please car
 
 + Add save and load model functionalities in mealpy.utils.io module.
 + Add object that hold global/current worst solution in history object
-+ Add method create_pop_group() in Optimizer class 
++ Add method generate_group_population() in Optimizer class 
 + Add method before_initialization() in Optimizer class
 + Refactor initialization() and after_initialization() in Optimizer class
 + Remove before_evolve(), after_evolve(), and levy_flight() in Optimizer class
@@ -629,43 +705,34 @@ Type: Sequential has 2 training modes
     + OriginalSHO: my modified version
 
        
-+ Add category for fake algorithms (papers) and proofs: 
++ Add category for questionable algorithm or papers (called fake): 
     + Butterfly Optimization Algorithm (BOA) to swarm_based group:
-        + OriginalBOA: this is fake algorithm 
+        + OriginalBOA: this algorithm is made up one 
         + AdaptiveBOA:
         + BaseBOA:
-            + Look at this guy (the author of this algorithm):
+            + Look at the author of this algorithm
             + https://scholar.google.co.in/citations?hl=en&user=KvcHovcAAAAJ&view_op=list_works&sortby=pubdate
-            + He invent BOA algorithm and public it in 2019, but so many variant version of BOA has been created since 2015.
-            + How the hell that happened?
-            + This is a plagiarism? I think this is one of the most biggest reason why mathematician researchers
-             calling out meta-heuristics community is completely bullshit and unethical.
-            + Just for producing more trash paper without any knowledge in it? This is why I listed BOA as the totally
-             trash and fake
+            + It is interesting to note that there have been many variant versions of BOA created since 2015, even though the inventor of BOA only published it in 2019. This raises some questions about the origins of these variant algorithms and how they came to be.
              
     + Sandpiper Optimization Algorithm (SOA) to swarm_based group:
-        + OriginalSOA: the original version is fake
-            + This algorithm is trash, unethical when summit a paper to 2 journals.
-            + Can't even update its position.
+        + OriginalSOA: the original version is made up one
+            + This algorithm suffers from local optimal and lower convergence rate. 
+            + It cannot update the position, so how to converge without update position?
+            + I am curious about the algorithm's publication history, as I have found it submitted to multiple journals.
             + A detailed explain in this comment section 
             (https://www.researchgate.net/publication/334897831_Sandpiper_optimization_algorithm_a_novel_approach_for_solving_real-life_engineering_problems/comments)
         + BaseSOA: my modified version which changed some equations and flow.
         
     + Sooty Tern Optimization Algorithm (STOA) is another name of Sandpiper Optimization Algorithm (SOA) 
-        + Amandeep Kaur, Sushma Jain, Shivani Goel,  Gaurav Dhiman. What they are doing are plagiarism, uneducated
-         and unethical to meta-heuristics community.
+        + If you read the paper, you will see the similarity between these two 
     
     + Blue Monkey Optimization (BMO) to swarm_based group:
-        + OriginalBMO: the original version is fake 
-            + The idea look like "Chicken Swarm Optimization"
-            + The pseudo-code totally bullshit in my opinion, just read the paper you will understand.
-            + The unclear point here is the "Rate equation": really confuse because It's contain the position. As you know,
-                The position is the vector, but finally, the author conclude that Rate is random number in range [0, 1]
-                Luckily, using number we can plus/add number and vector or vector and vector.
-                So at first, Rate is random number then after the 1st loop, its become vector. 
-            + Morever, both equtions movement of blue monkey and children is the same.
-            + In addition, they don't check the bound after update position.
-            + Keep going, they don't tell you the how to find the global best (I mean from blue monkey group or child group)
+        + OriginalBMO: 
+            + It is a made-up algorithm with a similar idea to "Chicken Swarm Optimization," which raises questions about its originality.
+            + The pseudo-code is confusing, particularly the "Rate equation," which starts as a random number and then becomes a vector after the first loop. 
+            + The movement of the blue monkey and children is the same equations???
+            + The algorithm does not check the bound after updating the position, which can cause issues with the search space.
+            + The algorithm does not provide guidance on how to find the global best from the blue monkey group or child group.
         + BaseBMO: my modified version which used my knowledge about meta-heuristics to do it. 
 
 
@@ -733,9 +800,9 @@ Type: Sequential has 2 training modes
         + Using k-way tournament selection to select parent instead of randomizing
         + Repeat cross-over population_size / 2 instead of n_var/2
         + Mutation 50% of position instead of swap only 2 variable in a single position
-        + OriginalBWO: is fake and just a variant of Genetic Algorithm
+        + OriginalBWO: is made up algorithm and just a variant of Genetic Algorithm
     + BaseAAA (AAA): This is my changed version but still not working
-        + OriginalAAA: is fake taken from DE and CRO 
+        + OriginalAAA: is made up algorithm taken from DE and CRO 
         + I realize in the original paper, parameters, and equations not clear.
         + In the Adaptation phase, what is the point of saving starving value when it doesn't affect the solution at all?
         + The size of the solution always = 2/3, so the friction surface will always stay at the same value.
@@ -838,7 +905,7 @@ Type: Sequential has 2 training modes
         + OriginalPSO: is the original version
         + PPSO: Phasor particle swarm optimization: a simple and efficient variant of PSO
         + PSO_W: A modified particle swarm optimizer
-        + HPSO_TVA: New self-organising  hierarchical PSO with jumping time-varying acceleration coefficients
+        + HPSO_TVA: New cls-organising  hierarchical PSO with jumping time-varying acceleration coefficients
     + ABC:
         + OriginalABC: my version and taken from Clever Algorithms
     + FA:
@@ -848,7 +915,7 @@ Type: Sequential has 2 training modes
         + BasicBA: is also the original version with improved parameters
         + AdaptiveBA: my modified version without A parameter
     + PIO: 
-        + This is fake algorithm, after changing almost everything, the algorithm works
+        + This is made up algorithm, after changing almost everything, the algorithm works
         + BasePIO: My base version
         + LevyPIO: My version based on levy-flight for large-scale dimensions
     + GWO:
@@ -923,7 +990,7 @@ Type: Sequential has 2 training modes
         + OriginalSLO: is the changed version from my student
         + ImprovedSLO: is the improved version 
     + SpaSA:
-        + BaseSpaSA: is my modified version, the original paper is fake, tons of unclear like parameters or equations
+        + BaseSpaSA: is my modified version, the original paper has several unclear parameters and equations
     + MRFO:
         + OriginalMRFO: is the original version
         + LevyMRFO: is my modified version based on levy-flight
@@ -965,7 +1032,7 @@ Type: Sequential has 2 training modes
 + Added some variant version of PSO:
     + PPSO (Phasor particle swarm optimization: a simple and efficient variant of PSO)
     + PSO_W (A modified particle swarm optimizer)
-    + HPSO_TVA (New self-organising  hierarchical PSO with jumping time-varying acceleration coefficients)
+    + HPSO_TVA (New cls-organising  hierarchical PSO with jumping time-varying acceleration coefficients)
     
 + Added more algorithm in Swarm-based algorithm
     + SpaSA: Sparrow Search Algorithm (Same name SSA as Social Spider Algorithm --> I changed it to SpaSA)
