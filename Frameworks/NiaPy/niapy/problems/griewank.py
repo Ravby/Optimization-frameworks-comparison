@@ -74,7 +74,7 @@ class Griewank(Problem):
     def _evaluate(self, x):
         val1 = np.sum(x * x / 4000.0)
         i = np.arange(1, self.dimension + 1)
-        val2 = np.product(np.cos(x / np.sqrt(i)))
+        val2 = np.prod(np.cos(x / np.sqrt(i)))
         return val1 - val2 + 1.0
 
 
@@ -96,7 +96,7 @@ class ExpandedGriewankPlusRosenbrock(Problem):
         evaluated on the hypercube :math:`x_i ∈ [-100, 100]`, for all :math:`i = 1, 2,..., D`.
 
         **Global minimum:**
-        :math:`f(x^*) = 0`, at :math:`x^* = (420.968746,...,420.968746)`
+        :math:`f(x^*) = 0`, at :math:`x_i^* = 0`
 
     LaTeX formats:
         Inline:

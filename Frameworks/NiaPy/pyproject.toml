@@ -1,0 +1,114 @@
+[tool]
+[tool.poetry]
+name = "niapy"
+version = "2.5.2"
+description = "Python micro framework for building nature-inspired algorithms."
+authors = ["NiaOrg <niapy.organization@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/NiaOrg/NiaPy"
+repository = "https://github.com/NiaOrg/NiaPy"
+documentation = "https://niapy.org/en/stable/"
+keywords = ["nature-inspired algorithms", "evolutionary algorithms", "swarm intelligence", "optimization"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development"
+]
+
+include = [
+    { path="LICENSE", format="sdist" },
+    { path="CHANGELOG.md", format="sdist" },
+    { path="CITATION.cff", format="sdist" },
+    { path="Algorithms.md", format="sdist" },
+    { path="Problems.md", format="sdist" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.14"
+numpy = "^1.26.1"
+pandas = "^2.1.1"
+openpyxl = "^3.1.2"
+matplotlib = "^3.8.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.4.2,<9.0.0"
+pytest-cov = "^4.1.0"
+pytest-randomly = "^3.15.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2.6"
+sphinx-rtd-theme = "^1.3.0"
+
+[tool.poetry.group.release]
+optional = true
+
+[tool.poetry.group.release.dependencies]
+git-changelog = "^2.4.0"
+bump-my-version = ">=0.15.3,<0.18.0"
+pandoc = "^2.3"
+
+
+[tool.bumpversion]
+current_version = "2.5.2"
+allow_dirty = true
+commit = true
+tag = true
+tag_name = "v{new_version}"
+parse = '(?P<major>\d+)\.(?P<minor>\d+)(\.(?P<patch>\d+))(\-?((rc)?(?P<rc>\d+))?)'
+serialize = [
+	"{major}.{minor}.{patch}rc{rc}",
+	"{major}.{minor}.{patch}"
+]
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = "version = \"{current_version}\""
+replace = "version = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "niapy/__init__.py"
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "docs/source/conf.py"
+search = "release = u'{current_version}'"
+replace = "release = u'{new_version}'"
+
+
+
+
+
+
+
+
+
+[tool.git-changelog]
+convention = "basic"
+in-place = true
+marker-line = "<!-- insertion marker -->"
+output = "CHANGELOG.md"
+parse-refs = true
+parse-trailers = true
+repository = "."
+provider = "github"
+template = "keepachangelog"
+
+
+
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

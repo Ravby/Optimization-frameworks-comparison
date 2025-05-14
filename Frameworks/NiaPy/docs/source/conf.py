@@ -19,13 +19,13 @@ sys.path.insert(0, os.path.abspath('../../'))
 # -- Project information -----------------------------------------------------
 
 project = u'NiaPy'
-copyright = u'2018-2020, NiaOrg'
-author = u'Grega Vrbančič, Lucija Brezočnik, Uroš Mlakar, Dušan Fister, Iztok Fister Jr., Klemen Berkovič, Jan Popič'
+copyright = u'2018-2023, NiaOrg'
+author = u'Grega Vrbančič, Lucija Brezočnik, Uroš Mlakar, Dušan Fister, Iztok Fister Jr., Klemen Berkovič, Jan Popič, Žiga Stupan'
 
 # The short X.Y version
 version = u'2.0'
 # The full version, including alpha/beta/rc tags
-release = u'2.0.4'
+release = u'2.5.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -66,7 +66,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -82,7 +82,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'press' #'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 html_logo = '_static/NiaPyLogo.png'
 
@@ -91,9 +91,8 @@ html_logo = '_static/NiaPyLogo.png'
 # documentation.
 #
 html_theme_options = {
-    "external_links": [
-      ("Github", "https://github.com/NiaOrg/NiaPy"),
-    ]
+    "logo_only": True,
+    "display_version": False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -175,7 +174,7 @@ autoclass_content = 'both'
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
 
 # -- Options for todo extension ----------------------------------------------
 
@@ -200,6 +199,3 @@ napoleon_use_param = True
 napoleon_use_rtype = True
 napoleon_use_keyword = True
 napoleon_custom_sections = None
-
-import matplotlib
-matplotlib.use('agg')
