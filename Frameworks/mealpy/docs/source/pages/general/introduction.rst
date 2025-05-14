@@ -6,17 +6,17 @@ Introduction
 * MEALPY (MEta-heuristic ALgorithms in PYthon) is the largest Python module for the most cutting-edge nature-inspired meta-heuristic algorithms and is
 distributed under the GNU General Public License (GPL) V3 license.
 
-* Current version: 2.5.1, Total algorithms: 172 (102 original, 45 official variants, 25 developed variants)
+* Current version: 3.0.1, Total algorithms: 215 (190 official (original, hybrid, variants), 25 developed)
 
-* Different versions of mealpy in term of passing hyper-parameters. So please careful check your version before
-  using this library (Check `All releases`_)
-   * mealpy < 1.0.5
-   * 1.1.0 < mealpy < 1.2.2
-   * 2.0.0 <= mealpy <= 2.1.2
-   * mealpy == 2.2.0
-   * mealpy == 2.3.0
-   * 2.4.0 <= mealpy <= 2.4.2 (From this version, algorithms can solve discrete problem)
-   * mealpy >= 2.5.0
+* Different versions of mealpy in term of passing hyper-parameters. So please careful check your version before using this library (Check `All releases`_)
+	* mealpy < 1.0.5
+	* 1.1.0 < mealpy < 1.2.2
+	* 2.0.0 <= mealpy <= 2.1.2
+	* mealpy == 2.2.0
+	* mealpy == 2.3.0
+	* 2.4.0 <= mealpy <= 2.4.2 (From this version, algorithms can solve discrete problem)
+	* mealpy >= 2.5.1 <= 2.5.4 (Define model 1 time, solve multiple problems)
+    * mealpy >= 3.0.0 (Everything is wrapped inside class and object)
 
 .. _All releases: https://pypi.org/project/mealpy/#history
 
@@ -37,23 +37,19 @@ distributed under the GNU General Public License (GPL) V3 license.
 .. _Issues ticket: https://github.com/thieu1995/mealpy/issues
 
 
+* And please give us credits if you use this library, check some of my `previous paper`_. ::
 
-* And please give us some credits if you use this library, check some of my `previous paper`_.
+   @article{van2023mealpy,
+      title={MEALPY: An open-source library for latest meta-heuristic algorithms in Python},
+      author={Van Thieu, Nguyen and Mirjalili, Seyedali},
+      journal={Journal of Systems Architecture},
+      year={2023},
+      publisher={Elsevier},
+      doi={10.1016/j.sysarc.2023.102871}
+   }
 
 .. _previous paper: https://gist.github.com/thieu1995/2dcebc754bf0038d0c12b26ec9d591aa
 
-::
-
-	@software{nguyen_van_thieu_2022_6684223,
-	  author       = {Nguyen Van Thieu and Seyedali Mirjalili},
-	  title        = {{MEALPY: a Framework of The State-of-The-Art Meta-Heuristic Algorithms in Python}},
-	  month        = jun,
-	  year         = 2022,
-	  publisher    = {Zenodo},
-	  version      = {v2.5.0},
-	  doi          = {10.5281/zenodo.6684223},
-	  url          = {https://doi.org/10.5281/zenodo.6684223}
-	}
 
 ------------
 Optimization

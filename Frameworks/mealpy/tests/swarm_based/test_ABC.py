@@ -4,21 +4,20 @@
 #       Github: https://github.com/thieu1995        %                         
 # --------------------------------------------------%
 
-from mealpy.swarm_based import ABC
-from mealpy.optimizer import Optimizer
 import numpy as np
 import pytest
+
+from mealpy import FloatVar, ABC, Optimizer
 
 
 @pytest.fixture(scope="module")  # scope: Call only 1 time at the beginning
 def problem():
-    def fitness_function(solution):
+    def objective_function(solution):
         return np.sum(solution ** 2)
 
     problem = {
-        "fit_func": fitness_function,
-        "lb": [-10, -10, -10, -10, -10],
-        "ub": [10, 10, 10, 10, 10],
+        "obj_func": objective_function,
+        "bounds": FloatVar(lb=[-10, -15, -4, -2, -8], ub=[10, 15, 12, 8, 20]),
         "minmax": "min",
         "log_to": None
     }
@@ -27,10 +26,10 @@ def problem():
 
 def test_ABC_results(problem):
     models = [
-        ABC.OriginalABC(epoch=10, pop_size=50, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1))
+        ABC.OriginalABC(epoch=10, pop_size=50, n_limits=50)
     ]
     for model in models:
-        best_position, best_fitness = model.solve(problem)
+        g_best = model.solve(problem)
         assert isinstance(model, Optimizer)
-        assert isinstance(best_position, np.ndarray)
-        assert len(best_position) == len(problem["lb"])
+        assert isinstance(g_best.solution, np.ndarray)
+        assert len(g_best.solution) == len(model.problem.lb)

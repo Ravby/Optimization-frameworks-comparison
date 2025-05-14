@@ -17,54 +17,43 @@ class OriginalFOX(Optimizer):
         2. https://www.mathworks.com/matlabcentral/fileexchange/121592-fox-a-fox-inspired-optimization-algorithm
 
     Notes (parameters):
-        1. c1 (float): the probability of jumping (c1 in the paper), default = 0.18
-        2. c2 (float): the probability of jumping (c2 in the paper), default = 0.82
+        1. c1 (float): the coefficient of jumping (c1 in the paper), default = 0.18
+        2. c2 (float): the coefficient of jumping (c2 in the paper), default = 0.82
 
-    Notes (Algorithm's design):
-        1. I don't know how this algorithm get accepted in Applied Intelligence journal
-        2. The equation to calculate distance_S_travel value in matlab code is meaningless
-        3. The whole point of if else conditions with p > 0.18 is meaningless. The authors just choice the best value
-        based on his experiment without explaining it.
+    Notes:
+        1. The equation used to calculate the distance_S_travel value in the Matlab code seems to be lacking in meaning.
+        2. The if-else conditions used with p > 0.18 seem to lack a clear justification. The authors seem to have simply chosen the best value based on their experiments without explaining the rationale behind it.
 
     Examples
     ~~~~~~~~
     >>> import numpy as np
-    >>> from mealpy.swarm_based.FOX import OriginalFOX
+    >>> from mealpy import FloatVar, FOX
     >>>
-    >>> def fitness_function(solution):
+    >>> def objective_function(solution):
     >>>     return np.sum(solution**2)
     >>>
-    >>> problem_dict1 = {
-    >>>     "fit_func": fitness_function,
-    >>>     "lb": [-10, -15, -4, -2, -8],
-    >>>     "ub": [10, 15, 12, 8, 20],
+    >>> problem_dict = {
+    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
+    >>>     "obj_func": objective_function
     >>> }
     >>>
-    >>> epoch = 1000
-    >>> pop_size = 50
-    >>> model = OriginalFOX(epoch, pop_size)
-    >>> best_position, best_fitness = model.solve(problem_dict1)
-    >>> print(f"Solution: {best_position}, Fitness: {best_fitness}")
+    >>> model = FOX.OriginalFOX(epoch=1000, pop_size=50, c1=0.18, c2=0.82)
+    >>> g_best = model.solve(problem_dict)
+    >>> print(f"Solution: {g_best.solution}, Fitness: {g_best.target.fitness}")
+    >>> print(f"Solution: {model.g_best.solution}, Fitness: {model.g_best.target.fitness}")
 
     References
     ~~~~~~~~~~
     [1] Mohammed, H., & Rashid, T. (2023). FOX: a FOX-inspired optimization algorithm. Applied Intelligence, 53(1), 1030-1050.
     """
-    def __init__(self, epoch=10000, pop_size=100, c1=0.18, c2=0.82, **kwargs):
-        """
-        Args:
-            epoch (int): maximum number of iterations, default = 10000
-            pop_size (int): number of population size, default = 100
-            c1 (float): the probability of jumping (c1 in the paper), default = 0.18
-            c2 (float): the probability of jumping (c2 in the paper), default = 0.82
-        """
+    def __init__(self, epoch: int = 10000, pop_size: int = 100, c1: float = 0.18, c2: float = 0.82, **kwargs: object) -> None:
         super().__init__(**kwargs)
         self.epoch = self.validator.check_int("epoch", epoch, [1, 100000])
-        self.pop_size = self.validator.check_int("pop_size", pop_size, [10, 10000])
-        self.c1 = self.validator.check_float("c1", c1, (-100., 100.))      # c1 in the paper
-        self.c2 = self.validator.check_float("c2", c2, (-100., 100.))      # c2 in the paper
-        self.set_parameters(["epoch", "pop_size"])
+        self.pop_size = self.validator.check_int("pop_size", pop_size, [5, 10000])
+        self.c1 = self.validator.check_float("c1", c1, (-100., 100.))
+        self.c2 = self.validator.check_float("c2", c2, (-100., 100.))
+        self.set_parameters(["epoch", "pop_size", "c1", "c2"])
         self.sort_flag = False
 
     def initialize_variables(self):
@@ -80,26 +69,111 @@ class OriginalFOX(Optimizer):
         aa = 2 * (1 - (1.0 / self.epoch))
         pop_new = []
         for idx in range(0, self.pop_size):
-
-            if np.random.rand() >= 0.5:
-                t1 = np.random.rand(self.problem.n_dims)
-                sps = self.g_best[self.ID_POS] / t1
+            if self.generator.random() >= 0.5:
+                t1 = self.generator.random(self.problem.n_dims)
+                sps = self.g_best.solution / t1
                 dis = 0.5 * sps * t1
                 tt = np.mean(t1)
                 t = tt / 2
                 jump = 0.5 * 9.81 * t ** 2
-                if np.random.rand() > 0.18:
+                if self.generator.random() > 0.18:
                     pos_new = dis * jump * self.c1
                 else:
                     pos_new = dis * jump * self.c2
                 if self.mint > tt:
                     self.mint = tt
             else:
-                pos_new = self.g_best[self.ID_POS] + np.random.randn(self.problem.n_dims) * (self.mint * aa)
-            pos_new = self.amend_position(pos_new, self.problem.lb, self.problem.ub)
-            pop_new.append([pos_new, None])
+                pos_new = self.g_best.solution * self.generator.random(self.problem.n_dims) * (self.mint * aa)
+            pos_new = self.correct_solution(pos_new)
+            agent = self.generate_empty_agent(pos_new)
+            pop_new.append(agent)
             if self.mode not in self.AVAILABLE_MODES:
-                target = self.get_target_wrapper(pos_new)
-                self.pop[idx] = [pos_new, target]
+                agent.target = self.get_target(pos_new)
+                self.pop[idx] = agent
         if self.mode in self.AVAILABLE_MODES:
-            self.pop = self.update_target_wrapper_population(pop_new)
+            self.pop = self.update_target_for_population(pop_new)
+
+
+class DevFOX(Optimizer):
+    """
+    The developed version of: Fox Optimizer (FOX)
+
+    Notes (parameters):
+        1. c1 (float): the coefficient of jumping (c1 in the paper), default = 0.18
+        2. c2 (float): the coefficient of jumping (c2 in the paper), default = 0.82
+        3. pp (float): the probability of choosing the exploration and exploitation phase, default=0.5
+
+    Notes:
+        1. Set parameter pp = 0.18 if you want to same as Original version
+        2. The different between Dev and Original version is the equation: self.g_best.solution + self.generator.standard_normal(self.problem.n_dims) * (self.mint * aa)
+
+    Examples
+    ~~~~~~~~
+    >>> import numpy as np
+    >>> from mealpy import FloatVar, FOX
+    >>>
+    >>> def objective_function(solution):
+    >>>     return np.sum(solution**2)
+    >>>
+    >>> problem_dict = {
+    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "minmax": "min",
+    >>>     "obj_func": objective_function
+    >>> }
+    >>>
+    >>> model = FOX.DevFOX(epoch=1000, pop_size=50, c1=0.18, c2=0.82, pp=0.5)
+    >>> g_best = model.solve(problem_dict)
+    >>> print(f"Solution: {g_best.solution}, Fitness: {g_best.target.fitness}")
+    >>> print(f"Solution: {model.g_best.solution}, Fitness: {model.g_best.target.fitness}")
+
+    References
+    ~~~~~~~~~~
+    [1] Mohammed, H., & Rashid, T. (2023). FOX: a FOX-inspired optimization algorithm. Applied Intelligence, 53(1), 1030-1050.
+    """
+    def __init__(self, epoch: int = 10000, pop_size: int = 100, c1: float = 0.18, c2: float = 0.82,
+                 pp=0.5, **kwargs: object) -> None:
+        super().__init__(**kwargs)
+        self.epoch = self.validator.check_int("epoch", epoch, [1, 100000])
+        self.pop_size = self.validator.check_int("pop_size", pop_size, [5, 10000])
+        self.c1 = self.validator.check_float("c1", c1, (-100., 100.))
+        self.c2 = self.validator.check_float("c2", c2, (-100., 100.))
+        self.pp = self.validator.check_float("pp", pp, (0.0, 1.0))
+        self.set_parameters(["epoch", "pop_size", "c1", "c2", "pp"])
+        self.sort_flag = False
+
+    def initialize_variables(self):
+        self.mint = 10000000
+
+    def evolve(self, epoch):
+        """
+        The main operations (equations) of algorithm. Inherit from Optimizer class
+
+        Args:
+            epoch (int): The current iteration
+        """
+        aa = 2 * (1 - (1.0 / self.epoch))
+        pop_new = []
+        for idx in range(0, self.pop_size):
+            if self.generator.random() >= 0.5:
+                t1 = self.generator.random(self.problem.n_dims)
+                sps = self.g_best.solution / t1
+                dis = 0.5 * sps * t1
+                tt = np.mean(t1)
+                t = tt / 2
+                jump = 0.5 * 9.81 * t ** 2
+                if self.generator.random() > self.pp:
+                    pos_new = dis * jump * self.c1
+                else:
+                    pos_new = dis * jump * self.c2
+                if self.mint > tt:
+                    self.mint = tt
+            else:
+                pos_new = self.g_best.solution + self.generator.standard_normal(self.problem.n_dims) * (self.mint * aa)
+            pos_new = self.correct_solution(pos_new)
+            agent = self.generate_empty_agent(pos_new)
+            pop_new.append(agent)
+            if self.mode not in self.AVAILABLE_MODES:
+                agent.target = self.get_target(pos_new)
+                self.pop[idx] = agent
+        if self.mode in self.AVAILABLE_MODES:
+            self.pop = self.update_target_for_population(pop_new)

@@ -4,129 +4,70 @@
 #       Github: https://github.com/thieu1995        %                         
 # --------------------------------------------------%
 
+import numbers
 import numpy as np
+from typing import Union, List, Tuple, Dict
+from mealpy.utils.space import BaseVar, IntegerVar, FloatVar, PermutationVar, StringVar, BinaryVar, BoolVar, MixedSetVar
 from mealpy.utils.logger import Logger
+from mealpy.utils.target import Target
 
 
 class Problem:
-    """Class representing the mathematical form of the optimization problem.
+    SUPPORTED_VARS = (IntegerVar, FloatVar, PermutationVar, StringVar, BinaryVar, BoolVar, MixedSetVar)
+    SUPPORTED_ARRAYS = (list, tuple, np.ndarray)
 
-    Attributes:
-        lb (numpy.ndarray, list, tuple): Lower bounds of the problem.
-        ub (numpy.ndarray, list, tuple): Upper bounds of the problem.
-        minmax (str): Minimization or maximization problem (min, max), default = "min"
-
-    Notes
-    ~~~~~
-    + fit_func (callable): your fitness function
-    + lb (list, int, float): lower bound, should be list of values
-    + ub (list, int, float): upper bound, should be list of values
-    + minmax (str): "min" or "max" problem (Optional, default = "min")
-    + obj_weights: list weights for all your objectives (Optional, default = [1, 1, ...1])
-    + save_population (bool): save history of population or not, default = True (Optional). **Warning**:
-        + this parameter can save you from error related to 'memory' when your model is too big (i.e, training neural network, ...)
-        + when set to False, you can't use the function draw trajectory chart in history object (model.history.save_trajectory_chart)
-    + amend_position(callable): Depend on your problem, may need to design an amend_position function (Optional for continuous domain, Required for discrete domain)
-
-    Examples
-    ~~~~~~~~
-    >>> import numpy as np
-    >>> from mealpy.swarm_based.PSO import OriginalPSO
-    >>>
-    >>> def fitness_function(solution):
-    >>>     return np.sum(solution**2)
-    >>>
-    >>> problem_dict = {
-    >>>     "fit_func": fitness_function,
-    >>>     "lb": [-10, -15, -4, -2, -8],
-    >>>     "ub": [10, 15, 12, 8, 20],
-    >>>     "minmax": "min",
-    >>>     "log_to": None,
-    >>>     "save_population": False,
-    >>> }
-    >>> model1 = OriginalPSO(epoch=1000, pop_size=50)
-    >>> model1.solve(problem_dict)
-    >>>
-    >>> ## For discrete problem, you need to design an amend_position function that can (1) bring your solution back to the valid range,
-    >>> ##    (2) can convert float number into integer number (combinatorial or permutation).
-    >>>
-    >>> def amend_position(solution, lb, ub):
-    >>>     ## Bring them back to valid range
-    >>>     solution = np.clip(solution, lb, ub)
-    >>>     ## Convert float to integer number
-    >>>     solution_int = solution.astype(int)
-    >>>     ## If the designed solution is permutation, then need an extra step here
-    >>>     ## .... Do it here and then return the valid solution
-    >>>     return solution_int
-    >>>
-    >>> problem_dict2 = {
-    >>>     "fit_func": fitness_function,
-    >>>     "lb": [-100, ] * 30,
-    >>>     "ub": [100, ] * 30,
-    >>>     "minmax": "min",
-    >>>     "log_to": "file",
-    >>>     "log_file": "records.log",
-    >>>     "amend_position": amend_position
-    >>> }
-    >>> model2 = OriginalPSO(epoch=1000, pop_size=50)
-    >>> best_position, best_fitness = model2.solve(problem_dict2)
-    >>> print(f"Best solution: {best_position}, Best fitness: {best_fitness}")
-    """
-
-    SUPPORTED_ARRAY = (list, tuple, np.ndarray)
-
-    def __init__(self, lb=None, ub=None, minmax="min", **kwargs):
-        r"""Initialize Problem.
-
-        Args:
-            lb (numpy.ndarray, list, tuple): Lower bounds of the problem.
-            ub (numpy.ndarray, list, tuple): Upper bounds of the problem.
-            minmax (str): Minimization or maximization problem (min, max)
-            name (str): Name for this particular problem
-        """
+    def __init__(self, bounds: Union[List, Tuple, np.ndarray, BaseVar], minmax: str = "min", **kwargs) -> None:
+        self._bounds, self.lb, self.ub = None, None, None
+        self.minmax = minmax
+        self.seed = None
         self.name, self.log_to, self.log_file = "P", "console", "history.txt"
-        self.n_objs, self.obj_is_list, self.multi_objs, self.obj_weights = 1, False, False, None
-        self.n_dims, self.lb, self.ub, self.save_population = None, None, None, False
-
+        self.n_objs, self.obj_weights = 1, None
+        self.n_dims, self.save_population = None, False
         self.__set_keyword_arguments(kwargs)
-        self.__set_domain_range(lb, ub)
-        self.__set_functions(kwargs)
+        self.set_bounds(bounds)
+        self.__set_functions()
         self.logger = Logger(self.log_to, log_file=self.log_file).create_logger(name=f"{__name__}.{__class__.__name__}",
                                     format_str='%(asctime)s, %(levelname)s, %(name)s [line: %(lineno)d]: %(message)s')
-        self.minmax = minmax
+
+    @property
+    def bounds(self):
+        return self._bounds
+
+    def set_bounds(self, bounds):
+        if isinstance(bounds, BaseVar):
+            bounds.seed = self.seed
+            self._bounds = [bounds, ]
+        elif type(bounds) in self.SUPPORTED_ARRAYS:
+            self._bounds = []
+            for bound in bounds:
+                if isinstance(bound, BaseVar):
+                    bound.seed = self.seed
+                else:
+                    raise ValueError(f"Invalid bounds. All variables in bounds should be an instance of {self.SUPPORTED_VARS}")
+                self._bounds.append(bound)
+        else:
+            raise TypeError(f"Invalid bounds. It should be type of {self.SUPPORTED_ARRAYS} or an instance of {self.SUPPORTED_VARS}")
+        self.lb = np.concatenate([bound.lb for bound in self._bounds])
+        self.ub = np.concatenate([bound.ub for bound in self._bounds])
+
+    def set_seed(self, seed: int = None) -> None:
+        self.seed = seed
+        for idx in range(len(self._bounds)):
+            self._bounds[idx].seed = seed
 
     def __set_keyword_arguments(self, kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    def __set_domain_range(self, lb, ub):
-        if type(lb) in self.SUPPORTED_ARRAY and type(ub) in self.SUPPORTED_ARRAY:
-            self.lb = np.array(lb).flatten()
-            self.ub = np.array(ub).flatten()
-            if len(self.lb) == len(self.ub):
-                self.n_dims = len(self.lb)
-                if len(self.lb) < 1:
-                    raise ValueError(f'Dimensions do not qualify. Length(lb) = {len(self.lb)} < 1.')
-            else:
-                raise ValueError(f"Length of lb and ub do not match. {len(self.lb)} != {len(self.ub)}.")
-        else:
-            raise ValueError(f"lb and ub need to be a list, tuple or np.array.")
-
-    def __set_functions(self, kwargs):
-        tested_solution = self.generate_position(self.lb, self.ub)
-        if "amend_position" in kwargs:
-            if not callable(self.amend_position):
-                raise ValueError(f"Use default 'amend_position()' or passed a callable function. {type(self.amend_position)} != function")
-            else:
-                tested_solution = self.amend_position(tested_solution, self.lb, self.ub)
-        result = self.fit_func(tested_solution)
-        if type(result) in self.SUPPORTED_ARRAY:
+    def __set_functions(self):
+        tested_solution = self.generate_solution(encoded=True)
+        self.n_dims = len(tested_solution)
+        result = self.obj_func(tested_solution)
+        if type(result) in self.SUPPORTED_ARRAYS:
             result = np.array(result).flatten()
             self.n_objs = len(result)
-            self.obj_is_list = True
             if self.n_objs > 1:
-                self.multi_objs = True
-                if type(self.obj_weights) in self.SUPPORTED_ARRAY:
+                if type(self.obj_weights) in self.SUPPORTED_ARRAYS:
                     self.obj_weights = np.array(self.obj_weights).flatten()
                     if self.n_objs != len(self.obj_weights):
                         raise ValueError(f"{self.n_objs}-objective problem, but N weights = {len(self.obj_weights)}.")
@@ -134,21 +75,18 @@ class Problem:
                 else:
                     raise ValueError(f"Solving {self.n_objs}-objective optimization, need to set obj_weights list with length: {self.n_objs}")
             elif self.n_objs == 1:
-                self.multi_objs = False
                 self.obj_weights = np.ones(1)
                 self.msg = f"Solving single objective optimization problem."
             else:
-                raise ValueError(f"fit_func needs to return a single value or a list of values list")
-        elif type(result) in (int, float) or isinstance(result, np.floating) or isinstance(result, np.integer):
-            self.multi_objs = False
-            self.obj_is_list = False
+                raise ValueError(f"obj_func needs to return a single value or a list of values")
+        elif isinstance(result, numbers.Number):
             self.obj_weights = np.ones(1)
             self.msg = f"Solving single objective optimization problem."
         else:
-            raise ValueError(f"fit_func needs to return a single value or a list of values list")
+            raise ValueError(f"obj_func needs to return a single value or a list of values")
 
-    def fit_func(self, x):
-        """Fitness function
+    def obj_func(self, x: np.ndarray) -> Union[List, Tuple, np.ndarray, int, float]:
+        """Objective function
 
         Args:
             x (numpy.ndarray): Solution.
@@ -158,43 +96,106 @@ class Problem:
         """
         raise NotImplementedError
 
-    def get_name(self):
+    def get_name(self) -> str:
         """
         Returns:
             string: The name of the problem
         """
         return self.name
 
-    def get_class_name(self):
+    def get_class_name(self) -> str:
         """Get class name."""
         return self.__class__.__name__
 
-    def generate_position(self, lb=None, ub=None):
+    @staticmethod
+    def encode_solution_with_bounds(x, bounds):
+        x_new = []
+        for idx, var in enumerate(bounds):
+            x_new += list(var.encode(x[idx]))
+        return np.array(x_new)
+
+    @staticmethod
+    def decode_solution_with_bounds(x, bounds):
+        x_new, n_vars = {}, 0
+        for idx, var in enumerate(bounds):
+            temp = var.decode(x[n_vars:n_vars + var.n_vars])
+            if var.n_vars == 1:
+                x_new[var.name] = temp[0]
+            else:
+                x_new[var.name] = temp
+            n_vars += var.n_vars
+        return x_new
+
+    @staticmethod
+    def correct_solution_with_bounds(x: Union[List, Tuple, np.ndarray], bounds: List) -> np.ndarray:
+        x_new, n_vars = [], 0
+        for idx, var in enumerate(bounds):
+            x_new += list(var.correct(x[n_vars:n_vars+var.n_vars]))
+            n_vars += var.n_vars
+        return np.array(x_new)
+
+    @staticmethod
+    def generate_solution_with_bounds(bounds: Union[List, Tuple, np.ndarray], encoded: bool = True) -> Union[List, np.ndarray]:
+        x = [var.generate() for var in bounds]
+        if encoded:
+            return Problem.encode_solution_with_bounds(x, bounds)
+        return x
+
+    def encode_solution(self, x: Union[List, tuple, np.ndarray]) -> np.ndarray:
         """
-        Generate the position depends on the problem. For discrete problem such as permutation, this method can be override.
+        Encode the real-world solution to optimized solution (real-value solution)
 
         Args:
-            lb: list of lower bound values
-            ub: list of upper bound values
+            x (Union[List, tuple, np.ndarray]): The real-world solution
 
         Returns:
-            np.array: the position (the solution for the problem)
+            The real-value solution
         """
-        return np.random.uniform(lb, ub)
+        return self.encode_solution_with_bounds(x, self.bounds)
 
-    def amend_position(self, position=None, lb=None, ub=None):
+    def decode_solution(self, x: np.ndarray) -> Dict:
         """
-        This is default function in most algorithms. Otherwise, there will be an overridden function
-        in child of Optimizer class for this function. Depend on what kind of problem are we trying to solve,
-        there will be a different amend_position function to rebound the position of agent into the valid range.
+        Decode the encoded solution to real-world solution
 
         Args:
-            position: vector position (location) of the solution.
-            lb: list of lower bound values
-            ub: list of upper bound values
+            x (np.ndarray): The real-value solution
 
         Returns:
-            Amended position (make the position is in bound)
+            The real-world (decoded) solution
         """
-        # return np.maximum(self.problem.lb, np.minimum(self.problem.ub, position))
-        return np.clip(position, lb, ub)
+        return self.decode_solution_with_bounds(x, self.bounds)
+
+    def correct_solution(self, x: np.ndarray) -> np.ndarray:
+        """
+        Correct the solution to valid bounds
+
+        Args:
+            x (np.ndarray): The real-value solution
+
+        Returns:
+            The corrected solution
+        """
+        return self.correct_solution_with_bounds(x, self.bounds)
+
+    def generate_solution(self, encoded: bool = True) -> Union[List, np.ndarray]:
+        """
+        Generate the solution.
+
+        Args:
+            encoded (bool): Encode the solution or not
+
+        Returns:
+            the encoded/non-encoded solution for the problem
+        """
+        return self.generate_solution_with_bounds(self.bounds, encoded)
+
+    def get_target(self, solution: np.ndarray) -> Target:
+        """
+        Args:
+            solution: The real-value solution
+
+        Returns:
+            The target object
+        """
+        objs = self.obj_func(solution)
+        return Target(objectives=objs, weights=self.obj_weights)
