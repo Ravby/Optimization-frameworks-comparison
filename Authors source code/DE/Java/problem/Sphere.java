@@ -2,7 +2,7 @@ package DeApp1.problem;
 
 import DeApp1.de.T_DEOptimizer;
 
-public class Sphere extends DEProblem {
+public class Sphere extends LoggingDEProblem {
 
     public Sphere(int dimensions) {
         this.dim = dimensions;
@@ -21,7 +21,7 @@ public class Sphere extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
         double fitness = 0;
         for (int i = 0; i < dim; i++) {
             fitness += Math.pow(x[i], 2);

@@ -2,7 +2,7 @@ package DeApp1.problem;
 
 import DeApp1.de.T_DEOptimizer;
 
-public class ShiftedSumOfSquares extends DEProblem {
+public class ShiftedSumOfSquares extends LoggingDEProblem {
     final double[] shift = {22.479705250884777, 60.75750080751871, -59.15674324461888, 27.56336400934657, -59.29279403989607,
             -64.68447838216555, 78.33759532500437, -76.51052473538245, -66.6507114149451, 64.93462028133038,
             -15.23828302367869, -17.825823787619903, -31.92405019180454, 67.72646439056987, -0.9830868197666973,
@@ -41,7 +41,7 @@ public class ShiftedSumOfSquares extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
         double sum = 0.0;
 
         double[] shiftedX = new double[dim];

@@ -4,7 +4,7 @@ import DeApp1.de.T_DEOptimizer;
 
 import java.util.ArrayList;
 
-public class SumOfSquares extends DEProblem {
+public class SumOfSquares extends LoggingDEProblem {
 
         public SumOfSquares(int dimensions) {
             this.dim = dimensions;
@@ -23,7 +23,7 @@ public class SumOfSquares extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
             double sum = 0.0;
             for (int i = 0; i < dim; i++) {
                 sum += (i + 1) * x[i] * x[i];

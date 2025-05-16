@@ -2,7 +2,7 @@ package DeApp1.problem;
 
 import DeApp1.de.T_DEOptimizer;
 
-public class ShiftedGriewank extends DEProblem {
+public class ShiftedGriewank extends LoggingDEProblem {
 
     final double[] shift = {104.94691081342978, -135.6761348470227, 92.81100891955543, -10.87108518188711, 407.63013054172563,
             -223.31315231746964, -224.56627659185563, -222.7632371161696, -338.7309010063917, -236.65660889064418,
@@ -43,7 +43,7 @@ public class ShiftedGriewank extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double sum = 0.0;

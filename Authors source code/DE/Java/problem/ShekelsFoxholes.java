@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
-public class ShekelsFoxholes extends DEProblem {
+public class ShekelsFoxholes extends LoggingDEProblem {
     private static final double[][] a = {{-32, -32},
             {-16, -32},
             {0, -32},
@@ -52,7 +52,7 @@ public class ShekelsFoxholes extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
         double fitness = 0;
         double sum;
         for (int j = 0; j < 25; j++) {

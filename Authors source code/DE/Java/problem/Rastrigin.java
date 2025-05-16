@@ -4,7 +4,7 @@ import DeApp1.de.T_DEOptimizer;
 
 import java.util.ArrayList;
 
-public class Rastrigin extends DEProblem {
+public class Rastrigin extends LoggingDEProblem {
 
     public Rastrigin(int dimensions) {
 
@@ -24,7 +24,7 @@ public class Rastrigin extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double a = 10.0;
