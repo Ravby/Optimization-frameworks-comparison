@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class ShekelsFoxholes extends AbstractDoubleProblem {
+public class ShekelsFoxholes extends LoggingDoubleProblem {
 
     private static final double[][] a = {{-32, -32},
             {-16, -32},
@@ -54,7 +54,7 @@ public class ShekelsFoxholes extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
         double sum;

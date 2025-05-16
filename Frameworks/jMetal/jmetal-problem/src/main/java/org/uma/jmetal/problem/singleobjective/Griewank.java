@@ -9,7 +9,7 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 /**
  * Class representing problem Griewank
  */
-public class Griewank extends AbstractDoubleProblem {
+public class Griewank extends LoggingDoubleProblem {
 
     public Griewank() {
         this(10);
@@ -41,7 +41,7 @@ public class Griewank extends AbstractDoubleProblem {
      * Evaluate() method
      */
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         int numberOfVariables = numberOfVariables();
 
         double[] x = new double[numberOfVariables];

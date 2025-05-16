@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class Ackley extends AbstractDoubleProblem {
+public class Ackley extends LoggingDoubleProblem {
 
     public Ackley() {
         this(10);
@@ -31,7 +31,7 @@ public class Ackley extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         double a = 20.0, b = 0.2, c = 2 * PI;
         double sum1 = 0, sum2 = 0;
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class ShiftedSphere extends AbstractDoubleProblem {
+public class ShiftedSphere extends LoggingDoubleProblem {
 
     final double[] shift = {45.00458616074768, -50.34195790924958, 16.656571994777153, -70.66157384610746, 77.87240204480926,
             41.15636478376551, 49.128266155105166, -60.307473748449034, 33.10423742373693, 0.6236286355758835,
@@ -53,7 +53,7 @@ public class ShiftedSphere extends AbstractDoubleProblem {
 
     /** Evaluate() method */
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         double sum = 0.0;
 
         List<Double> x = solution.variables();

@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class GoldsteinPrice extends AbstractDoubleProblem {
+public class GoldsteinPrice extends LoggingDoubleProblem {
 
     public GoldsteinPrice() {
         numberOfObjectives(1);
@@ -27,7 +27,7 @@ public class GoldsteinPrice extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double x0 = solution.variables().get(0);
         double x1 = solution.variables().get(1);

@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class ShiftedAckley extends AbstractDoubleProblem {
+public class ShiftedAckley extends LoggingDoubleProblem {
 
     final double[] shift = {21.125524221556333, -11.11861062406522, -8.384759722218377, -4.998410532366073, 15.080716791129063,
             17.219200462474568, 17.30816180946608, 10.917710600242835, 20.963400683396372, 19.33124762324178,
@@ -52,7 +52,7 @@ public class ShiftedAckley extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         double a = 20.0, b = 0.2, c = 2 * PI;
         double sum1 = 0, sum2 = 0;
 

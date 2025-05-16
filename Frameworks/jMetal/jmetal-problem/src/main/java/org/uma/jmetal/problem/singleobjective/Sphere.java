@@ -10,7 +10,7 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
  * Class representing a Sphere problem.
  */
 @SuppressWarnings("serial")
-public class Sphere extends AbstractDoubleProblem {
+public class Sphere extends LoggingDoubleProblem {
   /** Constructor */
   public Sphere() {
     this(10) ;
@@ -34,7 +34,7 @@ public class Sphere extends AbstractDoubleProblem {
 
   /** Evaluate() method */
   @Override
-  public DoubleSolution evaluate(DoubleSolution solution) {
+  public DoubleSolution computeFitness(DoubleSolution solution) {
     double sum = 0.0;
     for (double v : solution.variables()) {
       sum += v * v;
@@ -42,7 +42,7 @@ public class Sphere extends AbstractDoubleProblem {
 
     solution.objectives()[0] = sum;
 
-    return solution ;
+    return solution;
   }
 }
 
