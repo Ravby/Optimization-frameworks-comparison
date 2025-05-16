@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.*;
 
-public class Branin extends AbstractProblem {
+public class Branin extends LoggingAbstractProblem {
 
     public Branin() {
         super(2, 1, 0);
@@ -21,7 +21,7 @@ public class Branin extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
         

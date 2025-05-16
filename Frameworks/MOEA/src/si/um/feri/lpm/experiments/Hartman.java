@@ -7,7 +7,7 @@ import org.moeaframework.problem.AbstractProblem;
 import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 
-public class Hartman extends AbstractProblem {
+public class Hartman extends LoggingAbstractProblem {
 
     private static final double[][] a = {
             {3, 10, 30},
@@ -37,7 +37,7 @@ public class Hartman extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 

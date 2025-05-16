@@ -7,7 +7,7 @@ import org.moeaframework.problem.AbstractProblem;
 /**
  * Class representing problem Griewank
  */
-public class Griewank extends AbstractProblem {
+public class Griewank extends LoggingAbstractProblem {
 
     public Griewank() {
         this(10);
@@ -36,19 +36,19 @@ public class Griewank extends AbstractProblem {
      * Evaluate() method
      */
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 
         double sum = 0.0;
         double mult = 1.0;
-        double d = 4000.0;
+        double a = 4000.0;
         for (int var = 0; var < numberOfVariables; var++) {
             sum += x[var] * x[var];
             mult *= Math.cos(x[var] / Math.sqrt(var + 1));
         }
 
-        solution.setObjective(0, 1.0 / d * sum - mult + 1.0);
+        solution.setObjective(0, 1.0 / a * sum - mult + 1.0);
     }
 }
 

@@ -5,7 +5,7 @@ import org.moeaframework.core.variable.EncodingUtils;
 import org.moeaframework.problem.AbstractProblem;
 
 @SuppressWarnings("serial")
-public class Rastrigin extends AbstractProblem {
+public class Rastrigin extends LoggingAbstractProblem {
 
     public Rastrigin() {
         this(10);
@@ -34,7 +34,7 @@ public class Rastrigin extends AbstractProblem {
      * Evaluate() method
      */
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 

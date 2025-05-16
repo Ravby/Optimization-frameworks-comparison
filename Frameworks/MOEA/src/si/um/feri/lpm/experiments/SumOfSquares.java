@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.pow;
 
-public class SumOfSquares extends AbstractProblem {
+public class SumOfSquares extends LoggingAbstractProblem {
 
     public SumOfSquares() {
         this(10);
@@ -26,7 +26,7 @@ public class SumOfSquares extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 
