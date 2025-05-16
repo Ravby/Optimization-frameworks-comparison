@@ -8,7 +8,7 @@ import math
 import numpy
 import random
 import time
-from solution import solution
+from EvoloPy.solution import solution
 
 
 def get_cuckoos(nest, best, lb, ub, n, dim):
@@ -151,6 +151,7 @@ def CS(objf, lb, ub, dim, n, N_IterTotal):
     s.executionTime = timerEnd - timerStart
     s.convergence = convergence
     s.optimizer = "CS"
+    s.bestIndividual = bestnest
     s.objfname = objf.__name__
 
     return s

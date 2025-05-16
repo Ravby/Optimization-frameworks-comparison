@@ -3,7 +3,7 @@
 import random
 import numpy
 import math
-from solution import solution
+from EvoloPy.solution import solution
 import time
 
 
@@ -87,6 +87,7 @@ def SCA(objf, lb, ub, dim, SearchAgents_no, Max_iter):
     s.executionTime = timerEnd - timerStart
     s.convergence = Convergence_curve
     s.optimizer = "SCA"
+    s.bestIndividual = Dest_pos
     s.objfname = objf.__name__
 
     return s

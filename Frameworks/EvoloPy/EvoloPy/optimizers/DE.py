@@ -1,7 +1,7 @@
 import random
 import numpy
 import time
-from solution import solution
+from EvoloPy.solution import solution
 
 
 # Differential Evolution (DE)
@@ -117,6 +117,7 @@ def DE(objf, lb, ub, dim, PopSize, iters):
         s.executionTime = timerEnd - timerStart
         s.convergence = convergence_curve
         s.optimizer = "DE"
+        s.bestIndividual = s.leader_solution
         s.objfname = objf.__name__
 
     # return solution

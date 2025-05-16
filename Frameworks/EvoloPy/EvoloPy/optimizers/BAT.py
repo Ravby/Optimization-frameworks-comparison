@@ -8,7 +8,7 @@ import math
 import numpy
 import random
 import time
-from solution import solution
+from EvoloPy.solution import solution
 
 
 def BAT(objf, lb, ub, dim, N, Max_iteration):
@@ -104,6 +104,7 @@ def BAT(objf, lb, ub, dim, N, Max_iteration):
     s.executionTime = timerEnd - timerStart
     s.convergence = Convergence_curve
     s.optimizer = "BAT"
+    s.bestIndividual = best
     s.objfname = objf.__name__
 
     return s

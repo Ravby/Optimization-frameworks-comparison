@@ -8,7 +8,7 @@ Created on Mon May 16 10:42:18 2016
 import random
 import numpy
 import math
-from solution import solution
+from EvoloPy.solution import solution
 import time
 
 
@@ -173,6 +173,7 @@ def MFO(objf, lb, ub, dim, N, Max_iteration):
     s.executionTime = timerEnd - timerStart
     s.convergence = Convergence_curve
     s.optimizer = "MFO"
+    s.bestIndividual = Best_flame_pos
     s.objfname = objf.__name__
 
     return s

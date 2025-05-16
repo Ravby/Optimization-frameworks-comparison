@@ -7,7 +7,7 @@ Created on Sun May 15 22:37:00 2016
 
 import random
 import numpy
-from solution import solution
+from EvoloPy.solution import solution
 import time
 
 
@@ -91,19 +91,13 @@ def PSO(objf, lb, ub, dim, PopSize, iters):
         convergence_curve[l] = gBestScore
 
         if l % 1 == 0:
-            print(
-                [
-                    "At iteration "
-                    + str(l + 1)
-                    + " the best fitness is "
-                    + str(gBestScore)
-                ]
-            )
+            print(["At iteration " + str(l + 1) + " the best fitness is " + str(gBestScore)])
     timerEnd = time.time()
     s.endTime = time.strftime("%Y-%m-%d-%H-%M-%S")
     s.executionTime = timerEnd - timerStart
     s.convergence = convergence_curve
     s.optimizer = "PSO"
+    s.bestIndividual = gBest
     s.objfname = objf.__name__
 
     return s

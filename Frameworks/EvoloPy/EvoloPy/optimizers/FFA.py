@@ -20,7 +20,7 @@ Created on Sun May 29 00:49:35 2016
 import numpy
 import math
 import time
-from solution import solution
+from EvoloPy.solution import solution
 
 
 def alpha_new(alpha, NGen):
@@ -65,7 +65,7 @@ def FFA(objf, lb, ub, dim, n, MaxGeneration):
     convergence = []
     s = solution()
 
-    print('CS is optimizing  "' + objf.__name__ + '"')
+    print('FFA is optimizing  "' + objf.__name__ + '"')
 
     timerStart = time.time()
     s.startTime = time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -133,6 +133,7 @@ def FFA(objf, lb, ub, dim, n, MaxGeneration):
     s.executionTime = timerEnd - timerStart
     s.convergence = convergence
     s.optimizer = "FFA"
+    s.bestIndividual = nbest
     s.objfname = objf.__name__
 
     return s
