@@ -1,4 +1,4 @@
-function writeResultsToFile(name, results)
+function WriteResultsToFile(name, results)
 projectDirectory = pwd;
 projectDirFile = java.io.File(projectDirectory);
 parentDirFile = projectDirFile.getParentFile().getParentFile().getParentFile();
