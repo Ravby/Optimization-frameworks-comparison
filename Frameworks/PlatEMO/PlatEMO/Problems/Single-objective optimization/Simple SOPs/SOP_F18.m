@@ -27,6 +27,8 @@ classdef SOP_F18 < PROBLEM
         function PopObj = CalObj(obj,X)
             PopObj = (1+(X(:,1)+X(:,2)+1).^2.*(19-14*X(:,1)+3*X(:,1).^2-14*X(:,2)+6*X(:,1).*X(:,2)+3*X(:,2).^2)).*...
                      (30+(2*X(:,1)-3*X(:,2)).^2.*(18-32*X(:,1)+12*X(:,1).^2+48*X(:,2)-36*X(:,1).*X(:,2)+27*X(:,2).^2));
+
+            EventManager.getInstance().evaluationPerformed(PopObj, X);
         end
         %% Generate the minimum objective value
         function R = GetOptimum(obj,N)

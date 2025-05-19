@@ -32,6 +32,8 @@ classdef SOP_F19 < PROBLEM
             for i = 1 : size(PopDec,1)
                 PopObj(i) = -sum(c.*exp(-sum(a.*(repmat(PopDec(i,:),4,1)-p).^2,2)));
             end
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
         %% Generate the minimum objective value
         function R = GetOptimum(obj,N)

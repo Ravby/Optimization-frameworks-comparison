@@ -26,6 +26,8 @@ classdef SOP_F16 < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = 4*PopDec(:,1).^2-2.1*PopDec(:,1).^4+PopDec(:,1).^6/3+PopDec(:,1).*PopDec(:,2)-4*PopDec(:,2).^2+4*PopDec(:,2).^4;
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
         %% Generate the minimum objective value
         function R = GetOptimum(obj,N)

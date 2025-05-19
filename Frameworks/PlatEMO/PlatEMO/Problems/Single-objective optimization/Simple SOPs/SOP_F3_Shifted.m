@@ -43,6 +43,8 @@ classdef SOP_F3_Shifted < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = sum(cumsum((PopDec - obj.shift),2).^2,2);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

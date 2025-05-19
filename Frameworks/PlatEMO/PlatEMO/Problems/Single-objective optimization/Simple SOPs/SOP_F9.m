@@ -26,6 +26,8 @@ classdef SOP_F9 < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = sum(PopDec.^2-10*cos(2*pi*PopDec)+10,2);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

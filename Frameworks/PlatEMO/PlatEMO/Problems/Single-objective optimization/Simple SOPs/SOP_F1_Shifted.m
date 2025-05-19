@@ -46,6 +46,8 @@ classdef SOP_F1_Shifted < PROBLEM
             %disp(size(obj));
             % Subtract the shift vector from the decision variables and compute the sphere function
             PopObj = sum((PopDec - obj.shift).^2, 2);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

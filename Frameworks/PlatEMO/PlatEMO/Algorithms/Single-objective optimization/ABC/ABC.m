@@ -18,7 +18,7 @@ classdef ABC < ALGORITHM
     methods
         function main(Algorithm,Problem)
             %% Parameter setting
-            limit = Algorithm.ParameterSet(20);
+            limit = Algorithm.ParameterSet(100);
             
             %% Generate random population
             Population = Problem.Initialization();
