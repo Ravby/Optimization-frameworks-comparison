@@ -84,7 +84,9 @@ for f = 1:length(functions)
     
     for r=1:runtime
         
-        [loggedFitness, getImprovements] = CreateFitnessLogger(fitnessFunc);
+        clear CreateFitnessLogger
+        
+        [loggedFitness, getImprovements, getEvaluationCount] = CreateFitnessLogger(fitnessFunc);
 
         [Best_score,Best_pos,GWO_cg_curve, evaluations]=GWO(populationSize,maxIterations,lb,ub,D,loggedFitness);
         
@@ -95,6 +97,8 @@ for f = 1:length(functions)
         display(num2str(Best_score, 20));
         fprintf('%d\n',Best_score);
         GlobalMins(r)=Best_score;
+        
+        %fprintf('Evaluation count check: %d\n',getEvaluationCount());
                
         filename = sprintf('GWO-Author-Matlab_%s_vars=%d_run=%d', objfun, D, r);
         WriteRunToFile(filename, getImprovements());

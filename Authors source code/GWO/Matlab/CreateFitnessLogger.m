@@ -1,4 +1,4 @@
-function [loggedFitness, getImprovements] = CreateFitnessLogger(fitnessFunc)
+function [loggedFitness, getImprovements, getEvaluationCount] = CreateFitnessLogger(fitnessFunc)
     persistent evaluationCount bestFitness isFirstEvaluation improvements
     if isempty(evaluationCount)
         evaluationCount = 0;
@@ -9,6 +9,7 @@ function [loggedFitness, getImprovements] = CreateFitnessLogger(fitnessFunc)
 
     loggedFitness = @loggedFitnessImpl;
     getImprovements = @getImprovementsImpl;
+    getEvaluationCount = @getEvaluationCountImpl;
 
     function ObjVal = loggedFitnessImpl(x)
         evaluationCount = evaluationCount + 1;
@@ -23,5 +24,9 @@ function [loggedFitness, getImprovements] = CreateFitnessLogger(fitnessFunc)
 
     function result = getImprovementsImpl()
         result = improvements;
+    end
+
+    function count = getEvaluationCountImpl()
+        count = evaluationCount;
     end
 end
