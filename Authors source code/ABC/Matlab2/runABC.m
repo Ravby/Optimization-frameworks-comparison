@@ -69,7 +69,9 @@ for f = 1:length(functions)
     
     for r=1:runtime
         
-        [loggedFitness, getImprovements] = CreateFitnessLogger(fitnessFunc);
+        clear CreateFitnessLogger
+        
+        [loggedFitness, getImprovements, getEvaluationCount] = CreateFitnessLogger(fitnessFunc);
         
         [GlobalMin, currentEval] = ABC(loggedFitness, D, ub, lb, NP, limit, maxEval);
         if currentEval ~= maxEval
@@ -78,6 +80,8 @@ for f = 1:length(functions)
 
         fprintf('%d\n',GlobalMin);
         GlobalMins(r)=GlobalMin;
+        
+        %fprintf('Evaluation count check: %d\n',getEvaluationCount());
         
         filename = sprintf('ABC-Author-Matlab_%s_vars=%d_run=%d', objfun, D, r);
         WriteRunToFile(filename, getImprovements());
