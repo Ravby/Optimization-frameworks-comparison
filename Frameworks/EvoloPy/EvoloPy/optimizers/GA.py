@@ -343,8 +343,8 @@ def GA(objf, lb, ub, dim, popSize, iters):
         s: The solution obtained from running the algorithm
     """
 
-    cp = 1  # Crossover probability: Probability of two parents crossing over
-    mp = 0.01  # Mutation probability: Probability of an individual mutating
+    cp = 0.95  # Crossover probability: Probability of two parents crossing over
+    mp = 0.025  # Mutation probability: Probability of an individual mutating
     keep = 2  # Elitism parameter: The number of top individuals to carry over to the next generation
 
     s = solution()  # Initialize a solution object to store results
@@ -376,7 +376,7 @@ def GA(objf, lb, ub, dim, popSize, iters):
         # This scales the random values (between 0 and 1) by `(ub[i] - lb[i])` to match the range and then shifts them by `lb[i]` to fit within the bounds.
 
 
-    print('GA is optimizing  "' + objf.__name__ + '"')
+    #print('GA is optimizing  "' + objf.__name__ + '"')
 
     # Start the timer to track the execution time of the GA
     timerStart = time.time()
@@ -409,8 +409,8 @@ def GA(objf, lb, ub, dim, popSize, iters):
         convergence_curve[l] = bestScore
 
         # Print the progress every iteration
-        if l % 1 == 0:
-            print(f"At iteration {l + 1} the best fitness is {bestScore}")
+        #if l % 1 == 0:
+        #   print(f"At iteration {l + 1} the best fitness is {bestScore}")
 
     # End the timer and calculate execution time
     timerEnd = time.time()  # Capture the end time

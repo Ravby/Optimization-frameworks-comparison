@@ -10,7 +10,7 @@ from EvoloPy.solution import solution
 def DE(objf, lb, ub, dim, PopSize, iters):
 
     mutation_factor = 0.5
-    crossover_ratio = 0.7
+    crossover_ratio = 0.9
     stopping_func = None
 
     # convert lb, ub to array
@@ -51,7 +51,7 @@ def DE(objf, lb, ub, dim, PopSize, iters):
 
     convergence_curve = numpy.zeros(iters)
     # start work
-    print('DE is optimizing  "' + objf.__name__ + '"')
+    #print('DE is optimizing  "' + objf.__name__ + '"')
 
     timerStart = time.time()
     s.startTime = time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -104,10 +104,10 @@ def DE(objf, lb, ub, dim, PopSize, iters):
                     s.leader_solution = mutant_sol
 
         convergence_curve[t] = s.best
-        if t % 1 == 0:
-            print(
-                ["At iteration " + str(t + 1) + " the best fitness is " + str(s.best)]
-            )
+        #if t % 1 == 0:
+        #    print(
+        #        ["At iteration " + str(t + 1) + " the best fitness is " + str(s.best)]
+        #    )
 
         # increase iterations
         t = t + 1
