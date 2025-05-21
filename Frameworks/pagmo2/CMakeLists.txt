@@ -202,6 +202,7 @@ set(PAGMO_SRC_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/s_policy.cpp"
     # UDP.
     "${CMAKE_CURRENT_SOURCE_DIR}/src/problems/null_problem.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/problems/fitness_tracker.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/problems/cec2006.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/problems/cec2009.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/problems/schwefel.cpp"

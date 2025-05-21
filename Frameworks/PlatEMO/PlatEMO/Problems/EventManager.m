@@ -29,13 +29,12 @@ classdef EventManager < handle
 
     methods
         function evaluationPerformed(obj, PopObj, PopDec)
-            % Check improvement
-            minFitness = min(PopObj);
-
-            obj.EvaluationCount = obj.EvaluationCount + size(PopDec, 1);
-            if isempty(obj.Improvements) || minFitness < obj.Improvements(end, 2)
-                obj.Improvements = [obj.Improvements; [obj.EvaluationCount, minFitness]];
-            end                
+            for i=1:length(PopObj)
+                obj.EvaluationCount = obj.EvaluationCount + 1;
+                if isempty(obj.Improvements) || PopObj(i) < obj.Improvements(end, 2)
+                    obj.Improvements = [obj.Improvements; [obj.EvaluationCount, PopObj(i)]];
+                end      
+            end
         end
         function improvements = getImprovements(obj)
             improvements = obj.Improvements;

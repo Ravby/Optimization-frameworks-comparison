@@ -38,6 +38,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/ackley.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -72,6 +73,8 @@ vector_double ackley::fitness(const vector_double &x) const
     }
     f[0] = -20 * std::exp(-0.2 * std::sqrt(1.0 / static_cast<double>(n) * s1))
            - std::exp(1.0 / static_cast<double>(n) * s2) + 20 + nepero;
+
+    FitnessTracker::addFitness(f[0]);
     return f;
 }
 

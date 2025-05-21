@@ -36,6 +36,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/rosenbrock.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -62,6 +63,9 @@ vector_double rosenbrock::fitness(const vector_double &x) const
     for (decltype(m_dim) i = 0u; i < m_dim - 1u; ++i) {
         retval += 100. * (x[i] * x[i] - x[i + 1]) * (x[i] * x[i] - x[i + 1]) + (x[i] - 1) * (x[i] - 1);
     }
+
+    FitnessTracker::addFitness(retval);
+
     return {retval};
 }
 

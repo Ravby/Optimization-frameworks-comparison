@@ -38,6 +38,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/sphere.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -67,6 +68,8 @@ vector_double sphere::fitness(const vector_double &x) const
     for (decltype(n) i = 0u; i < n; i++) {
         f[0] += x[i] * x[i];
     }
+
+    FitnessTracker::addFitness(f[0]);
 
     return f;
 }
