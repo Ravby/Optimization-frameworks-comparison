@@ -322,7 +322,7 @@ class Schwefel(LoggingProblem):
 
     def _compute_fitness(self, x, out, *args, **kwargs):
         N, D = x.shape
-        fitness = np.zeros((N, 1))
+        fitness = np.zeros(N)
         for i in range(N):
             fitness[i] = schwefel(x[i])
         return fitness
