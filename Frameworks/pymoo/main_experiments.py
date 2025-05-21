@@ -362,10 +362,10 @@ class ShekelsFoxholes(LoggingProblem):
             [-32, 16], [-16, 16], [0, 16], [16, 16], [32, 16],
             [-32, 32], [-16, 32], [0, 32], [16, 32], [32, 32]
         ])
-        fitness = np.zeros((x.shape[0], 1))
+        fitness = np.zeros(x.shape[0])
         for j in range(25):
             sum_j = np.sum((x - a[j]) ** 6, axis=1) + (j + 1)
-            fitness += 1.0 / sum_j[:, np.newaxis]
+            fitness += 1.0 / sum_j
         fitness += 1.0 / 500.0
         return 1.0 / fitness
 
@@ -388,7 +388,7 @@ class SixHumpCamelBack(LoggingProblem):
                    + x0 * x1
                    - 4 * x1 ** 2
                    + 4 * x1 ** 4)
-        return fitness[:, np.newaxis]
+        return fitness
 
     def _calc_pareto_front(self):
         return -1.031628453489877
@@ -405,7 +405,7 @@ class Branin(LoggingProblem):
         x0, x1 = x[:, 0], x[:, 1]
         fitness = ((x1 - (5.1 / (4 * np.pi ** 2)) * x0 ** 2 + (5.0 / np.pi) * x0 - 6) ** 2
                    + 10 * (1 - 1.0 / (8.0 * np.pi)) * np.cos(x0) + 10)
-        return fitness[:, np.newaxis]
+        return fitness
 
     def _calc_pareto_front(self):
         return 0.397887
@@ -423,7 +423,7 @@ class GoldsteinPrice(LoggingProblem):
         term1 = 1 + (x0 + x1 + 1) ** 2 * (19 - 14 * x0 + 3 * x0 ** 2 - 14 * x1 + 6 * x0 * x1 + 3 * x1 ** 2)
         term2 = 30 + (2 * x0 - 3 * x1) ** 2 * (18 - 32 * x0 + 12 * x0 ** 2 + 48 * x1 - 36 * x0 * x1 + 27 * x1 ** 2)
         fitness = term1 * term2
-        return fitness[:, np.newaxis]
+        return fitness
 
     def _calc_pareto_front(self):
         return 3.0
@@ -441,10 +441,10 @@ class Hartman(LoggingProblem):
         a = np.array([[3.0, 10, 30], [0.1, 10, 35], [3.0, 10, 30], [0.1, 10, 35]])
         p = np.array(
             [[0.3689, 0.1170, 0.2673], [0.4699, 0.4387, 0.7470], [0.1091, 0.8732, 0.5547], [0.03815, 0.5743, 0.8828]])
-        fitness = np.zeros((x.shape[0], 1))
+        fitness = np.zeros(x.shape[0])
         for i in range(4):
             sum_j = np.sum(a[i] * (x - p[i]) ** 2, axis=1)
-            fitness += c[i] * np.exp(-sum_j)[:, np.newaxis]
+            fitness += c[i] * np.exp(-sum_j)
         return -fitness
 
     def _calc_pareto_front(self):
