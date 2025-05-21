@@ -16,6 +16,7 @@ from problems import RastriginShifted
 from problems import AckleyShifted
 from problems import GriewankShifted
 
+from problems import ProblemWrapper
 from problems import Sphere
 from problems import SumOfSquares
 from problems import Schwefel12
@@ -31,6 +32,7 @@ from problems import Hartman
 
 frameworkName = "MEALPY"
 directory_path = "data/" #"../../../EARS comparison/Algorithm results/"
+directory_path_runs = "data/runs/" #"../../../EARS comparison/Algorithm results/Runs"
 
 term_dict1 = {
     #"max_epoch": 1000,
@@ -41,7 +43,7 @@ term_dict1 = {
 
 num_of_reruns = 50
 
-algorithmNames = ['ABC', 'PSO', 'DE', 'GWO', 'GA', 'CMAES']
+algorithmNames = ['ABC', 'PSO', 'DE', 'GWO', 'GA', 'CMA-ES']
 #algorithmNames = ['CMAES']
 
 problemNames = ['ShiftedSphere', 'ShiftedSumOfSquares', 'ShiftedSchwefel', 'ShiftedRastrigin', 'ShiftedAckley', 'ShiftedGriewank','Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank', 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
@@ -49,11 +51,11 @@ numOfDims = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3]
 
 models = [
         ABC.OriginalABC(pop_size=125, couple_bees=(16, 4), patch_variables=(5.0, 0.985), sites=(3, 1), n_limits=100),
-        PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w_min=0.4, w_max=0.7),
+        PSO.OriginalPSO(pop_size=30, c1=2.00, c2=2.00, w = 0.7),
         DE.OriginalDE(pop_size=50, wf=0.5, cr=0.9, strategy=0),
         GWO.OriginalGWO(pop_size=30),
         GA.BaseGA(pop_size=100, pc=0.95, pm=0.025),
-        #ES.CMA_ES(pop_size=30)
+        ES.CMA_ES(pop_size=30)
 ]
 
 problems = [
@@ -61,14 +63,14 @@ problems = [
     SumOfSquaresShifted(FloatVar(lb=(-100, ) * numOfDims[1], ub=(100, ) * numOfDims[1]), minmax="min"),
     Schwefel12Shifted(FloatVar(lb=(-100, ) * numOfDims[2], ub=(100, ) * numOfDims[2]), minmax="min"),
     RastriginShifted(FloatVar(lb=(-5.12, ) * numOfDims[3], ub=(5.12, ) * numOfDims[3]), minmax="min"),
-    AckleyShifted(FloatVar(lb=(-32.768, ) * numOfDims[4], ub=(32.768, ) * numOfDims[4]), minmax="min"),
+    AckleyShifted(FloatVar(lb=(-32, ) * numOfDims[4], ub=(32, ) * numOfDims[4]), minmax="min"),
     GriewankShifted(FloatVar(lb=(-600, ) * numOfDims[5], ub=(600, ) * numOfDims[5]), minmax="min"),
 
     Sphere(FloatVar(lb=(-100, ) * numOfDims[0], ub=(100, ) * numOfDims[0]), minmax="min"),
     SumOfSquares(FloatVar(lb=(-100, ) * numOfDims[1], ub=(100, ) * numOfDims[1]), minmax="min"),
     Schwefel12(FloatVar(lb=(-100, ) * numOfDims[2], ub=(100, ) * numOfDims[2]), minmax="min"),
     Rastrigin(FloatVar(lb=(-5.12, ) * numOfDims[3], ub=(5.12, ) * numOfDims[3]), minmax="min"),
-    Ackley(FloatVar(lb=(-32.768, ) * numOfDims[4], ub=(32.768, ) * numOfDims[4]), minmax="min"),
+    Ackley(FloatVar(lb=(-32, ) * numOfDims[4], ub=(32, ) * numOfDims[4]), minmax="min"),
     Griewank(FloatVar(lb=(-600, ) * numOfDims[5], ub=(600, ) * numOfDims[5]), minmax="min"),
     Rosenbrock(FloatVar(lb=(-30, ) * numOfDims[6], ub=(30, ) * numOfDims[6]), minmax="min"),
     Shekelfoxholes(FloatVar(lb=(-65.536, ) * numOfDims[13], ub=(65.536, ) * numOfDims[13]), minmax="min"),
@@ -86,11 +88,16 @@ if(1):
     #for x in range(num_of_reruns):
     for index, model in enumerate(models):
         for j, problem in enumerate(problems):
+            problemWrapped = ProblemWrapper(problem=problem)
+
             best_fitnesses = np.zeros(num_of_reruns)
-            for x in range(num_of_reruns):
+            for r in range(num_of_reruns):
                 # Find the best solution and add it to best_fitness_results
-                best = model.solve(problem, termination=term_dict1)
-                best_fitnesses[x] = best.target.fitness
+                best = model.solve(problemWrapped, termination=term_dict1)
+                best_fitnesses[r] = best.target.fitness
+
+                filename = directory_path_runs + algorithmNames[index] + '-' + frameworkName + '_' + problemNames[j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r) + ".csv"
+                problemWrapped.write_improvements_to_file(filename)
 
             # Write best_fitness to file
             filepath = directory_path + algorithmNames[index] + '-' + frameworkName + '_' + problemNames[j] + 'D' + str(numOfDims[j]) + '.txt'

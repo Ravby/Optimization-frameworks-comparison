@@ -1,3 +1,4 @@
+from .problems.problemWrapper import ProblemWrapper
 from .problems.Sphere import Sphere
 from .problems.SumOfSquares import SumOfSquares
 from .problems.Schwefel12 import Schwefel12
