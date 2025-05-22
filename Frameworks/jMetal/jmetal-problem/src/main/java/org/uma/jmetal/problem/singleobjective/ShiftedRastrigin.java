@@ -6,7 +6,7 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShiftedRastrigin extends AbstractDoubleProblem {
+public class ShiftedRastrigin extends LoggingDoubleProblem {
 
     final double[] shift = {4.070088073870897, -3.3584914395112166, 2.5276924556298725, 1.373781594176445, -1.8387129521132595,
             2.057549949794417, -0.0023364913111585395, 2.013487904123477, -3.7248964059839147, -0.33919629789907413,
@@ -58,7 +58,7 @@ public class ShiftedRastrigin extends AbstractDoubleProblem {
      * Evaluate() method
      */
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         int numberOfVariables = numberOfVariables();
 
         double[] x = new double[numberOfVariables];

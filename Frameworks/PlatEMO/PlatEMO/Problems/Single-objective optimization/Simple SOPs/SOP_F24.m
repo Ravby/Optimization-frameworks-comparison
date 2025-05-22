@@ -16,6 +16,8 @@ classdef SOP_F24 < PROBLEM
             n = size(PopDec, 2);
             weights = 1:n;
             PopObj = sum(weights .* (PopDec .^ 2), 2);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

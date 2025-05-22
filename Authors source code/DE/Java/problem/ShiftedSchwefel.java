@@ -4,7 +4,7 @@ import DeApp1.de.T_DEOptimizer;
 
 import static java.lang.Math.pow;
 
-public class ShiftedSchwefel extends DEProblem {
+public class ShiftedSchwefel extends LoggingDEProblem {
     final double[] shift = {65.90306349157711, 7.223609380925922, 48.06403595428989, -61.23008904674027, -56.996531732952235,
             -65.67006959079087, 56.81852866354663, -49.51353093024842, -42.403457350576694, 64.22460834371887,
             -15.782490031817943, 78.2275393766464, 58.981759831549084, -41.74229801452056, 70.70390026719807,
@@ -43,7 +43,7 @@ public class ShiftedSchwefel extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double sum;

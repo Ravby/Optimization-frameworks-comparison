@@ -42,6 +42,8 @@ classdef SOP_F10_Shifted < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = -20*exp(-0.2*sqrt(mean((PopDec - obj.shift).^2,2))) - exp(mean(cos(2*pi*(PopDec - obj.shift)),2)) + 20 + exp(1);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

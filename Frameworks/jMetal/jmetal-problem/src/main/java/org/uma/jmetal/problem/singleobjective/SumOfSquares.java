@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class SumOfSquares  extends AbstractDoubleProblem {
+public class SumOfSquares  extends LoggingDoubleProblem {
 
     public SumOfSquares() {
         this(10);
@@ -31,7 +31,7 @@ public class SumOfSquares  extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
         for (int i = 0; i < numberOfVariables(); i++) {

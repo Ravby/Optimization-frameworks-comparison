@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.pow;
 
-public class ShiftedSchwefel extends AbstractDoubleProblem {
+public class ShiftedSchwefel extends LoggingDoubleProblem {
 
     final double[] shift = {65.90306349157711, 7.223609380925922, 48.06403595428989, -61.23008904674027, -56.996531732952235,
             -65.67006959079087, 56.81852866354663, -49.51353093024842, -42.403457350576694, 64.22460834371887,
@@ -52,7 +52,7 @@ public class ShiftedSchwefel extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
         double sum;

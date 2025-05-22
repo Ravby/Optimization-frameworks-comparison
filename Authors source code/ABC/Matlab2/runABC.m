@@ -52,7 +52,7 @@ functions = {
     {'Hartman', 3, ones(1,3)*1.0, ones(1,3)*(0.0)}
     };
 
-runtime=100;
+runtime=50;
 
 
 for f = 1:length(functions)
@@ -63,17 +63,28 @@ for f = 1:length(functions)
     
     fprintf('Problem %s\n', objfun);
     
+    fitnessFunc = str2func(objfun);
+    
     GlobalMins=zeros(1,runtime);
     
     for r=1:runtime
         
-        [GlobalMin, currentEval] = ABC(objfun, D, ub, lb, NP, limit, maxEval);
+        clear CreateFitnessLogger
+        
+        [loggedFitness, getImprovements, getEvaluationCount] = CreateFitnessLogger(fitnessFunc);
+        
+        [GlobalMin, currentEval] = ABC(loggedFitness, D, ub, lb, NP, limit, maxEval);
         if currentEval ~= maxEval
             fprintf('Error: algorithm consumed more evaluations than allowed!\n');
         end
-        
+
         fprintf('%d\n',GlobalMin);
         GlobalMins(r)=GlobalMin;
+        
+        %fprintf('Evaluation count check: %d\n',getEvaluationCount());
+        
+        filename = sprintf('ABC-Author-Matlab_%s_vars=%d_run=%d', objfun, D, r);
+        WriteRunToFile(filename, getImprovements());
     end
     
     writeResultsToFile( "ABC-Author-Matlab_" + objfun +"D"+D, GlobalMins);

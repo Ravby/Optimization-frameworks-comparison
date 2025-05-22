@@ -8,7 +8,7 @@ import org.moeaframework.problem.AbstractProblem;
  * Class representing a Sphere problem.
  */
 @SuppressWarnings("serial")
-public class Sphere extends AbstractProblem {
+public class Sphere extends LoggingAbstractProblem {
     /**
      * Constructor
      */
@@ -36,7 +36,7 @@ public class Sphere extends AbstractProblem {
      * Evaluate() method
      */
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
         double sum = 0.0;

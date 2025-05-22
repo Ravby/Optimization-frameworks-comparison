@@ -8,15 +8,17 @@ import DeApp1.problem.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        final int NUMBER_OF_RUNS = 100;
+        final int NUMBER_OF_RUNS = 50;
         final int MAX_EVALUATIONS = 15000;
 
-        ArrayList<DEProblem> problems = new ArrayList<>();
+        ArrayList<LoggingDEProblem> problems = new ArrayList<>();
 
         problems.add(new ShiftedSphere(60));
         problems.add(new ShiftedSumOfSquares(60));
@@ -56,10 +58,10 @@ public class Main {
 
         double[] results = new double[NUMBER_OF_RUNS];
 
-        for (DEProblem problem : problems) {
+        for (LoggingDEProblem problem : problems) {
             System.out.println("Problem: " + problem.name);
             for (int i = 0; i < NUMBER_OF_RUNS; i++) {
-
+                problem.reset();
                 de.evaluation = 0;
                 de.generation = 0;
 
@@ -67,9 +69,47 @@ public class Main {
                 if(de.getEvaluation() != MAX_EVALUATIONS)
                     System.err.println("Algorithm consumed more evaluations than allowed!");
 
-                System.out.println("Run: " + i + " Result: " + results[i]);
+                System.out.println("Run: " + (i + 1) + " Result: " + results[i]);
+                List<double[]> improvements = problem.getImprovements();
+                writeRunToFile("DE-Author-Java", problem, i + 1, improvements);
             }
             writeResultsToFile( "DE-Author-Java_" + problem.name+"D"+problem.dim, results);
+        }
+    }
+
+    private static void writeRunToFile(String algorithmName, LoggingDEProblem problem, int runNumber, List<double[]> improvements) {
+        String projectDirectory = System.getProperty("user.dir");
+        File projectDirFile = new File(projectDirectory);
+        File parentDirFile = projectDirFile.getParentFile().getParentFile().getParentFile();
+        String filesDir = parentDirFile + File.separator + "EARS comparison" + File.separator + "Algorithm results" + File.separator + "Runs";
+
+        String filename = String.format("%s_%s_vars=%d_run=%d.csv",
+                algorithmName, problem.name, problem.dim, runNumber);
+
+        String fileLocation = filesDir + File.separator + filename;
+
+        File file = new File(fileLocation);
+        String directory = file.getParent();
+        if (directory == null) {
+            directory = System.getProperty("user.dir");
+            fileLocation = directory + File.separator + fileLocation;
+            file = new File(fileLocation);
+        }
+        File fileDirectory = new File(directory);
+        try {
+            fileDirectory.mkdirs();
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false)))) {
+            bw.write("Evaluations,Fitness\n");
+            for (double[] improvement : improvements) {
+                bw.write(String.format(Locale.US, "%d,%f\n", (long) improvement[0], improvement[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

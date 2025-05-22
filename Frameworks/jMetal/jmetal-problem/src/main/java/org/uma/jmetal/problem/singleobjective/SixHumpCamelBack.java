@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class SixHumpCamelBack  extends AbstractDoubleProblem {
+public class SixHumpCamelBack  extends LoggingDoubleProblem {
 
     public SixHumpCamelBack() {
         numberOfObjectives(1);
@@ -27,7 +27,7 @@ public class SixHumpCamelBack  extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double x0 = solution.variables().get(0);
         double x1 = solution.variables().get(1);

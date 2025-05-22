@@ -37,6 +37,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/griewank_shifted.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -99,6 +100,9 @@ vector_double griewankShifted::fitness(const vector_double &x) const
         p *= std::cos(shifted[i] / std::sqrt(static_cast<double>(i) + 1.0));
     }
     f[0] = (retval / fr - p + 1.);
+
+    FitnessTracker::addFitness(f[0]);
+
     return f;
 }
 

@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.pow;
 
-public class ShekelsFoxholes extends AbstractProblem {
+public class ShekelsFoxholes extends LoggingAbstractProblem {
 
     private static final double[][] a = {{-32, -32},
             {-16, -32},
@@ -49,7 +49,7 @@ public class ShekelsFoxholes extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 

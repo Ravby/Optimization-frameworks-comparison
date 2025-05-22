@@ -26,6 +26,8 @@ classdef SOP_F11 < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = 1/4000*sum(PopDec.^2,2) - prod(cos(PopDec./sqrt(repmat(1:size(PopDec,2),size(PopDec,1),1))),2) + 1;
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

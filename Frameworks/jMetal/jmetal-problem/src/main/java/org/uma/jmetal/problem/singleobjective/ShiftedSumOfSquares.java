@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.pow;
 
-public class ShiftedSumOfSquares  extends AbstractDoubleProblem {
+public class ShiftedSumOfSquares  extends LoggingDoubleProblem {
 
     final double[] shift = {22.479705250884777, 60.75750080751871, -59.15674324461888, 27.56336400934657, -59.29279403989607,
             -64.68447838216555, 78.33759532500437, -76.51052473538245, -66.6507114149451, 64.93462028133038,
@@ -52,7 +52,7 @@ public class ShiftedSumOfSquares  extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
 

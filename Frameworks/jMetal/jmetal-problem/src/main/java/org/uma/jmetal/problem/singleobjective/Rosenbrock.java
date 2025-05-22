@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import org.uma.jmetal.problem.doubleproblem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 
-public class Rosenbrock extends AbstractDoubleProblem {
+public class Rosenbrock extends LoggingDoubleProblem {
 
   public Rosenbrock() {
     this(10);
@@ -35,7 +35,7 @@ public class Rosenbrock extends AbstractDoubleProblem {
 
   /** Evaluate() method */
   @Override
-  public DoubleSolution evaluate(DoubleSolution solution) {
+  public DoubleSolution computeFitness(DoubleSolution solution) {
     int numberOfVariables = numberOfVariables() ;
 
     double[] x = IntStream.range(0, numberOfVariables).mapToDouble(i -> solution.variables().get(i))

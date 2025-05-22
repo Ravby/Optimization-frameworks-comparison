@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
-public class Hartman extends DEProblem {
+public class Hartman extends LoggingDEProblem {
 
     private static final double[][] a = {
             {3, 10, 30},
@@ -40,7 +40,7 @@ public class Hartman extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
         double fitness = 0;
         double sum;
         for (int i = 0; i < 4; i++) {

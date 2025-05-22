@@ -14,6 +14,10 @@ classdef SOP_F1 < PROBLEM
 % Computational Intelligence Magazine, 2017, 12(4): 73-87".
 %--------------------------------------------------------------------------
 
+    events
+        CalObjCalled % Event triggered when CalObj is called
+    end
+
     methods
         %% Default settings of the problem
         function Setting(obj)
@@ -26,6 +30,11 @@ classdef SOP_F1 < PROBLEM
         %% Calculate objective values
         function PopObj = CalObj(obj,PopDec)
             PopObj = sum(PopDec.^2,2);
+            
+            %notify(obj, 'CalObjCalled', CalObjEventData(PopObj, PopDec, obj.EvaluationCount));
+
+            %obj.EvaluationCount = obj.EvaluationCount + size(PopDec, 1);
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

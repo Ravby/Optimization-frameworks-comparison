@@ -2,7 +2,7 @@ package DeApp1.problem;
 
 import DeApp1.de.T_DEOptimizer;
 
-public class ShiftedRastrigin extends DEProblem {
+public class ShiftedRastrigin extends LoggingDEProblem {
 
     final double[] shift = {4.070088073870897, -3.3584914395112166, 2.5276924556298725, 1.373781594176445, -1.8387129521132595,
             2.057549949794417, -0.0023364913111585395, 2.013487904123477, -3.7248964059839147, -0.33919629789907413,
@@ -42,7 +42,7 @@ public class ShiftedRastrigin extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double a = 10.0;

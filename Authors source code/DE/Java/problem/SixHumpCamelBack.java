@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
-public class SixHumpCamelBack extends DEProblem {
+public class SixHumpCamelBack extends LoggingDEProblem {
 
     public SixHumpCamelBack() {
 
@@ -26,7 +26,7 @@ public class SixHumpCamelBack extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
         double fitness = 0;
         fitness = 4 * pow(x[0], 2)
                 - 2.1 * pow(x[0], 4)

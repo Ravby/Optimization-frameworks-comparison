@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class Schwefel extends AbstractDoubleProblem {
+public class Schwefel extends LoggingDoubleProblem {
 
     public Schwefel() {
         this(10);
@@ -31,7 +31,7 @@ public class Schwefel extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
         double sum;

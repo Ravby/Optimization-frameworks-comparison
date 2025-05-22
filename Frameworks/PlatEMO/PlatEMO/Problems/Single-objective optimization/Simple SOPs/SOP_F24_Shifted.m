@@ -34,6 +34,8 @@ classdef SOP_F24_Shifted < PROBLEM
             weights = 1:n;
             % Subtract the shift vector and compute the weighted sum of squares
             PopObj = sum(weights .* ((PopDec - obj.shift) .^ 2), 2);
+
+            EventManager.getInstance().evaluationPerformed(PopObj, PopDec);
         end
     end
 end

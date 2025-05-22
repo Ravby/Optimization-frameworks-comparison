@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.pow;
 
-public class SixHumpCamelBack extends AbstractProblem {
+public class SixHumpCamelBack extends LoggingAbstractProblem {
 
     public SixHumpCamelBack() {
         super(2, 1, 0);
@@ -22,7 +22,7 @@ public class SixHumpCamelBack extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
         

@@ -29,9 +29,11 @@ import typing
 import random
 import array
 
+from deap.benchmarks import LogExecution
 
 frameworkName = "DEAP"
 directoryPath = "../../lpm/data/"
+directoryPathRuns = "../../lpm/data/runs/"
 #directoryPath = "../../../../EARS comparison/Algorithm results/"
 
 fitnesEvals = 15000
@@ -44,8 +46,8 @@ problems = [benchmarks.sphereShifted, benchmarks.sumOfSquaresShifted, benchmarks
             benchmarks.sphere, benchmarks.sumOfSquares, benchmarks.schwefel12, benchmarks.rastrigin, benchmarks.ackley,
             benchmarks.griewank, benchmarks.rosenbrock, benchmarks.shekelFoxholes, benchmarks.sixHumpCamelBack,
             benchmarks.branin, benchmarks.goldsteinPrice, benchmarks.hartman]
-problemNames = ['SphereShifted', 'SumOfSquaresShifted', 'SchwefelShifted', 'RastriginShifted', 'AckleyShifted',
-                'GriewankShifted', 'Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank',
+problemNames = ['ShiftedSphere', 'ShiftedSumOfSquares', 'ShiftedSchwefel', 'ShiftedRastrigin', 'ShiftedAckley',
+                'ShiftedGriewank', 'Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank',
                 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
 lbs = [-100, -100, -100, -5.12, -32, -600, -100, -100, -100, -5.12, -32, -600, -30, -65.536, -5, [-5, 0], -2, 0]
 ubs = [100, 100, 100, 5.12, 32, 600, 100, 100, 100, 5.12, 32, 600, 30, 65.536, 5, [10, 15], 2, 1]
@@ -94,12 +96,19 @@ def main(numOfDim, lb, ub, problem):
     return hof[0].fitness.values[0]
 
 if __name__ == "__main__":
+    print("CMA-ES - Algorithm")
+
     for j, problem in enumerate(problems):
         best_fitnesses = np.zeros(numOfReruns)
         print("Problem: ", problemNames[j])
-        for x in range(numOfReruns):
+        for r in range(numOfReruns):
             best_fitness = main(numOfDim=numOfDims[j], lb=lbs[j], ub=ubs[j], problem=problems[j])
-            best_fitnesses[x] = best_fitness
+            best_fitnesses[r] = best_fitness
+
+            filename = directoryPathRuns + "CMA-ES" + '-' + frameworkName + '_' + problemNames[
+                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r) + ".csv"
+            LogExecution.write_improvements_to_file(filename)
+
             print("Best fitness: " + str(best_fitness))
         # Write best_fitness to file
         filepath = directoryPath + algorithmName + '-' + frameworkName + '_' + problemNames[j] + 'D' + str(numOfDims[j]) + '.txt'

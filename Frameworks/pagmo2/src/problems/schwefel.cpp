@@ -37,6 +37,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/schwefel.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -69,6 +70,8 @@ vector_double schwefel::fitness(const vector_double &x) const
         }
         f[0] += sum * sum;
     }
+
+    FitnessTracker::addFitness(f[0]);
 
     return f;
 }

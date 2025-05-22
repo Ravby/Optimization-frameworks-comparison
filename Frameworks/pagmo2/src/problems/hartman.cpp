@@ -38,6 +38,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/hartman.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -72,6 +73,9 @@ vector_double hartman::fitness(const vector_double &x) const
         f[0] += c[i] * exp(sum * (-1));
     }
     f[0] = f[0] * -1;
+
+    FitnessTracker::addFitness(f[0]);
+
     return f;
 }
 

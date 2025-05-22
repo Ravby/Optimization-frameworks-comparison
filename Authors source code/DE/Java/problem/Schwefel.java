@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 
-public class Schwefel extends DEProblem {
+public class Schwefel extends LoggingDEProblem {
 
     public Schwefel(int dimensions) {
         this.dim = dimensions;
@@ -25,7 +25,7 @@ public class Schwefel extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double sum;

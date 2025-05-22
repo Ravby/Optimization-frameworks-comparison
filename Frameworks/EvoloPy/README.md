@@ -1,5 +1,5 @@
 <div align="center">
-<img alt="EvoCluster-logo" src="http://evo-ml.com/wp-content/uploads/2021/06/EvoloPy-logo.png" width=80%>
+<img width="200" alt="EvoloPy-logo" src="https://github.com/user-attachments/assets/496f9a76-1fcc-4e4f-9586-8f327a434134">
 </div>
 
 # EvoloPy: An open source nature-inspired optimization toolbox for global optimization in Python
@@ -10,26 +10,24 @@ If you like our framework then we would really appreciate **a Star ⭐!**
 
 
 ## Features
-- Six nature-inspired metaheuristic optimizers were implemented.
-- The implimentation uses the fast array manipulation using `NumPy`.
+- Fourteen nature-inspired metaheuristic optimizers were implemented.
+- The implementation uses the fast array manipulation using `NumPy`.
 - Matrix support using `SciPy`'s package.
-- More optimizers is comming soon.
+- More optimizers is coming soon.
 
 ## Installation
-- Python 3.xx is required.
+- Python 3.6 or higher is required.
 
 Run
 
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
 
 (possibly with `sudo`)
 
-That command above will install  `sklearn`, `NumPy`, and `SciPy` for
-you.
+This command will install `sklearn`, `NumPy`, `SciPy`, and other dependencies for you.
 
-- If you are installing EvoloPy Toolbox onto Windows, please Install Anaconda from here https://www.continuum.io/downloads, which is the leading open data science platform powered by Python.
-- If you are installing onto Ubuntu or Debian and using Python 3 then
-  this will pull in all the dependencies from the repositories:
+- **For Windows**: Please install Anaconda from [here](https://www.continuum.io/downloads), which is the leading open data science platform powered by Python.
+- **For Ubuntu or Debian (Python 3)**:
   
       sudo apt-get install python3-numpy python3-scipy liblapack-dev libatlas-base-dev libgsl0-dev fftw-dev libglpk-dev libdsdp-dev
 
@@ -42,7 +40,7 @@ Clone the Git repository from GitHub
 
 ## Quick User Guide
 
-EvoloPy toolbox contains twenty three benchamrks (F1-F23). The main file is the optimizer.py, which considered the interface of the toolbox. In the optimizer.py you can setup your experiment by selecting the optmizers, the benchmarks, number of runs, number of iterations, and population size. 
+EvoloPy toolbox contains twenty three benchmarks (F1-F24). The main file is the optimizer.py, which considered the interface of the toolbox. In the optimizer.py you can setup your experiment by selecting the optimizers, the benchmarks, number of runs, number of iterations, and population size. 
 The following is a sample example to use the EvoloPy toolbox.  
 Select optimizers from the list of available ones: "SSA","PSO","GA","BAT","FFA","GWO","WOA","MVO","MFO","CS","HHO","SCA","JAYA","DE". For example:
 ```
@@ -54,7 +52,7 @@ After that, Select benchmark function from the list of available ones: "F1","F2"
 objectivefunc=["F3","F4"]  
 ```
 
-Select number of repetitions for each experiment. To obtain meaningful statistical results, usually 30 independent runs are executed for each algorithm.  For example:
+Select the number of repetitions for each experiment. To obtain meaningful statistical results, usually 30 independent runs are executed for each algorithm.  For example:
 ```
 NumOfRuns=10  
 ```
@@ -69,18 +67,32 @@ export_flags = {'Export_avg':True, 'Export_details':True, 'Export_convergence':T
 
 Now your experiment is ready to run. Enjoy!
 
+Run the example file:
+```
+python examples/example.py
+```
+
+
 ## Contribute
-- Issue Tracker: https://github.com/7ossam81/EvoloPy/issues  
-- Source Code: https://github.com/7ossam81/EvoloPy
+- **Issue Tracker**: https://github.com/7ossam81/EvoloPy/issues  
+- **Source Code**: https://github.com/7ossam81/EvoloPy
 
 ## Useful Links
-- Video Demo:https://www.youtube.com/watch?v=8t10SyrhDjQ
-- Paper source: https://github.com/7ossam81/EvoloPy
-- Paper: https://www.scitepress.org/Papers/2016/60482/60482.pdf
-- Poster source: https://github.com/7ossam81/EvoloPy-poster
-- Live Demo: http://evo-ml.com/evolopy-live-demo/
+- **Video Demo**:https://www.youtube.com/watch?v=8t10SyrhDjQ
+- **Paper source**: https://github.com/7ossam81/EvoloPy
+- **Paper**: https://www.scitepress.org/Papers/2016/60482/60482.pdf
+- **Poster source**: https://github.com/7ossam81/EvoloPy-poster
+- **Live Demo**: http://evo-ml.com/evolopy-live-demo/
 
 ## List of contributors
+- 7ossam81
+- RaneemQaddoura
+- aljarrahcs
+- jbae11
+- dietmarwo
+- bionboy
+- deepak-158
+- JJ
 
 ## Reference
 
@@ -98,6 +110,6 @@ Please include the following related citations:
 
 ## Support
 
-Use the [issue tracker](https://github.com/7ossam81/EvoloPy/issues). 
+Use the [issue tracker](https://github.com/7ossam81/EvoloPy/issues) to report bugs or request features. 
 
 

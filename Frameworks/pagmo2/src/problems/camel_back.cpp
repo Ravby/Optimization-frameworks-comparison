@@ -38,6 +38,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/camel_back.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -69,6 +70,8 @@ vector_double camelBack::fitness(const vector_double &x) const
            + x[0] * x[1]
            - 4 * pow(x[1], 2)
            + 4 * pow(x[1], 4);
+
+    FitnessTracker::addFitness(f[0]);
 
     return f;
 

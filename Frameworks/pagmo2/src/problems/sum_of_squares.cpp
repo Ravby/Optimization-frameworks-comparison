@@ -38,6 +38,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/sum_of_squares.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -66,6 +67,8 @@ vector_double sumOfSquares::fitness(const vector_double &x) const
     for (decltype(n) i = 0u; i < n; i++) {
         f[0] += i * x[i] * x[i];
     }
+
+    FitnessTracker::addFitness(f[0]);
 
     return f;
 }

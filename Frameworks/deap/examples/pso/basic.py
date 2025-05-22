@@ -28,8 +28,11 @@ import glob
 import os
 import typing
 
+from deap.benchmarks import LogExecution
+
 frameworkName = "DEAP"
 directoryPath = "../../lpm/data/"
+directoryPathRuns = "../../lpm/data/runs/"
 #directoryPath = "../../../../EARS comparison/Algorithm results/"
 
 fitnesEvals = 15000
@@ -42,8 +45,8 @@ problems = [benchmarks.sphereShifted, benchmarks.sumOfSquaresShifted, benchmarks
             benchmarks.sphere, benchmarks.sumOfSquares, benchmarks.schwefel12, benchmarks.rastrigin, benchmarks.ackley,
             benchmarks.griewank, benchmarks.rosenbrock, benchmarks.shekelFoxholes, benchmarks.sixHumpCamelBack,
             benchmarks.branin, benchmarks.goldsteinPrice, benchmarks.hartman]
-problemNames = ['SphereShifted', 'SumOfSquaresShifted', 'SchwefelShifted', 'RastriginShifted', 'AckleyShifted',
-                'GriewankShifted', 'Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank',
+problemNames = ['ShiftedSphere', 'ShiftedSumOfSquares', 'ShiftedSchwefel', 'ShiftedRastrigin', 'ShiftedAckley',
+                'ShiftedGriewank', 'Sphere', 'SumOfSquares', 'Schwefel', 'Rastrigin', 'Ackley', 'Griewank',
                 'Rosenbrock', 'ShekelsFoxholes', 'SixHumpCamelBack', 'Branin', 'GoldsteinPrice', 'Hartman']
 lbs = [-100, -100, -100, -5.12, -32, -600, -100, -100, -100, -5.12, -32, -600, -30, -65.536, -5, [-5, 0], -2, 0]
 ubs = [100, 100, 100, 5.12, 32, 600, 100, 100, 100, 5.12, 32, 600, 30, 65.536, 5, [10, 15], 2, 1]
@@ -128,33 +131,26 @@ def main(numOfDim, lb, ub, problem):
     return pop, logbook, best
 
 if __name__ == "__main__":
-    """print(f"Sphere:  {problems[0](np.array([0, ] * 10))}")
-    print(f"SumOfSquares:  {problems[1](np.array([0, ] * 10))}")
-    print(f"Schwefel12:  {problems[2](np.array([0, ] * 10))}")
-    print(f"Rastrigin:  {problems[3](np.array([0, ] * 10))}")
-    print(f"Ackley:  {problems[4](np.array([0, ] * 10))}")
-    print(f"Griewank:  {problems[5](np.array([0, ] * 10))}")
-    print(f"Rosenbrock:  {problems[6](np.array([1, ] * 10))}")
-    print(f"Shekel’s Foxholes :  {problems[7](np.array([-31.97833, -31.97833]))}")
-    print(f"Six-Hump Camel Back :  {problems[8](np.array([0.0898, -0.7126]))}")
-    print(f"Branin :  {problems[9](np.array([-np.pi, 12.275]))}")
-    print(f"Goldstein-Price :  {problems[10](np.array([0, -1]))}")
-    print(f"Hartman :  {problems[11](np.array([0.114614, 0.555649, 0.852547]))}")
-
-    """
     # Remove files
     #for file_path in glob.glob(directoryPath + "*PSO*"):
     #    os.remove(file_path)
-
+    print("PSO - Algorithm")
     for j, problem in enumerate(problems):
         best_fitnesses = np.zeros(numOfReruns)
         print("Problem: ", problemNames[j])
-        for x in range(numOfReruns):
+        for r in range(numOfReruns):
             if isinstance(lbs[j], typing.List):
                 pop, logbook, best = main(numOfDim=numOfDims[j], lb=lbs[j], ub=ubs[j], problem=problems[j])
             else:
                 pop, logbook, best = main(numOfDim=numOfDims[j], lb=[lbs[j], ] * numOfDims[j], ub=[ubs[j], ] * numOfDims[j], problem=problems[j])
-            best_fitnesses[x] = best.fitness.values[0]
+            best_fitnesses[r] = best.fitness.values[0]
+
+            filename = directoryPathRuns + "PSO" + '-' + frameworkName + '_' + problemNames[
+                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r) + ".csv"
+            LogExecution.write_improvements_to_file(filename)
+
+            print("Best fitness: " + str(best.fitness.values[0]))
+
         # Write best_fitness to file
         filepath = directoryPath + algorithmName + '-' + frameworkName + '_' + problemNames[j] + 'D' + str(numOfDims[j]) + '.txt'
         np.savetxt(filepath, best_fitnesses, fmt='%.10f')

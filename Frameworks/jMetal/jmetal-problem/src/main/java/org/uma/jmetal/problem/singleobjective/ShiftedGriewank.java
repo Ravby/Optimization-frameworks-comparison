@@ -6,7 +6,7 @@ import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShiftedGriewank extends AbstractDoubleProblem {
+public class ShiftedGriewank extends LoggingDoubleProblem {
 
     final double[] shift = {104.94691081342978, -135.6761348470227, 92.81100891955543, -10.87108518188711, 407.63013054172563,
             -223.31315231746964, -224.56627659185563, -222.7632371161696, -338.7309010063917, -236.65660889064418,
@@ -59,7 +59,7 @@ public class ShiftedGriewank extends AbstractDoubleProblem {
      * Evaluate() method
      */
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         int numberOfVariables = numberOfVariables();
 
         double[] x = new double[numberOfVariables];

@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.*;
 
-public class Ackley extends AbstractProblem {
+public class Ackley extends LoggingAbstractProblem {
 
     public Ackley() {
         this(10);
@@ -26,7 +26,7 @@ public class Ackley extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
         double a = 20.0, b = 0.2, c = 2 * PI;
         double sum1 = 0, sum2 = 0;
 

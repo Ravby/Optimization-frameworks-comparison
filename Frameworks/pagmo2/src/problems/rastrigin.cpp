@@ -39,6 +39,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/rastrigin.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -96,6 +97,9 @@ vector_double rastrigin::fitness(const vector_double &x) const
         f[0] += shifted[i] * shifted[i] - 10. * std::cos(omega * shifted[i]);
     }
     f[0] += 10. * static_cast<double>(n);
+
+    FitnessTracker::addFitness(f[0]);
+
     return f;
 }
 

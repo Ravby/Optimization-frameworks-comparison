@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import static java.lang.Math.pow;
 
-public class GoldsteinPrice extends AbstractProblem {
+public class GoldsteinPrice extends LoggingAbstractProblem {
 
     public GoldsteinPrice() {
         super(2, 1, 0);
@@ -22,7 +22,7 @@ public class GoldsteinPrice extends AbstractProblem {
     }
 
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
         
         double[] x = EncodingUtils.getReal(solution);
 

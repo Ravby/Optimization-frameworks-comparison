@@ -6,7 +6,7 @@ import org.moeaframework.problem.AbstractProblem;
 
 import java.util.stream.IntStream;
 
-public class Rosenbrock extends AbstractProblem {
+public class Rosenbrock extends LoggingAbstractProblem {
 
     public Rosenbrock() {
         this(10);
@@ -35,7 +35,7 @@ public class Rosenbrock extends AbstractProblem {
      * Evaluate() method
      */
     @Override
-    public void evaluate(Solution solution) {
+    public void computeFitness(Solution solution) {
 
         double[] x = EncodingUtils.getReal(solution);
 

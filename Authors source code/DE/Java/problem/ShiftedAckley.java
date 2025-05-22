@@ -2,7 +2,7 @@ package DeApp1.problem;
 
 import DeApp1.de.T_DEOptimizer;
 
-public class ShiftedAckley extends DEProblem {
+public class ShiftedAckley extends LoggingDEProblem {
 
     final double[] shift = {21.125524221556333, -11.11861062406522, -8.384759722218377, -4.998410532366073, 15.080716791129063,
             17.219200462474568, 17.30816180946608, 10.917710600242835, 20.963400683396372, 19.33124762324178,
@@ -42,7 +42,7 @@ public class ShiftedAckley extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double a = 20.0, b = 0.2, c = 2 * Math.PI;

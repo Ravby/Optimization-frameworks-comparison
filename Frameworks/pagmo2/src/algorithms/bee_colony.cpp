@@ -110,11 +110,8 @@ population bee_colony::evolve(population pop) const
         0u, dim - 1u); // to generate a random index for the component to mutate
     std::uniform_int_distribution<vector_double::size_type> dvrng(
         0u, NP - 2u); // to generate a random index for the second decision vector
-    const unsigned evals = 15000u;
-    //for (decltype(m_gen) gen = 1u; gen <= m_gen; ++gen) {
-    for (decltype(m_gen) gen = 1u; prob.get_fevals() <= evals;
-         ++gen) { // Force fitness evals, because ABC alg uses 2*pop_size + delta fitnes
-                                          // evaluations each cicle, where delta is not fixed
+
+    for (decltype(m_gen) gen = 1u; gen <= m_gen; ++gen) {
         // 1 - Employed bees phase
         std::vector<unsigned>::size_type mi = 0u;
         for (decltype(NP) i = 1u; i < NP; ++i) {
@@ -145,11 +142,6 @@ population bee_colony::evolve(population pop) const
                 if (newsol[comp2change] > ub[comp2change]) {
                     newsol[comp2change] = ub[comp2change];
                 }
-
-                if (prob.get_fevals() >= evals) {
-                    return pop;
-                }
-
                 // if the new solution is better than the old one replace it and reset its trial counter
                 auto newfitness = prob.fitness(newsol);
                 if (newfitness[0] < fit[i][0]) {
@@ -164,10 +156,6 @@ population bee_colony::evolve(population pop) const
         }
         // 2 - Scout bee phase
         if (scout) {
-            if (prob.get_fevals() >= evals) {
-                return pop;
-            }
-
             for (auto j = 0u; j < dim; ++j) {
                 X[mi][j] = uniform_real_from_range(lb[j], ub[j], m_e);
             }
@@ -214,11 +202,6 @@ population bee_colony::evolve(population pop) const
                 if (newsol[comp2change] > ub[comp2change]) {
                     newsol[comp2change] = ub[comp2change];
                 }
-
-                if (prob.get_fevals() >= evals) {
-                    return pop;
-                }
-
                 // if the new solution is better than the old one replace it and reset its trial counter
                 auto newfitness = prob.fitness(newsol);
                 if (newfitness[0] < fit[s][0]) {
@@ -235,22 +218,21 @@ population bee_colony::evolve(population pop) const
         // Logs and prints (verbosity modes > 1: a line is added every m_verbosity generations)
         if (m_verbosity > 0u) {
             // Every m_verbosity generations print a log line
-             if (gen % m_verbosity == 1u || m_verbosity == 1u) {
+            if (gen % m_verbosity == 1u || m_verbosity == 1u) {
                 auto best_idx = pop.best_idx();
                 // Every 50 lines print the column names
                 if (count % 50u == 1u) {
                     print("\n", std::setw(7), "Gen:", std::setw(15), "Fevals:", std::setw(15), "Best:", std::setw(15),
                           "Current Best:\n");
                 }
-                print(std::setw(7), gen, std::setw(15), prob.get_fevals(), std::setw(15), pop.champion_f()[0],
+                print(std::setw(7), gen, std::setw(15), prob.get_fevals() - fevals0, std::setw(15), pop.champion_f()[0],
                       std::setw(15), pop.get_f()[best_idx][0], '\n');
                 ++count;
                 // Logs
-                m_log.emplace_back(gen, prob.get_fevals(), pop.champion_f()[0], pop.get_f()[best_idx][0]);
+                m_log.emplace_back(gen, prob.get_fevals() - fevals0, pop.champion_f()[0], pop.get_f()[best_idx][0]);
             }
         }
     }
-
     return pop;
 }
 

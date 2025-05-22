@@ -38,7 +38,7 @@ clc
 maxEvaluations = 15000;
 maxIterations=500; % Maximum numbef of iterations
 populationSize=30; % Number of search agents
-runtime=100;
+runtime=50;
 
 % Function_name='rosenbrock';
 % disp(Function_name);
@@ -69,7 +69,6 @@ functions = {
     {'Hartman', 3, ones(1,3)*1.0, ones(1,3)*(0.0)}
 };
 
-
 for f = 1:length(functions)
     objfun = functions{f}{1};
     D = functions{f}{2};
@@ -79,11 +78,17 @@ for f = 1:length(functions)
 
     fprintf('Problem %s\n', objfun);
     
+    fitnessFunc = str2func(objfun);
+    
     GlobalMins=zeros(1,runtime);
     
     for r=1:runtime
+        
+        clear CreateFitnessLogger
+        
+        [loggedFitness, getImprovements, getEvaluationCount] = CreateFitnessLogger(fitnessFunc);
 
-        [Best_score,Best_pos,GWO_cg_curve, evaluations]=GWO(populationSize,maxIterations,lb,ub,D,objfun);
+        [Best_score,Best_pos,GWO_cg_curve, evaluations]=GWO(populationSize,maxIterations,lb,ub,D,loggedFitness);
         
         if evaluations ~= maxEvaluations
             fprintf('Error: algorithm consumed more evaluations than allowed!\n');
@@ -92,9 +97,14 @@ for f = 1:length(functions)
         display(num2str(Best_score, 20));
         fprintf('%d\n',Best_score);
         GlobalMins(r)=Best_score;
+        
+        %fprintf('Evaluation count check: %d\n',getEvaluationCount());
+               
+        filename = sprintf('GWO-Author-Matlab_%s_vars=%d_run=%d', objfun, D, r);
+        WriteRunToFile(filename, getImprovements());
     end
     
-    writeResultsToFile( "GWO-Author-Matlab_" + objfun +"D"+D, GlobalMins);
+    WriteResultsToFile("GWO-Author-Matlab_" + objfun +"D"+D, GlobalMins);
     
 end
 

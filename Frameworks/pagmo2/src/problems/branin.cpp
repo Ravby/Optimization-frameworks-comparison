@@ -40,6 +40,7 @@ see https://www.gnu.org/licenses/. */
 #include <pagmo/problems/branin.hpp>
 #include <pagmo/s11n.hpp>
 #include <pagmo/types.hpp>
+#include <pagmo/problems/fitness_tracker.hpp>
 
 namespace pagmo
 {
@@ -66,6 +67,8 @@ vector_double branin::fitness(const vector_double &x) const
     auto n = x.size();
 
     f[0] = pow(x[1] - (5.1 / (4 * M_PI * M_PI)) * x[0] * x[0] + (5.0 / M_PI) * x[0] - 6, 2) + 10 * (1 - 1.0 / (8.0 * M_PI)) * cos(x[0]) + 10;
+
+    FitnessTracker::addFitness(f[0]);
 
     return f;
 }

@@ -20,9 +20,40 @@ examples.
 import random
 from math import sin, cos, pi, exp, e, sqrt
 from operator import mul
-from functools import reduce
+from functools import reduce, wraps
 import numpy as np
+import datetime
 
+# Define the wrapper (decorator) for logging
+class LogExecution:
+    evaluationsCount = 0
+    improvements = []
+
+    def __init__(self, func):
+        self.func = func
+        wraps(func)(self)
+
+    def __call__(self, *args, **kwargs):
+        LogExecution.evaluationsCount += 1
+
+        fitness = self.func(*args, **kwargs)
+        if not LogExecution.improvements or fitness < LogExecution.improvements[-1][1]:
+            LogExecution.improvements.append((LogExecution.evaluationsCount, fitness))
+
+        return fitness
+
+    @staticmethod
+    def reset():
+        LogExecution.evaluationsCount = 0
+        LogExecution.improvements = []
+
+    @staticmethod
+    def write_improvements_to_file(filename):
+        with open(filename, 'w') as f:
+            f.write(f"Evaluations,Fitness\n")
+            for eval_num, fitness in LogExecution.improvements:
+                f.write(f"{eval_num},{fitness}\n")
+        LogExecution.reset()
 
 # Unimodal
 def rand(individual):
@@ -63,6 +94,7 @@ def plane(individual):
     return individual[0],
 
 
+@LogExecution
 def sphere(individual):
     r"""Sphere test objective function.
 
@@ -82,6 +114,7 @@ def sphere(individual):
     return sum(gene * gene for gene in individual),
 
 
+@LogExecution
 def sphereShifted(individual):
     r"""Sphere test objective function.
 
@@ -138,7 +171,7 @@ def cigar(individual):
     """
     return individual[0] ** 2 + 1e6 * sum(gene * gene for gene in individual[1:]),
 
-
+@LogExecution
 def rosenbrock(individual):
     r"""Rosenbrock test objective function.
 
@@ -193,6 +226,7 @@ def h1(individual):
 
 #
 # Multimodal
+@LogExecution
 def ackley(individual):
     r"""Ackley test objective function.
 
@@ -217,7 +251,7 @@ def ackley(individual):
     return 20 - 20 * exp(-0.2 * sqrt(1.0 / N * sum(x ** 2 for x in individual))) \
            + e - exp(1.0 / N * sum(cos(2 * pi * x) for x in individual)),
 
-
+@LogExecution
 def ackleyShifted(individual):
     shift = np.array(
         [21.125524221556333, -11.11861062406522, -8.384759722218377, -4.998410532366073, 15.080716791129063,
@@ -263,7 +297,7 @@ def bohachevsky(individual):
     return sum(x ** 2 + 2 * x1 ** 2 - 0.3 * cos(3 * pi * x) - 0.4 * cos(4 * pi * x1) + 0.7
                for x, x1 in zip(individual[:-1], individual[1:])),
 
-
+@LogExecution
 def griewank(individual):
     r"""Griewank test objective function.
 
@@ -287,7 +321,7 @@ def griewank(individual):
     return 1.0 / 4000.0 * sum(x ** 2 for x in individual) - \
            reduce(mul, (cos(x / sqrt(i + 1.0)) for i, x in enumerate(individual)), 1) + 1,
 
-
+@LogExecution
 def griewankShifted(individual):
     shift = np.array([104.94691081342978, -135.6761348470227, 92.81100891955543, -10.87108518188711, 407.63013054172563,
                       -223.31315231746964, -224.56627659185563, -222.7632371161696, -338.7309010063917,
@@ -313,7 +347,7 @@ def griewankShifted(individual):
     return 1.0 / 4000.0 * sum(x ** 2 for x in shifted_individual) - \
            reduce(mul, (cos(x / sqrt(i + 1.0)) for i, x in enumerate(shifted_individual)), 1) + 1,
 
-
+@LogExecution
 def rastrigin(individual):
     r"""Rastrigin test objective function.
 
@@ -336,7 +370,7 @@ def rastrigin(individual):
     return 10 * len(individual) + sum(gene * gene - 10 * \
                                       cos(2 * pi * gene) for gene in individual),
 
-
+@LogExecution
 def rastriginShifted(individual):
     shift = np.array(
         [4.070088073870897, -3.3584914395112166, 2.5276924556298725, 1.373781594176445, -1.8387129521132595,
@@ -410,7 +444,7 @@ def schaffer(individual):
     return sum((x ** 2 + x1 ** 2) ** 0.25 * ((sin(50 * (x ** 2 + x1 ** 2) ** 0.1)) ** 2 + 1.0)
                for x, x1 in zip(individual[:-1], individual[1:])),
 
-
+@LogExecution
 def schwefel(individual):
     r"""Schwefel test objective function.
 
@@ -839,7 +873,7 @@ def sumOfSquares(individual):
         sum += i * (gene ** 2)
     return sum,
 
-
+@LogExecution
 def sumOfSquaresShifted(individual):
     shift = np.array([22.479705250884777, 60.75750080751871, -59.15674324461888, 27.56336400934657, -59.29279403989607,
                       -64.68447838216555, 78.33759532500437, -76.51052473538245, -66.6507114149451, 64.93462028133038,
@@ -864,12 +898,12 @@ def sumOfSquaresShifted(individual):
         sum += i * (gene ** 2)
     return sum,
 
-
+@LogExecution
 def schwefel12(individual):
     return sum([sum(individual[:i]) ** 2
                 for i in range(len(individual))]),
 
-
+@LogExecution
 def schwefel12Shifted(individual):
     shift = np.array([65.90306349157711, 7.223609380925922, 48.06403595428989, -61.23008904674027, -56.996531732952235,
                       -65.67006959079087, 56.81852866354663, -49.51353093024842, -42.403457350576694, 64.22460834371887,
@@ -890,13 +924,13 @@ def schwefel12Shifted(individual):
     shifted_individual = np.array(individual) - shift
     return sum([sum(shifted_individual[:i]) ** 2 for i in range(len(individual))]),
 
-
+@LogExecution
 def sixHumpCamelBack(individual):
     return (4 - 2.1 * individual[0] ** 2 + (individual[0] ** 4) / 3) * individual[0] ** 2 + individual[0] * individual[
         1] + (
                    -4 + 4 * individual[1] ** 2) * individual[1] ** 2,
 
-
+@LogExecution
 def branin(individual):
     a = 1
     b = 5.1 / (4 * np.pi ** 2)
@@ -914,7 +948,7 @@ def branin(individual):
 
     return term1 + term2 + term3,
 
-
+@LogExecution
 def goldsteinPrice(individual):
     term1 = (1 + ((individual[0] + individual[1] + 1) ** 2) * (
             19 - 14 * individual[0] + 3 * individual[0] ** 2 - 14 * individual[1] + 6 * individual[0] * individual[
@@ -926,7 +960,7 @@ def goldsteinPrice(individual):
             individual[1] ** 2))
     return term1 * term2,
 
-
+@LogExecution
 def hartman(individual):
     alpha = [1.0, 1.2, 3.0, 3.2]
     A = np.array([[3.0, 10, 30],
@@ -943,7 +977,7 @@ def hartman(individual):
         res -= alpha[i] * np.exp(-inner)
     return (res,)
 
-
+@LogExecution
 def shekelFoxholes(individual):
     a = [[-32, -32],
          [-16, -32],

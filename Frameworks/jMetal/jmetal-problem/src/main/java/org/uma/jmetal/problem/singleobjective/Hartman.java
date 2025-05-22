@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 import static java.lang.Math.exp;
 import static java.lang.Math.pow;
 
-public class Hartman extends AbstractDoubleProblem {
+public class Hartman extends LoggingDoubleProblem {
 
     private static final double[][] a = {
             {3, 10, 30},
@@ -42,7 +42,7 @@ public class Hartman extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double fitness = 0;
         double sum;

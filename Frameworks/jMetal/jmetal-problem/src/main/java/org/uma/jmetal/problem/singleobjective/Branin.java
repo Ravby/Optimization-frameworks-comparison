@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 import static java.lang.Math.*;
 
-public class Branin extends AbstractDoubleProblem {
+public class Branin extends LoggingDoubleProblem {
 
     public Branin() {
         numberOfObjectives(1);
@@ -29,7 +29,7 @@ public class Branin extends AbstractDoubleProblem {
     }
 
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
 
         double x0 = solution.variables().get(0);
         double x1 = solution.variables().get(1);

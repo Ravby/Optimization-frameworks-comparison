@@ -4,7 +4,7 @@ import DeApp1.de.T_DEOptimizer;
 
 import java.util.ArrayList;
 
-public class Ackley extends DEProblem {
+public class Ackley extends LoggingDEProblem {
 
     public Ackley(int dimensions) {
         this.dim = dimensions;
@@ -23,7 +23,7 @@ public class Ackley extends DEProblem {
     }
 
     @Override
-    public double evaluate(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
+    public double computeFitness(T_DEOptimizer t_DEOptimizer, double[] x, int dim) {
 
         double fitness = 0;
         double a = 20.0, b = 0.2, c = 2 * Math.PI;

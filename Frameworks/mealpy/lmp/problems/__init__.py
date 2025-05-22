@@ -5,6 +5,7 @@ from .AckleyShifted import AckleyShifted
 from .RastriginShifted import RastriginShifted
 from .GriewankShifted import GriewankShifted
 
+from .problemWrapper import ProblemWrapper
 from .Sphere import Sphere
 from .SumOfSquares import SumOfSquares
 from .Schwefel12 import Schwefel12

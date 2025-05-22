@@ -7,7 +7,7 @@ import org.uma.jmetal.problem.doubleproblem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 
 @SuppressWarnings("serial")
-public class Rastrigin extends AbstractDoubleProblem {
+public class Rastrigin extends LoggingDoubleProblem {
 
     public Rastrigin() {
         this(10);
@@ -38,7 +38,7 @@ public class Rastrigin extends AbstractDoubleProblem {
      * Evaluate() method
      */
     @Override
-    public DoubleSolution evaluate(DoubleSolution solution) {
+    public DoubleSolution computeFitness(DoubleSolution solution) {
         int numberOfVariables = numberOfVariables();
 
         double[] x = new double[numberOfVariables];
