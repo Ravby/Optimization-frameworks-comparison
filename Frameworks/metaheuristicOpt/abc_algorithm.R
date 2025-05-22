@@ -95,7 +95,7 @@ abc_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedckleyD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedAckleyD60.txt"
 )
 
 abc_algorithm(
