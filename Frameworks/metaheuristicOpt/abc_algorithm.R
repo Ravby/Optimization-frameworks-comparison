@@ -71,7 +71,7 @@ abc_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShfitedSchwefelD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedSchwefelD60.txt"
 )
 
 abc_algorithm(
@@ -95,7 +95,7 @@ abc_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShfitedckleyD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedckleyD60.txt"
 )
 
 abc_algorithm(

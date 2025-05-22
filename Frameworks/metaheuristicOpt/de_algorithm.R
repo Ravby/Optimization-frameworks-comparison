@@ -116,7 +116,7 @@ de_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "DE-metaheuristicOpt_ShiftedAckleyD30.txt"
+  file_name = "DE-metaheuristicOpt_ShiftedAckleyD60.txt"
 )
 
 de_algorithm(
@@ -131,7 +131,7 @@ de_algorithm(
   lb = -600,
   ub = 600,
   dim = 60,
-  file_name = "DE-metaheuristicOpt_ShiftedGriewankD30.txt"
+  file_name = "DE-metaheuristicOpt_ShiftedGriewankD60.txt"
 )
 
 de_algorithm(

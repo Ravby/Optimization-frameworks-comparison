@@ -117,7 +117,7 @@ ga_algorithm(
   lb = -600,
   ub = 600,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_GriewankD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedGriewankD60.txt"
 )
 
 ga_algorithm(
