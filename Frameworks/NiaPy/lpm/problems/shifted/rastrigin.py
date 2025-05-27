@@ -3,6 +3,8 @@
 """Implementation of Rastrigin function."""
 
 import numpy as np
+
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['ShiftedRastrigin']
@@ -90,6 +92,7 @@ class ShiftedRastrigin(Problem):
         """
         return r'''$f(\mathbf{x}) = 10D + \sum_{i=1}^D \left(x_i^2 -10\cos(2\pi x_i)\right)$'''
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         return 10.0 * self.dimension + np.sum(shifted_x * shifted_x - 10.0 * np.cos(2 * np.pi * shifted_x))

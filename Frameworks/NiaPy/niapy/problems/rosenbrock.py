@@ -3,6 +3,8 @@
 """Rosenbrock problem."""
 
 import numpy as np
+
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['Rosenbrock']
@@ -71,5 +73,6 @@ class Rosenbrock(Problem):
         """
         return r'''$f(\mathbf{x}) = \sum_{i=1}^{D-1} (100 (x_{i+1} - x_i^2)^2 + (x_i - 1)^2)$'''
 
+    @LogExecution
     def _evaluate(self, x):
         return np.sum(100.0 * (x[1:] - x[:-1] ** 2.0) ** 2.0 + (1 - x[:-1]) ** 2.0, axis=0)

@@ -1,5 +1,6 @@
 import numpy as np
 
+from lpm.problems import LogExecution
 from niapy.problems import Problem
 
 
@@ -7,6 +8,7 @@ class Branin(Problem):
     def __init__(self, dimension, lower=np.array([-5, 0]), upper=np.array([10, 15]), *args, **kwargs):
         super().__init__(dimension, lower, upper, *args, **kwargs)
 
+    @LogExecution
     def _evaluate(self, x):
         a = 1
         b = 5.1 / (4 * np.pi ** 2)

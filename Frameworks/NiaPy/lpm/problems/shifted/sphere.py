@@ -3,6 +3,8 @@
 """Sphere problems."""
 
 import numpy as np
+
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['ShiftedSphere', 'Sphere2', 'Sphere3']
@@ -91,6 +93,7 @@ class ShiftedSphere(Problem):
         """
         return r'''$f(\mathbf{x}) = \sum_{i=1}^D x_i^2$'''
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         return np.sum(shifted_x ** 2)

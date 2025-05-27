@@ -2,6 +2,8 @@
 """Sum Squares problem."""
 
 import numpy as np
+
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['ShiftedSumSquares']
@@ -90,6 +92,7 @@ class ShiftedSumSquares(Problem):
         """
         return r'''$f(\mathbf{x}) = \sum_{i=1}^D i x_i^2$'''
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         return np.sum(np.arange(1, self.dimension + 1) * shifted_x ** 2)

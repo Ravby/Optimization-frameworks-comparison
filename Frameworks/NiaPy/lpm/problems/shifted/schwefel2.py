@@ -1,5 +1,6 @@
 import numpy as np
 
+from lpm.problems import LogExecution
 from niapy.problems import Problem
 
 
@@ -29,6 +30,7 @@ class ShiftedSchwefel2(Problem):
             69.06988428571137, 79.06863059997934, 22.41510141643954, 61.96066562216663, -5.6050556467548205
         ])
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         fitness = 0

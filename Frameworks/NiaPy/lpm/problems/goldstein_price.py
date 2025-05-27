@@ -1,3 +1,4 @@
+from lpm.problems import LogExecution
 from niapy.problems import Problem
 
 
@@ -5,6 +6,7 @@ class GoldsteinPrice(Problem):
     def __init__(self, dimension, lower=-2, upper=2, *args, **kwargs):
         super().__init__(dimension, lower, upper, *args, **kwargs)
 
+    @LogExecution
     def _evaluate(self, x):
         term1 = (1 + ((x[0] + x[1] + 1) ** 2) * (
                     19 - 14 * x[0] + 3 * x[0] ** 2 - 14 * x[1] + 6 * x[0] * x[1] + 3 * x[1] ** 2))

@@ -4,6 +4,7 @@
 
 import numpy as np
 
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['ShiftedGriewank', 'ExpandedGriewankPlusRosenbrock']
@@ -94,6 +95,7 @@ class ShiftedGriewank(Problem):
         """
         return r'''$f(\mathbf{x}) = \sum_{i=1}^D \frac{x_i^2}{4000} - \prod_{i=1}^D \cos(\frac{x_i}{\sqrt{i}}) + 1$'''
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         val1 = np.sum(shifted_x * shifted_x / 4000.0)

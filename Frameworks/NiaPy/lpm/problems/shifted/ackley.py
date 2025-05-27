@@ -4,6 +4,7 @@
 
 import numpy as np
 
+from lpm.problems import LogExecution
 from niapy.problems.problem import Problem
 
 __all__ = ['ShiftedAckley']
@@ -103,6 +104,7 @@ class ShiftedAckley(Problem):
                 \sum_{i=1}^D x_i^2}\right) - \exp\left(\frac{1}{D}
                 \sum_{i=1}^D \cos(c\;x_i)\right) + a + \exp(1)$'''
 
+    @LogExecution
     def _evaluate(self, x):
         shifted_x = x - self.shift[:len(x)]
         val1 = np.sum(np.square(shifted_x))

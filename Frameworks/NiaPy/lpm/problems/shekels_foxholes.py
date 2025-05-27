@@ -1,3 +1,4 @@
+from lpm.problems import LogExecution
 from niapy.problems import Problem
 
 
@@ -31,6 +32,7 @@ class ShekelsFoxholes(Problem):
          [16, 32],
          [32, 32]]
 
+    @LogExecution
     def _evaluate(self, x):
         fitness = 0.0
         for j in range(25):

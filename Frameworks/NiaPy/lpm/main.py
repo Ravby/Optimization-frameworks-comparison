@@ -1,9 +1,9 @@
 import numpy as np
 
+from lpm.problems import LogExecution
 from lpm.problems.branin import Branin
 from lpm.problems.goldstein_price import GoldsteinPrice
 from lpm.problems.hartman import Hartman
-from lpm.problems.schwefel2 import Schwefel2
 from lpm.problems.shekels_foxholes import ShekelsFoxholes
 from lpm.problems.shifted.ackley import ShiftedAckley
 from lpm.problems.shifted.griewank import ShiftedGriewank
@@ -18,12 +18,7 @@ from niapy.algorithms.basic import GeneticAlgorithm
 from niapy.algorithms.basic import GreyWolfOptimizer
 from niapy.algorithms.basic import ParticleSwarmAlgorithm
 from niapy.algorithms.basic.de import cross_rand1
-from niapy.problems import Ackley
-from niapy.problems import Griewank
-from niapy.problems import Rastrigin
 from niapy.problems import Rosenbrock
-from niapy.problems import Sphere
-from niapy.problems import SumSquares
 from niapy.task import Task
 
 
@@ -35,6 +30,9 @@ def run_pso(problem, problem_name):
         algorithm = ParticleSwarmAlgorithm(population_size=30, w=0.7, c1=2.0, c2=2.0)
         best_x, best_fit = algorithm.run(task)
         results.append(best_fit)
+        filename_runs = 'runs/PSO-NiaPy_' + problem_name + '_vars=' + str(problem.dimension) + '_run=' + str(
+            i + 1) + '.txt'
+        LogExecution.write_improvements_to_file(filename_runs)
     with open('results/PSO-NiaPy_' + problem_name + 'D' + str(problem.dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
     print("[PSO] " + problem_name + " finish")
@@ -48,6 +46,9 @@ def run_gwo(problem, problem_name):
         algorithm = GreyWolfOptimizer(population_size=30)
         best_x, best_fit = algorithm.run(task)
         results.append(best_fit)
+        filename_runs = 'runs/GWO-NiaPy_' + problem_name + '_vars=' + str(problem.dimension) + '_run=' + str(
+            i + 1) + '.txt'
+        LogExecution.write_improvements_to_file(filename_runs)
     with open('results/GWO-NiaPy_' + problem_name + 'D' + str(problem.dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
     print("[GWO] " + problem_name + " finish")
@@ -61,6 +62,9 @@ def run_ga(problem, problem_name):
         algorithm = GeneticAlgorithm(population_size=100, crossover_rate=0.95, mutation_rate=0.025, tournament_size=2)
         best_x, best_fit = algorithm.run(task)
         results.append(best_fit)
+        filename_runs = 'runs/GA-NiaPy_' + problem_name + '_vars=' + str(problem.dimension) + '_run=' + str(
+            i + 1) + '.txt'
+        LogExecution.write_improvements_to_file(filename_runs)
     with open('results/GA-NiaPy_' + problem_name + 'D' + str(problem.dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
     print("[GA] " + problem_name + " finish")
@@ -75,6 +79,10 @@ def run_de(problem, problem_name):
                                           strategy=cross_rand1)
         best_x, best_fit = algorithm.run(task)
         results.append(best_fit)
+        filename_runs = 'runs/DE-NiaPy_' + problem_name + '_vars=' + str(problem.dimension) + '_run=' + str(
+            i + 1) + '.txt'
+        LogExecution.write_improvements_to_file(filename_runs)
+
     with open('results/DE-NiaPy_' + problem_name + 'D' + str(problem.dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
     print("[DE] " + problem_name + " finish")
@@ -89,10 +97,12 @@ def run_abc(problem, problem_name):
         algorithm = ArtificialBeeColonyAlgorithm(population_size=125, limit=100)
         best_x, best_fit = algorithm.run(task)
         results.append(best_fit)
+        filename_runs = 'runs/ABC-NiaPy_' + problem_name + '_vars=' + str(problem.dimension) + '_run=' + str(
+            i + 1) + '.txt'
+        LogExecution.write_improvements_to_file(filename_runs)
     with open('results/ABC-NiaPy_' + problem_name + 'D' + str(problem.dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
     print("[ABC] " + problem_name + " finish")
-
 
 
 shifted_sphere = ShiftedSphere(dimension=60, lower=-100, upper=100)
@@ -108,13 +118,13 @@ branin = Branin(dimension=2, lower=np.array([-5, 0]), upper=np.array([10, 15]))
 goldstein_price = GoldsteinPrice(dimension=2, lower=-2, upper=2)
 hartman = Hartman(dimension=3, lower=0, upper=1)
 
-"""
+""""""
 run_de(shifted_sphere, 'ShiftedSphere')
 run_ga(shifted_sphere, 'ShiftedSphere')
 run_abc(shifted_sphere, 'ShiftedSphere')
 run_gwo(shifted_sphere, 'ShiftedSphere')
 run_pso(shifted_sphere, 'ShiftedSphere')
-"""
+""""""
 """"""
 run_de(shifted_sum_of_squares, 'ShiftedSumOfSquares')
 run_ga(shifted_sum_of_squares, 'ShiftedSumOfSquares')
@@ -156,15 +166,15 @@ run_ga(rosenbrock, 'Rosenbrock')
 run_abc(rosenbrock, 'Rosenbrock')
 run_gwo(rosenbrock, 'Rosenbrock')
 run_pso(rosenbrock, 'Rosenbrock')
-"""""
-"""""
+""""""
+""""""
 run_de(shekels_foxholes, 'ShekelsFoxholes')
 run_ga(shekels_foxholes, 'ShekelsFoxholes')
 run_abc(shekels_foxholes, 'ShekelsFoxholes')
 run_gwo(shekels_foxholes, 'ShekelsFoxholes')
 run_pso(shekels_foxholes, 'ShekelsFoxholes')
-"""""
-"""""
+""""""
+""""""
 run_de(six_hump_camel_back, 'SixHumpCamelBack')
 run_ga(six_hump_camel_back, 'SixHumpCamelBack')
 run_abc(six_hump_camel_back, 'SixHumpCamelBack')
@@ -191,8 +201,8 @@ run_ga(hartman, 'Hartman')
 run_abc(hartman, 'Hartman')
 run_gwo(hartman, 'Hartman')
 run_pso(hartman, 'Hartman')
-"""
 """"""
+"""
 run_ga(sphere, 'Sphere')
 run_ga(sum_of_squares, 'SumOfSquares')
 run_ga(schwefel2, 'Schwefel')
