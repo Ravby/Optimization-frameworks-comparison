@@ -8,7 +8,8 @@ ga_algorithm <-
            lb,
            ub,
            dim,
-           file_name) {
+           file_name,
+           problem_name) {
     rangeVar <- matrix(c(lb, ub), nrow = 2)
     
     control <-
@@ -30,6 +31,8 @@ ga_algorithm <-
                 rangeVar,
                 control)
       results <- c(results, best.variable[["optimumValue"]])
+      filename_runs <- paste("results/runs/GA-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv")
+      attr(problem, "write_improvements_to_file")(filename_runs)
     }
     
     write.table(
@@ -52,7 +55,8 @@ ga_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedSphereD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedSphereD60.txt",
+  problem_name = "ShiftedSphere"
 )
 
 ga_algorithm(
@@ -65,7 +69,8 @@ ga_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedSumOfSquaresD60.txt",
+  problem_name = "ShiftedSumOfSquares"
 )
 
 ga_algorithm(
@@ -78,7 +83,8 @@ ga_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedSchwefelD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedSchwefelD60.txt",
+  problem_name = "ShiftedSchwefel"
 )
 
 ga_algorithm(
@@ -91,7 +97,8 @@ ga_algorithm(
   lb = -5.12,
   ub = 5.12,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedRastriginD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedRastriginD60.txt",
+  problem_name = "ShiftedRastrigin"
 )
 
 ga_algorithm(
@@ -104,7 +111,8 @@ ga_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedAckleyD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedAckleyD60.txt",
+  problem_name = "ShiftedAckley"
 )
 
 ga_algorithm(
@@ -117,7 +125,8 @@ ga_algorithm(
   lb = -600,
   ub = 600,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_ShiftedGriewankD60.txt"
+  file_name = "GA-metaheuristicOpt_ShiftedGriewankD60.txt",
+  problem_name = "ShiftedGriewank"
 )
 
 ga_algorithm(
@@ -130,7 +139,8 @@ ga_algorithm(
   lb = -30,
   ub = 30,
   dim = 60,
-  file_name = "GA-metaheuristicOpt_RosenbrockD60.txt"
+  file_name = "GA-metaheuristicOpt_RosenbrockD60.txt",
+  problem_name = "Rosenbrock"
 )
 
 ga_algorithm(
@@ -143,7 +153,8 @@ ga_algorithm(
   lb = -65.536,
   ub = 65.536,
   dim = 2,
-  file_name = "GA-metaheuristicOpt_ShekelsFoxholesD2.txt"
+  file_name = "GA-metaheuristicOpt_ShekelsFoxholesD2.txt",
+  problem_name = "ShekelsFoxholes"
 )
 
 ga_algorithm(
@@ -156,7 +167,8 @@ ga_algorithm(
   lb = -5,
   ub = 5,
   dim = 2,
-  file_name = "GA-metaheuristicOpt_SixHumpCamelBackD2.txt"
+  file_name = "GA-metaheuristicOpt_SixHumpCamelBackD2.txt",
+  problem_name = "SixHumpCamelBack"
 )
 
 ga_algorithm(
@@ -169,7 +181,8 @@ ga_algorithm(
   lb = c(-5, 0),
   ub = c(10, 15),
   dim = 2,
-  file_name = "GA-metaheuristicOpt_BraninD2.txt"
+  file_name = "GA-metaheuristicOpt_BraninD2.txt",
+  problem_name = "Branin"
 )
 
 ga_algorithm(
@@ -182,7 +195,8 @@ ga_algorithm(
   lb = -2,
   ub = 2,
   dim = 2,
-  file_name = "GA-metaheuristicOpt_GoldsteinPriceD2.txt"
+  file_name = "GA-metaheuristicOpt_GoldsteinPriceD2.txt",
+  problem_name = "GoldsteinPrice"
 )
 
 ga_algorithm(
@@ -195,5 +209,6 @@ ga_algorithm(
   lb = 0,
   ub = 1,
   dim = 3,
-  file_name = "GA-metaheuristicOpt_HartmanD3.txt"
+  file_name = "GA-metaheuristicOpt_HartmanD3.txt",
+  problem_name = "Hartman"
 )

@@ -7,7 +7,8 @@ abc_algorithm <-
            lb,
            ub,
            dim,
-           file_name) {
+           file_name,
+           problem_name) {
     rangeVar <- matrix(c(lb, ub), nrow = 2)
     
     control <-
@@ -26,6 +27,8 @@ abc_algorithm <-
                 rangeVar,
                 control)
       results <- c(results, best.variable[["optimumValue"]])
+      filename_runs <- paste("results/runs/ABC-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv")
+      attr(problem, "write_improvements_to_file")(filename_runs)
     }
     
     write.table(
@@ -47,7 +50,8 @@ abc_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedSphereD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedSphereD60.txt",
+  problem_name = "ShiftedSphere"
 )
 
 abc_algorithm(
@@ -59,7 +63,8 @@ abc_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedSumOfSquaresD60.txt",
+  problem_name = "ShiftedSumOfSquares"
 )
 
 abc_algorithm(
@@ -71,7 +76,8 @@ abc_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedSchwefelD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedSchwefelD60.txt",
+  problem_name = "ShiftedSchwefel"
 )
 
 abc_algorithm(
@@ -83,7 +89,8 @@ abc_algorithm(
   lb = -5.12,
   ub = 5.12,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedRastriginD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedRastriginD60.txt",
+  problem_name = "ShiftedRastrigin"
 )
 
 abc_algorithm(
@@ -95,7 +102,8 @@ abc_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedAckleyD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedAckleyD60.txt",
+  problem_name = "ShiftedAckley"
 )
 
 abc_algorithm(
@@ -107,7 +115,8 @@ abc_algorithm(
   lb = -600,
   ub = 600,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_ShiftedGriewankD60.txt"
+  file_name = "ABC-metaheuristicOpt_ShiftedGriewankD60.txt",
+  problem_name = "ShiftedGriewank"
 )
 
 # abc_algorithm(
@@ -192,7 +201,8 @@ abc_algorithm(
   lb = -30,
   ub = 30,
   dim = 60,
-  file_name = "ABC-metaheuristicOpt_RosenbrockD60.txt"
+  file_name = "ABC-metaheuristicOpt_RosenbrockD60.txt",
+  problem_name = "Rosenbrock"
 )
 
 abc_algorithm(
@@ -204,7 +214,8 @@ abc_algorithm(
   lb = -65.536,
   ub = 65.536,
   dim = 2,
-  file_name = "ABC-metaheuristicOpt_ShekelsFoxholesD2.txt"
+  file_name = "ABC-metaheuristicOpt_ShekelsFoxholesD2.txt",
+  problem_name = "ShekelsFoxholes"
 )
 
 abc_algorithm(
@@ -216,7 +227,8 @@ abc_algorithm(
   lb = -5,
   ub = 5,
   dim = 2,
-  file_name = "ABC-metaheuristicOpt_SixHumpCamelBackD2.txt"
+  file_name = "ABC-metaheuristicOpt_SixHumpCamelBackD2.txt",
+  problem_name = "SixHumpCamelBack"
 )
 
 abc_algorithm(
@@ -228,7 +240,8 @@ abc_algorithm(
   lb = c(-5, 0),
   ub = c(10, 15),
   dim = 2,
-  file_name = "ABC-metaheuristicOpt_BraninD2.txt"
+  file_name = "ABC-metaheuristicOpt_BraninD2.txt",
+  problem_name = "Branin"
 )
 
 abc_algorithm(
@@ -240,7 +253,8 @@ abc_algorithm(
   lb = -2,
   ub = 2,
   dim = 2,
-  file_name = "ABC-metaheuristicOpt_GoldsteinPriceD2.txt"
+  file_name = "ABC-metaheuristicOpt_GoldsteinPriceD2.txt",
+  problem_name = "GoldsteinPrice"
 )
 
 abc_algorithm(
@@ -252,5 +266,6 @@ abc_algorithm(
   lb = 0,
   ub = 1,
   dim = 3,
-  file_name = "ABC-metaheuristicOpt_HartmanD3.txt"
+  file_name = "ABC-metaheuristicOpt_HartmanD3.txt",
+  problem_name = "Hartman"
 )
