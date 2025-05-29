@@ -6,7 +6,8 @@ gwo_algorithm <-
            lb,
            ub,
            dim,
-           file_name) {
+           file_name,
+           problem_name) {
     rangeVar <- matrix(c(lb, ub), nrow = 2)
     
     control <-
@@ -24,6 +25,8 @@ gwo_algorithm <-
                 rangeVar,
                 control)
       results <- c(results, best.variable[["optimumValue"]])
+      filename_runs <- paste("results/runs/GWO-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv")
+      attr(problem, "write_improvements_to_file")(filename_runs)
     }
     
     write.table(
@@ -44,7 +47,8 @@ gwo_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedSphereD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedSphereD60.txt",
+  problem_name = "ShiftedSphere"
 )
 
 gwo_algorithm(
@@ -55,7 +59,8 @@ gwo_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedSumOfSquaresD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedSumOfSquaresD60.txt",
+  problem_name = "ShiftedSumOfSquares"
 )
 
 gwo_algorithm(
@@ -66,7 +71,8 @@ gwo_algorithm(
   lb = -100,
   ub = 100,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedSchwefelD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedSchwefelD60.txt",
+  problem_name = "ShiftedSchwefel"
 )
 
 gwo_algorithm(
@@ -77,7 +83,8 @@ gwo_algorithm(
   lb = -5.12,
   ub = 5.12,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedRastriginD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedRastriginD60.txt",
+  problem_name = "ShiftedRastrigin"
 )
 
 gwo_algorithm(
@@ -88,7 +95,8 @@ gwo_algorithm(
   lb = -32,
   ub = 32,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedAckleyD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedAckleyD60.txt",
+  problem_name = "ShiftedAckley"
 )
 
 gwo_algorithm(
@@ -99,7 +107,8 @@ gwo_algorithm(
   lb = -600,
   ub = 600,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_ShiftedGriewankD60.txt"
+  file_name = "GWO-metaheuristicOpt_ShiftedGriewankD60.txt",
+  problem_name = "ShiftedGriewank"
 )
 
 gwo_algorithm(
@@ -110,7 +119,8 @@ gwo_algorithm(
   lb = -30,
   ub = 30,
   dim = 60,
-  file_name = "GWO-metaheuristicOpt_RosenbrockD60.txt"
+  file_name = "GWO-metaheuristicOpt_RosenbrockD60.txt",
+  problem_name = "Rosenbrock"
 )
 
 gwo_algorithm(
@@ -121,7 +131,8 @@ gwo_algorithm(
   lb = -65.536,
   ub = 65.536,
   dim = 2,
-  file_name = "GWO-metaheuristicOpt_ShekelsFoxholesD2.txt"
+  file_name = "GWO-metaheuristicOpt_ShekelsFoxholesD2.txt",
+  problem_name = "ShekelsFoxholes"
 )
 
 gwo_algorithm(
@@ -132,7 +143,8 @@ gwo_algorithm(
   lb = -5,
   ub = 5,
   dim = 2,
-  file_name = "GWO-metaheuristicOpt_SixHumpCamelBackD2.txt"
+  file_name = "GWO-metaheuristicOpt_SixHumpCamelBackD2.txt",
+  problem_name = "SixHumpCamelBack"
 )
 
 gwo_algorithm(
@@ -143,7 +155,8 @@ gwo_algorithm(
   lb = c(-5, 0),
   ub = c(10, 15),
   dim = 2,
-  file_name = "GWO-metaheuristicOpt_BraninD2.txt"
+  file_name = "GWO-metaheuristicOpt_BraninD2.txt",
+  problem_name = "Branin"
 )
 
 gwo_algorithm(
@@ -154,7 +167,8 @@ gwo_algorithm(
   lb = -2,
   ub = 2,
   dim = 2,
-  file_name = "GWO-metaheuristicOpt_GoldsteinPriceD2.txt"
+  file_name = "GWO-metaheuristicOpt_GoldsteinPriceD2.txt",
+  problem_name = "GoldsteinPrice"
 )
 
 gwo_algorithm(
@@ -165,5 +179,6 @@ gwo_algorithm(
   lb = 0,
   ub = 1,
   dim = 3,
-  file_name = "GWO-metaheuristicOpt_HartmanD3.txt"
+  file_name = "GWO-metaheuristicOpt_HartmanD3.txt",
+  problem_name = "Hartman"
 )

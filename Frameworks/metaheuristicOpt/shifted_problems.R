@@ -1,4 +1,4 @@
-shifted_sphere <- function(xx)
+shifted_sphere <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -62,10 +62,10 @@ shifted_sphere <- function(xx)
   y <- sum
   
   return(y)
-}
+})
 
 
-shifted_sum_of_squares <- function(xx)
+shifted_sum_of_squares <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -130,9 +130,9 @@ shifted_sum_of_squares <- function(xx)
   y <- sum
   
   return(y)
-}
+})
 
-shifted_schwefel2 <- function(xx) {
+shifted_schwefel2 <- log_execution(function(xx) {
   # number_of_variables <- length(xx)
   # fitness <- 0
   # for (i in 1:length(xx)) {
@@ -172,9 +172,9 @@ shifted_schwefel2 <- function(xx) {
   fitness <- sum(cumsum(shifted_x) ^ 2)
   
   return(fitness)
-}
+})
 
-shifted_rastrigin <- function(xx)
+shifted_rastrigin <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -240,9 +240,9 @@ shifted_rastrigin <- function(xx)
   y <- 10 * d + sum
   
   return(y)
-}
+})
 
-shifted_ackley <- function(xx,
+shifted_ackley <- log_execution(function(xx,
                    a = 20,
                    b = 0.2,
                    c = 2 * pi)
@@ -318,9 +318,9 @@ shifted_ackley <- function(xx,
   y <- term1 + term2 + a + exp(1)
   
   return(y)
-}
+})
 
-shifted_griewank <- function(xx)
+shifted_griewank <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -385,4 +385,4 @@ shifted_griewank <- function(xx)
   
   y <- sum - prod + 1
   return(y)
-}
+})

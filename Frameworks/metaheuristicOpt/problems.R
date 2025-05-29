@@ -1,4 +1,4 @@
-sphere <- function(xx)
+sphere <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -36,10 +36,10 @@ sphere <- function(xx)
   
   y <- sum
   return(y)
-}
+})
 
 
-sum_of_squares <- function(xx)
+sum_of_squares <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -78,9 +78,9 @@ sum_of_squares <- function(xx)
   
   y <- sum
   return(y)
-}
+})
 
-schwefel2 <- function(xx) {
+schwefel2 <- log_execution(function(xx) {
   # number_of_variables <- length(xx)
   # fitness <- 0
   # for (i in 1:length(xx)) {
@@ -93,9 +93,9 @@ schwefel2 <- function(xx) {
   # return(fitness)
   fitness <- sum(cumsum(xx) ^ 2)
   return(fitness)
-}
+})
 
-rastrigin <- function(xx)
+rastrigin <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -135,9 +135,9 @@ rastrigin <- function(xx)
   
   y <- 10 * d + sum
   return(y)
-}
+})
 
-ackley <- function(xx,
+ackley <- log_execution(function(xx,
                    a = 20,
                    b = 0.2,
                    c = 2 * pi)
@@ -187,9 +187,9 @@ ackley <- function(xx,
   
   y <- term1 + term2 + a + exp(1)
   return(y)
-}
+})
 
-griewank <- function(xx)
+griewank <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -229,9 +229,9 @@ griewank <- function(xx)
   
   y <- sum - prod + 1
   return(y)
-}
+})
 
-rosenbrock <- function(xx)
+rosenbrock <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -273,9 +273,9 @@ rosenbrock <- function(xx)
   
   y <- sum
   return(y)
-}
+})
 
-shekels_foxholes <- function(xx) {
+shekels_foxholes <- log_execution(function(xx) {
   # My version:
   # shekels_foxholes <- function(xx) {
   #   a <- matrix(c(-32, -32, -16, -32, 0, -32, 16, -32, 32, -32, -32, -16, -16, -16, 0, -16, 16, -16, 32, -16, -32, 0, -16, 0, 0, 16, 0, 32, 0, -32, 16, -16, 16, 0, 16, 16, 16, 32, -16, 32, -32, 32, -16, 32, 0, 32, 16, 32, 32), nrow = 25, byrow = TRUE)
@@ -327,19 +327,19 @@ shekels_foxholes <- function(xx) {
       byrow = TRUE
     )
   sum(1 / (rowSums((xx - a) ^ 6) + 1:25)) + 1 / 500
-}
+})
 
-six_hump_camel_back <- function(xx) {
+six_hump_camel_back <- log_execution(function(xx) {
   x1 <- xx[1]
   x2 <- xx[2]
   fitness <-
     4 * x1 ^ 2 - 2.1 * x1 ^ 4 + (1.0 / 3.0) * x1 ^ 6 + x1 * x2 - 4 * x2 ^ 2 + 4 * x2 ^
     4
   return(fitness)
-}
+})
 
 branin <-
-  function(xx,
+  log_execution(function(xx,
            a = 1,
            b = 5.1 / (4 * pi ^ 2),
            c = 5 / pi,
@@ -393,9 +393,9 @@ branin <-
     
     y <- term1 + term2 + s
     return(y)
-  }
+  })
 
-goldstein_price <- function(xx)
+goldstein_price <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -446,9 +446,9 @@ goldstein_price <- function(xx)
   
   y <- fact1 * fact2
   return(y)
-}
+})
 
-hartman_3d <- function(xx)
+hartman_3d <- log_execution(function(xx)
 {
   ##########################################################################
   #
@@ -508,4 +508,4 @@ hartman_3d <- function(xx)
   
   y <- -outer
   return(y)
-}
+})
