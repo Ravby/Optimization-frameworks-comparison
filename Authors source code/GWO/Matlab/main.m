@@ -69,6 +69,25 @@ functions = {
     {'Hartman', 3, ones(1,3)*1.0, ones(1,3)*(0.0)}
 };
 
+%test functions
+% for f = 1:length(functions)
+%     objfun = functions{f}{1};
+%     D = functions{f}{2};
+%     ub = functions{f}{3};
+%     lb = functions{f}{4};
+%   
+%     fitnessFunc = str2func(objfun);
+%     
+%     position = ones(1,D);
+%     fitness=feval(fitnessFunc,position);
+% 
+%     if abs(fitness) >= 1e6
+%         fprintf('Problem: %s\nFitness at all ones: %.10E\n\n', objfun, fitness);
+%     else
+%         fprintf('Problem: %s\nFitness at all ones: %.10f\n\n', objfun, fitness);
+%     end
+% end
+
 for f = 1:length(functions)
     objfun = functions{f}{1};
     D = functions{f}{2};

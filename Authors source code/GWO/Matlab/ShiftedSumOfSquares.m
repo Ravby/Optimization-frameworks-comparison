@@ -30,7 +30,7 @@ shifted_x = x - shift;
 fitness = zeros(Nind,1);
 for n = 1:Nind
     for i = 1:Nvar
-        fitness(n) = fitness(n) + (i + 1) * shifted_x(n,i)^2;
+        fitness(n) = fitness(n) + i * shifted_x(n,i)^2;
     end
 end
 
