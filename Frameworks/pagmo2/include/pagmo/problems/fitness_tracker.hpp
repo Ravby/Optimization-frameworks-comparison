@@ -45,6 +45,8 @@ public:
             return;
         }
 
+        outFile << std::fixed << std::setprecision(6);
+
         if (fitnessMap.empty()) {
             outFile << "No fitness evaluations recorded." << std::endl;
         } else {

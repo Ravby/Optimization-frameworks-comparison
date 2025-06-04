@@ -52,7 +52,7 @@ class LogExecution:
         with open(filename, 'w') as f:
             f.write(f"Evaluations,Fitness\n")
             for eval_num, fitness in LogExecution.improvements:
-                f.write(f"{eval_num},{fitness}\n")
+                f.write(f"{eval_num},{fitness[0]}\n")
         LogExecution.reset()
 
 # Unimodal
@@ -867,6 +867,7 @@ def dent(individual, lambda_=0.85):
     return f1, f2,
 
 
+@LogExecution
 def sumOfSquares(individual):
     sum = 0
     for i, gene in enumerate(individual):

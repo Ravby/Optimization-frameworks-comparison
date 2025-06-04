@@ -78,7 +78,7 @@ def main(numOfDim, lb, ub, problem):
     # The CMA-ES algorithm takes a population of one individual as argument
     # The centroid is set to a vector of 5.0 see http://www.lri.fr/~hansen/cmaes_inmatlab.html
     # for more details about the rastrigin and other tests for CMA-ES    
-    strategy = cma.Strategy(centroid=toolbox.individual(), sigma=0.5, lambda_=20*numOfDim)
+    strategy = cma.Strategy(centroid=toolbox.individual(), sigma=0.5, lambda_=popSize)
     toolbox.register("generate", strategy.generate, creator.Individual)
     toolbox.register("update", strategy.update)
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
             best_fitnesses[r] = best_fitness
 
             filename = directoryPathRuns + "CMA-ES" + '-' + frameworkName + '_' + problemNames[
-                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r) + ".csv"
+                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r + 1) + ".csv"
             LogExecution.write_improvements_to_file(filename)
 
             print("Best fitness: " + str(best_fitness))
