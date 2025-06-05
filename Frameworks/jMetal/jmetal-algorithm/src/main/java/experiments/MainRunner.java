@@ -64,11 +64,17 @@ public class MainRunner {
 
             for (int i = 0; i < NUMBER_OF_RUNS; i++) {
                 problem.reset();
+                List<Double> variables = problem.createSolution().variables();
+                double[] x0 = new double[variables.size()];
+                for (int j = 0; j < variables.size(); j++) {
+                    x0[j] = variables.get(j);
+                }
                 CovarianceMatrixAdaptationEvolutionStrategy.Builder
                         builder = new CovarianceMatrixAdaptationEvolutionStrategy.Builder(problem)
                         .setMaxEvaluations(MAX_EVALUATIONS)
                         .setLambda(30) //population size
-                        .setSigma(0.5);
+                        .setSigma(0.5)
+                        .setTypicalX(x0);
 
                 algorithm = builder.build();
 
