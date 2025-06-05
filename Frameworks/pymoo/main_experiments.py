@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 import numpy as np
 import time
-from pymoo.algorithms.soo.nonconvex.cmaes import CMAES
+from pymoo.algorithms.soo.nonconvex.cmaes import CMAES, SimpleCMAES
 from pymoo.algorithms.soo.nonconvex.de import DE
 from pymoo.algorithms.soo.nonconvex.ga import GA
 from pymoo.algorithms.soo.nonconvex.pso import PSO
@@ -12,6 +12,7 @@ from pymoo.operators.mutation.pm import PM
 from pymoo.optimize import minimize
 import pymoo.gradient.toolbox as anp
 from pathlib import Path
+import cma
 
 # Parameters
 number_of_runs = 50
@@ -454,13 +455,14 @@ class Hartman(LoggingProblem):
         return np.array([0.114614, 0.555649, 0.852547])
 
 
-#problem = ShiftedProblem(Schwefel(60), shift_schwefel)
-# problem = Schwefel(60)
-# x = np.ones((1, 60))
-#x = np.asarray(shift_schwefel)[:60].reshape(1, -1)
-#out = {}
-#problem._evaluate(x, out)
-#print(out["F"])
+# Wrapper function
+def wrap_pymoo_problem(problem):
+    def objective_function(x):
+        x_2d = np.array(x)[None, :]
+        out = {}
+        problem._evaluate(x_2d, out)
+        return out["F"][0]
+    return objective_function
 
 def write_results_to_file(filename, results):
     project_dir = Path.cwd()
@@ -504,6 +506,24 @@ problems = [
     Hartman()
 ]
 
+#Validate test functions
+#for problem in problems:
+#    name = problem.name()
+#    n_dimensions = problem.n_var
+#    x_ones = np.ones(problem.n_var)
+#    f_ones = problem.evaluate(x_ones)
+#    print(f"Problem: {name}")
+#    print(f"Fitness at all ones: {f_ones}")
+#    print()
+
+#problem = ShiftedProblem(Schwefel(60), shift_schwefel)
+# problem = Schwefel(60)
+# x = np.ones((1, 60))
+#x = np.asarray(shift_schwefel)[:60].reshape(1, -1)
+#out = {}
+#problem._evaluate(x, out)
+#print(out["F"])
+
 start_time = time.perf_counter()
 
 for problem in problems:
@@ -534,9 +554,33 @@ for problem in problems:
     results = []
     for i in range(number_of_runs):
         problem.reset()
-        algorithm = CMAES(x0=np.random.random(problem.n_var), pop_size=30, sigma=0.5)
+        xl, xu = problem.bounds()
+        x0 = np.random.uniform(xl, xu, problem.n_var)
+
+        #------------- Run CMAES package directly ----------------
+        #options = {
+        #    'popsize': 30,
+        #    'bounds': [xl, xu],
+        #    'maxfevals': max_evaluations,
+        #    'verb_disp': 0,
+        #    'verb_filenameprefix': '',  # Disable file output
+        #}
+        #objective_func = wrap_pymoo_problem(problem)
+        #xopt, es = cma.fmin2(objective_func, x0, 0.5, options)
+        #results.append(es.result.fbest)
+        #----------------------------------------------------------
+
+        options = {
+            'popsize': 30
+        }
+        algorithm = SimpleCMAES(x0=np.random.random(problem.n_var), sigma=0.5, normalize=False, opts=options)
+        #algorithm = CMAES(x0=np.random.random(problem.n_var), pop_size=30, sigma=0.5)
         sol = minimize(problem, algorithm, ('n_eval', max_evaluations), verbose=False)
         results.append(sol.F[0])
+
+        #last_fitness_value = problem.get_improvements()[-1][1]
+        #if sol.F[0] != last_fitness_value:
+        #    print("Fitness value does not match")
         filename = f"CMA-ES-pymoo_{problem.name()}_vars={problem.n_var}_run={i + 1}.csv"
         write_runs_to_file(filename, problem.get_improvements())
     write_results_to_file(f"CMA-ES-pymoo_{problem.name()}D{problem.n_var}.txt", results)
