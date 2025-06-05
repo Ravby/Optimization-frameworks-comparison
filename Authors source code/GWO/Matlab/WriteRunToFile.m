@@ -23,7 +23,7 @@ function WriteRunToFile(name, improvements)
         bw.newLine();
         % Write improvements
         for i = 1:size(improvements, 1)
-            bw.write(sprintf('%d,%f', improvements(i, 1), improvements(i, 2)));
+            bw.write(sprintf('%d,%.8e', improvements(i, 1), improvements(i, 2)));
             bw.newLine();
         end
         bw.close();

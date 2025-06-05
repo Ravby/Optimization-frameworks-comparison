@@ -27,13 +27,15 @@ shift = shift(1:Nvar);
 
 shifted_x = x - shift;
 
-fitness = zeros(Nind,1);
+fitness = zeros(Nind, 1);
 for n = 1:Nind
-    sum_ = 0;
-    for j = 1:Nvar
-        sum_ = sum_ + shifted_x(n,j);
+    for i = 1:Nvar
+        sum_ = 0;
+        for j = 1:i-1
+            sum_ = sum_ + shifted_x(n, i);
+        end
+        fitness(n) = fitness(n) + sum_^2;
     end
-    fitness(n) = fitness(n) + sum_^2;
 end
 
 ObjVal = fitness;

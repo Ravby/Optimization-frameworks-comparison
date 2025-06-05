@@ -138,7 +138,7 @@ if __name__ == "__main__":
             best_fitnesses[r] = best.fitness.values[0]
 
             filename = directoryPathRuns + "DE" + '-' + frameworkName + '_' + problemNames[
-                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r) + ".csv"
+                j] + "_vars=" + str(numOfDims[j]) + "_run=" + str(r + 1) + ".csv"
             LogExecution.write_improvements_to_file(filename)
 
             print("Best fitness: " + str(best.fitness.values[0]))

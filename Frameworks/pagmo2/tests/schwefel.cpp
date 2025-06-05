@@ -51,13 +51,13 @@ int main()
     algorithm algSGA{sga(149, 0.95, 20., 0.025, 20, 2, "sbx","polynomial")};
     algorithm algCMAES{cmaes(499)};
 
-    //std::vector<algorithm> algorithms{algABC, algPSO, algDE, algGWO, algSGA, algCMAES};
-    //std::vector<std::string> algorithmNames{"ABC", "PSO", "DE", "GWO", "GA", "CMA-ES"};
-    //std::vector<int> numOfIndividuals{125, 30, 50, 30, 100, 30};
+    std::vector<algorithm> algorithms{algABC, algPSO, algDE, algGWO, algSGA, algCMAES};
+    std::vector<std::string> algorithmNames{"ABC", "PSO", "DE", "GWO", "GA", "CMA-ES"};
+    std::vector<int> numOfIndividuals{125, 30, 50, 30, 100, 30};
 
-    std::vector<algorithm> algorithms{ algCMAES};
-    std::vector<std::string> algorithmNames{"CMA-ES"};
-    std::vector<int> numOfIndividuals{30};
+    //std::vector<algorithm> algorithms{ algCMAES};
+    //std::vector<std::string> algorithmNames{"CMA-ES"};
+    //std::vector<int> numOfIndividuals{30};
 
 
     // Problems
@@ -94,13 +94,14 @@ int main()
         probRosenbrock,      probShekelFoxHoles,   probCamelBack,     probBranin,
         probFoldsteinPrice, probHartman};
 
+
     std::vector<std::string> problemNames{
         "Sphere",          "SumOfSquares",     "Schwefel",         "Rastrigin",
         "Ackley",          "Griewank",         "ShiftedSphere",    "ShiftedSumOfSquares",
         "ShiftedSchwefel", "ShiftedRastrigin", "ShiftedAckley",    "ShiftedGriewank",
         "Rosenbrock",      "ShekelsFoxholes",  "SixHumpCamelBack", "Branin",
         "GoldsteinPrice",  "Hartman",
-    }; 
+    };
 
     std::vector<int> dims{60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 2, 2, 2, 2, 3}; 
 
