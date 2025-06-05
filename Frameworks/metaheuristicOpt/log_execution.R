@@ -4,15 +4,18 @@ log_execution <- function(func) {
   log_env <- new.env()
   log_env$evaluationsCount <- 0
   log_env$improvements <- list()
+  log_env$results <- list()
   
   # Wrapper function to log evaluations and improvements
   wrapped_func <- function(...) {
     log_env$evaluationsCount <- log_env$evaluationsCount + 1
     fitness <- func(...)
     
-    # Log improvements if fitness is better (assuming minimization)
-    if (length(log_env$improvements) == 0 || fitness < log_env$improvements[[length(log_env$improvements)]][[2]]) {
-      log_env$improvements[[length(log_env$improvements) + 1]] <- c(log_env$evaluationsCount, fitness)
+    if (log_env$evaluationsCount <= 15000) {
+      # Log improvements if fitness is better (assuming minimization)
+      if (length(log_env$improvements) == 0 || fitness < log_env$improvements[[length(log_env$improvements)]][[2]]) {
+        log_env$improvements[[length(log_env$improvements) + 1]] <- c(log_env$evaluationsCount, fitness)
+      }
     }
     
     return(fitness)

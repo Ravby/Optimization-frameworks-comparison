@@ -25,6 +25,7 @@ de_algorithm <-
     results <- c()
     
     for (i in 1:runs) {
+      attr(problem, "reset")()  # Explicitly reset before run
       best.variable <-
         metaOpt(problem,
                 optimType = "MIN",
@@ -33,7 +34,7 @@ de_algorithm <-
                 rangeVar,
                 control)
       results <- c(results, best.variable[["optimumValue"]])
-      filename_runs <- paste("results/runs/DE-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv")
+      filename_runs <- paste("results/runs/DE-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv", sep = "")
       attr(problem, "write_improvements_to_file")(filename_runs)
     }
     

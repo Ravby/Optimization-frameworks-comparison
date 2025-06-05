@@ -29,7 +29,7 @@ def run_pso(problem, params, problem_name, dimension):
         recommendation = optimizer.minimize(problem)
         results.append(recommendation.loss)
         filename_runs = 'runs/PSO-nevergrad_' + problem_name + '_vars=' + str(dimension) + '_run=' + str(
-            i + 1) + '.txt'
+            i + 1) + '.csv'
         LogExecution.write_improvements_to_file(filename_runs)
     with open('results/PSO-nevergrad_' + problem_name + 'D' + str(dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
@@ -44,7 +44,7 @@ def run_de(problem, params, problem_name, dimension):
         optimizer = ng.optimizers.DE(parametrization=params, budget=15000)
         recommendation = optimizer.minimize(problem)
         results.append(recommendation.loss)
-        filename_runs = 'runs/DE-nevergrad_' + problem_name + '_vars=' + str(dimension) + '_run=' + str(i + 1) + '.txt'
+        filename_runs = 'runs/DE-nevergrad_' + problem_name + '_vars=' + str(dimension) + '_run=' + str(i + 1) + '.csv'
         LogExecution.write_improvements_to_file(filename_runs)
     with open('results/DE-nevergrad_' + problem_name + 'D' + str(dimension) + '.txt', 'w') as outfile:
         outfile.write("\n".join(str(result) for result in results))
@@ -64,20 +64,20 @@ def run_cmaes(problem, params, problem_name, dimension):
     print("[CMA-ES] " + problem_name + " finish")
 
 
-#run_pso(problems.shifted_sphere, params1, "ShiftedSphere", 60)
-#run_pso(problems.shifted_sum_squares, params1, "ShiftedSumOfSquares", 60)
-#run_pso(problems.shifted_schwefel2, params1, "ShiftedSchwefel", 60)
-#run_pso(problems.shifted_rastrigin, params_rastrigin, "ShiftedRastrigin", 60)
-#run_pso(problems.shifted_ackley, params_ackley, "ShiftedAckley", 60)
-#run_pso(problems.shifted_griewank, params_griewank, "ShiftedGriewank", 60)
-#run_pso(problems.rosenbrock, params_rosenbrock, "Rosenbrock", 60)
-#run_pso(problems.shekels_foxholes, params_shekels_foxholes, "ShekelsFoxholes", 2)
-#run_pso(problems.six_hump_camel_back, params_sixhump_camelback, "SixHumpCamelBack", 2)
-#run_pso(problems.branin, params_branin, "Branin", 2)
-#run_pso(problems.goldstein_price, params_goldstein_price, "GoldsteinPrice", 2)
-#run_pso(problems.hartman, params_hartman, "Hartman", 3)
+# run_pso(problems.shifted_sphere, params1, "ShiftedSphere", 60)
+# run_pso(problems.shifted_sum_squares, params1, "ShiftedSumOfSquares", 60)
+# run_pso(problems.shifted_schwefel2, params1, "ShiftedSchwefel", 60)
+# run_pso(problems.shifted_rastrigin, params_rastrigin, "ShiftedRastrigin", 60)
+# run_pso(problems.shifted_ackley, params_ackley, "ShiftedAckley", 60)
+# run_pso(problems.shifted_griewank, params_griewank, "ShiftedGriewank", 60)
+# run_pso(problems.rosenbrock, params_rosenbrock, "Rosenbrock", 60)
+# run_pso(problems.shekels_foxholes, params_shekels_foxholes, "ShekelsFoxholes", 2)
+# run_pso(problems.six_hump_camel_back, params_sixhump_camelback, "SixHumpCamelBack", 2)
+# run_pso(problems.branin, params_branin, "Branin", 2)
+# run_pso(problems.goldstein_price, params_goldstein_price, "GoldsteinPrice", 2)
+# run_pso(problems.hartman, params_hartman, "Hartman", 3)
 
-#run_cmaes(problems.shifted_sphere, params1, "ShiftedSphere", 60)
+# run_cmaes(problems.shifted_sphere, params1, "ShiftedSphere", 60)
 
 run_de(problems.shifted_sphere, params1, "ShiftedSphere", 60)
 run_de(problems.shifted_sum_squares, params1, "ShiftedSumOfSquares", 60)

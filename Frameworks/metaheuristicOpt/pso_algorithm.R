@@ -26,6 +26,8 @@ pso_algorithm <-
     results <- c()
     
     for (i in 1:runs) {
+      attr(problem, "reset")()  # Explicitly reset before run
+      #browser()
       best.variable <-
         metaOpt(problem,
                 optimType = "MIN",
@@ -33,8 +35,9 @@ pso_algorithm <-
                 dim,
                 rangeVar,
                 control)
+      #browser()
       results <- c(results, best.variable[["optimumValue"]])
-      filename_runs <- paste("results/runs/PSO-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv")
+      filename_runs <- paste("results/runs/PSO-metaheuristicOpt_", problem_name, "_vars=", dim, "_run=", i, ".csv", sep = "")
       attr(problem, "write_improvements_to_file")(filename_runs)
     }
     
