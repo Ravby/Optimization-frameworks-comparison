@@ -9,7 +9,7 @@ public class ValidateTestProblems {
 
     public static void main(String[] args) {
 
-        final int NUMBER_OF_DIMENSIONS = 50;
+        final int NUMBER_OF_DIMENSIONS = 60;
 
         ArrayList<LoggingDoubleProblem> problems = new ArrayList<>();
         problems.add(new ShiftedSphere(NUMBER_OF_DIMENSIONS));
@@ -40,7 +40,8 @@ public class ValidateTestProblems {
             double[] ones = new double[problem.getNumberOfDimensions()];
             Arrays.fill(ones, 1.0);
             double optimumAtOnes = problem.eval(ones);
-            System.out.println("Fitness at all ones: " + optimumAtOnes);
+            System.out.println("Fitness at all ones: " + optimumAtOnes + "\n");
+
         }
     }
 }
