@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
 }
 
 group 'si.um.feri.lpm'
@@ -17,10 +18,23 @@ dependencies {
     implementation 'org.jfree:jfreesvg:3.3'
     implementation 'org.jfree:jcommon:1.0.24'
     implementation 'org.jfree:jfreechart:1.0.19'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
 
     implementation project(':EARS')
 }
 
 test {
     useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
