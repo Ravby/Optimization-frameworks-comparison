@@ -11,12 +11,12 @@ log_execution <- function(func) {
     log_env$evaluationsCount <- log_env$evaluationsCount + 1
     fitness <- func(...)
     
-    if (log_env$evaluationsCount <= 15000) {
+  #if (log_env$evaluationsCount <= 15000) {
       # Log improvements if fitness is better (assuming minimization)
       if (length(log_env$improvements) == 0 || fitness < log_env$improvements[[length(log_env$improvements)]][[2]]) {
         log_env$improvements[[length(log_env$improvements) + 1]] <- c(log_env$evaluationsCount, fitness)
       }
-    }
+   #}
     
     return(fitness)
   }

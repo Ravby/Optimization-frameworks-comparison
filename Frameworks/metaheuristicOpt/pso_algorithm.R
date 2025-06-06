@@ -54,7 +54,7 @@ runs = 50
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -69,7 +69,22 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = sphere,
+  lb = -100,
+  ub = 100,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_SphereD60.txt",
+  problem_name = "Sphere"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -84,7 +99,22 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = sum_of_squares,
+  lb = -100,
+  ub = 100,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_SumOfSquaresD60.txt",
+  problem_name = "SumOfSquares"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -99,7 +129,22 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = schwefel2,
+  lb = -100,
+  ub = 100,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_SchwefelD60.txt",
+  problem_name = "Schwefel"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -114,7 +159,22 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = rastrigin,
+  lb = -5.12,
+  ub = 5.12,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_RastriginD60.txt",
+  problem_name = "Rastrigin"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -126,10 +186,26 @@ pso_algorithm(
   problem_name = "ShiftedAckley"
 )
 
+
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = ackley,
+  lb = -32,
+  ub = 32,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_AckleyD60.txt",
+  problem_name = "Ackley"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -144,7 +220,22 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
+  omega = 0.7,
+  c1 = 2,
+  c2 = 2,
+  problem = griewank,
+  lb = -600,
+  ub = 600,
+  dim = 60,
+  file_name = "PSO-metaheuristicOpt_GriewankD60.txt",
+  problem_name = "Griewank"
+)
+
+pso_algorithm(
+  runs = runs,
+  pop_size = 30,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -159,7 +250,7 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -174,7 +265,7 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -189,7 +280,7 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -204,7 +295,7 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
@@ -219,7 +310,7 @@ pso_algorithm(
 pso_algorithm(
   runs = runs,
   pop_size = 30,
-  iterations = 500,
+  iterations = 8,
   omega = 0.7,
   c1 = 2,
   c2 = 2,
