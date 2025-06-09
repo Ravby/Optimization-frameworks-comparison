@@ -51,7 +51,7 @@ runs = 50
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -67,7 +67,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -83,7 +83,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -99,7 +99,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -115,7 +115,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -131,7 +131,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -147,7 +147,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -163,7 +163,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -179,7 +179,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -195,7 +195,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -211,7 +211,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",
@@ -227,7 +227,7 @@ de_algorithm(
 de_algorithm(
   runs = runs,
   pop_size = 50,
-  iterations = 300,
+  iterations = 99,
   F = 0.5,
   CR = 0.9,
   variant = "classical",

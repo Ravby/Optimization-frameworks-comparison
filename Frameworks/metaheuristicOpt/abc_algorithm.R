@@ -45,7 +45,7 @@ runs = 50
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_sphere,
   lb = -100,
@@ -58,7 +58,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_sum_of_squares,
   lb = -100,
@@ -71,7 +71,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_schwefel2,
   lb = -100,
@@ -84,7 +84,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_rastrigin,
   lb = -5.12,
@@ -97,7 +97,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_ackley,
   lb = -32,
@@ -110,7 +110,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shifted_griewank,
   lb = -600,
@@ -123,7 +123,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = sphere,
 #   lb = -100,
@@ -135,7 +135,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = sum_of_squares,
 #   lb = -100,
@@ -147,7 +147,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = schwefel2,
 #   lb = -100,
@@ -159,7 +159,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = rastrigin,
 #   lb = -5.12,
@@ -171,7 +171,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = ackley,
 #   lb = -32,
@@ -183,7 +183,7 @@ abc_algorithm(
 # abc_algorithm(
 #   runs = runs,
 #   pop_size = 125,
-#   iterations = 120,
+#   iterations = 32,
 #   limit = 100,
 #   problem = griewank,
 #   lb = -600,
@@ -196,7 +196,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = rosenbrock,
   lb = -30,
@@ -209,7 +209,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = shekels_foxholes,
   lb = -65.536,
@@ -222,7 +222,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = six_hump_camel_back,
   lb = -5,
@@ -235,7 +235,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = branin,
   lb = c(-5, 0),
@@ -248,7 +248,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = goldstein_price,
   lb = -2,
@@ -261,7 +261,7 @@ abc_algorithm(
 abc_algorithm(
   runs = runs,
   pop_size = 125,
-  iterations = 120,
+  iterations = 32,
   limit = 100,
   problem = hartman_3d,
   lb = 0,

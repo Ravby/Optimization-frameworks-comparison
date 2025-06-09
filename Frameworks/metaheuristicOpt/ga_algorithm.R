@@ -49,7 +49,7 @@ runs = 50
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_sphere,
@@ -63,7 +63,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_sum_of_squares,
@@ -77,7 +77,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_schwefel2,
@@ -91,7 +91,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_rastrigin,
@@ -105,7 +105,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_ackley,
@@ -119,7 +119,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shifted_griewank,
@@ -133,7 +133,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = rosenbrock,
@@ -147,7 +147,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = shekels_foxholes,
@@ -161,7 +161,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = six_hump_camel_back,
@@ -175,7 +175,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = branin,
@@ -189,7 +189,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = goldstein_price,
@@ -203,7 +203,7 @@ ga_algorithm(
 ga_algorithm(
   runs = runs,
   pop_size = 100,
-  iterations = 150,
+  iterations = 76,
   pm = 0.025,
   pc = 0.95,
   problem = hartman_3d,
