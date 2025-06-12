@@ -1,43 +1,55 @@
 TrueSkill One-On-One rating:
-ABC-pagmo2 - Mean(μ)=-56.31, Std-Dev(σ)=0.78 RI=[-57.86, -54.76]
-ABC-EARS - Mean(μ)=-58.03, Std-Dev(σ)=0.77 RI=[-59.57, -56.49]
-ABC-Author-Matlab - Mean(μ)=-58.14, Std-Dev(σ)=0.78 RI=[-59.69, -56.59]
-ABC-NiaPy - Mean(μ)=-59.8, Std-Dev(σ)=0.78 RI=[-61.36, -58.25]
-ABC-MEALPY - Mean(μ)=-60.99, Std-Dev(σ)=0.79 RI=[-62.56, -59.41]
-ABC-PlatEMO - Mean(μ)=-62.11, Std-Dev(σ)=0.8 RI=[-63.72, -60.51]
+ABC-PlatEMO - Mean(mu)=-115.15, Std-Dev(sigma)=0.78 RI=[-116.72, -113.58]
+ABC-EARS - Mean(mu)=-115.54, Std-Dev(sigma)=0.77 RI=[-117.08, -114.01]
+ABC-NiaPy - Mean(mu)=-116.35, Std-Dev(sigma)=0.77 RI=[-117.9, -114.8]
+ABC-Author-Matlab - Mean(mu)=-117.17, Std-Dev(sigma)=0.78 RI=[-118.74, -115.61]
+ABC-MEALPY - Mean(mu)=-117.51, Std-Dev(sigma)=0.78 RI=[-119.08, -115.95]
+ABC-YPEA - Mean(mu)=-119.5, Std-Dev(sigma)=0.79 RI=[-121.09, -117.91]
+ABC-pagmo2 - Mean(mu)=-119.56, Std-Dev(sigma)=0.8 RI=[-121.17, -117.95]
+ABC-metaheuristicOpt - Mean(mu)=-123.06, Std-Dev(sigma)=0.87 RI=[-124.81, -121.32]
 
 TrueSkill Free-For-All rating:
-ABC-pagmo2 - Mean(μ)=28.7, Std-Dev(σ)=0.67 RI=[27.36, 30.05]
-ABC-Author-Matlab - Mean(μ)=26.53, Std-Dev(σ)=0.65 RI=[25.23, 27.83]
-ABC-EARS - Mean(μ)=25.41, Std-Dev(σ)=0.63 RI=[24.15, 26.68]
-ABC-NiaPy - Mean(μ)=24.02, Std-Dev(σ)=0.64 RI=[22.75, 25.3]
-ABC-MEALPY - Mean(μ)=21.46, Std-Dev(σ)=0.64 RI=[20.18, 22.74]
-ABC-PlatEMO - Mean(μ)=20.43, Std-Dev(σ)=0.65 RI=[19.12, 21.73]
+ABC-PlatEMO - Mean(mu)=28.12, Std-Dev(sigma)=0.62 RI=[26.87, 29.37]
+ABC-EARS - Mean(mu)=27.81, Std-Dev(sigma)=0.62 RI=[26.56, 29.05]
+ABC-NiaPy - Mean(mu)=27.62, Std-Dev(sigma)=0.63 RI=[26.37, 28.88]
+ABC-Author-Matlab - Mean(mu)=27.49, Std-Dev(sigma)=0.63 RI=[26.23, 28.75]
+ABC-MEALPY - Mean(mu)=24.77, Std-Dev(sigma)=0.62 RI=[23.52, 26.01]
+ABC-YPEA - Mean(mu)=23.8, Std-Dev(sigma)=0.63 RI=[22.55, 25.06]
+ABC-pagmo2 - Mean(mu)=23.63, Std-Dev(sigma)=0.63 RI=[22.37, 24.89]
+ABC-metaheuristicOpt - Mean(mu)=18.81, Std-Dev(sigma)=0.68 RI=[17.45, 20.17]
 
 Glicko2 rating:
-ABC-pagmo2 - Rating=1,763.6 RD=50 ro=0.06 RI=[1663.6, 1863.6]
-ABC-Author-Matlab - Rating=1,607.6 RD=50 ro=0.06 RI=[1507.59, 1707.59]
-ABC-EARS - Rating=1,596.5 RD=50 ro=0.06 RI=[1496.52, 1696.52]
-ABC-NiaPy - Rating=1,488.4 RD=50 ro=0.06 RI=[1388.41, 1588.41]
-ABC-MEALPY - Rating=1,308.2 RD=50 ro=0.06 RI=[1208.18, 1408.18]
-ABC-PlatEMO - Rating=1,235.7 RD=50 ro=0.06 RI=[1135.71, 1335.71]
+ABC-EARS - Rating=1,692.4 RD=30 ro=0.06 RI=[1632.4, 1752.4]
+ABC-PlatEMO - Rating=1,663.1 RD=30 ro=0.06 RI=[1603.12, 1723.12]
+ABC-NiaPy - Rating=1,645.7 RD=30 ro=0.06 RI=[1585.69, 1705.69]
+ABC-Author-Matlab - Rating=1,619.6 RD=30 ro=0.06 RI=[1559.62, 1679.62]
+ABC-MEALPY - Rating=1,465.3 RD=30 ro=0.06 RI=[1405.28, 1525.28]
+ABC-pagmo2 - Rating=1,407.2 RD=30 ro=0.06 RI=[1347.2, 1467.2]
+ABC-YPEA - Rating=1,380.4 RD=30 ro=0.06 RI=[1320.38, 1440.38]
+ABC-metaheuristicOpt - Rating=1,126.3 RD=30 ro=0.06 RI=[1066.31, 1186.31]
 
 Game results:
-ABC-pagmo2 [win=2153, lose=629, draw=218]
-	 Against:{ABC-NiaPy=[win=492, lose=72, draw=36], ABC-PlatEMO=[win=421, lose=133, draw=46], ABC-MEALPY=[win=456, lose=91, draw=53], ABC-Author-Matlab=[win=396, lose=159, draw=45], ABC-EARS=[win=388, lose=174, draw=38]}
-	 Problems:{RosenbrockD60=[win=248, lose=2, draw=0], SixHumpCamelBackD2=[win=250, lose=0, draw=0], GriewankD60=[win=250, lose=0, draw=0], AckleyD60=[win=244, lose=6, draw=0], ShekelsFoxholesD2=[win=105, lose=134, draw=11], SumOfSquaresD60=[win=250, lose=0, draw=0], BraninD2=[win=193, lose=56, draw=1], RastriginD60=[win=250, lose=0, draw=0], HartmanD3=[win=100, lose=150, draw=0], SphereD60=[win=249, lose=1, draw=0], SchwefelD60=[win=0, lose=250, draw=0], GoldsteinPriceD2=[win=14, lose=30, draw=206]}
-ABC-Author-Matlab [win=1697, lose=1075, draw=228]
-	 Against:{ABC-NiaPy=[win=336, lose=223, draw=41], ABC-pagmo2=[win=159, lose=396, draw=45], ABC-PlatEMO=[win=450, lose=100, draw=50], ABC-MEALPY=[win=450, lose=100, draw=50], ABC-EARS=[win=302, lose=256, draw=42]}
-	 Problems:{RosenbrockD60=[win=147, lose=103, draw=0], SixHumpCamelBackD2=[win=0, lose=250, draw=0], GriewankD60=[win=157, lose=93, draw=0], AckleyD60=[win=154, lose=96, draw=0], ShekelsFoxholesD2=[win=250, lose=0, draw=0], SumOfSquaresD60=[win=148, lose=102, draw=0], BraninD2=[win=0, lose=249, draw=1], RastriginD60=[win=172, lose=78, draw=0], HartmanD3=[win=250, lose=0, draw=0], SphereD60=[win=146, lose=104, draw=0], SchwefelD60=[win=250, lose=0, draw=0], GoldsteinPriceD2=[win=23, lose=0, draw=227]}
-ABC-EARS [win=1535, lose=977, draw=488]
-	 Against:{ABC-NiaPy=[win=291, lose=171, draw=138], ABC-pagmo2=[win=174, lose=388, draw=38], ABC-PlatEMO=[win=435, lose=58, draw=107], ABC-MEALPY=[win=379, lose=58, draw=163], ABC-Author-Matlab=[win=256, lose=302, draw=42]}
-	 Problems:{RosenbrockD60=[win=141, lose=109, draw=0], SixHumpCamelBackD2=[win=100, lose=50, draw=100], GriewankD60=[win=156, lose=94, draw=0], AckleyD60=[win=163, lose=87, draw=0], ShekelsFoxholesD2=[win=160, lose=50, draw=40], SumOfSquaresD60=[win=151, lose=99, draw=0], BraninD2=[win=68, lose=36, draw=146], RastriginD60=[win=168, lose=82, draw=0], HartmanD3=[win=200, lose=50, draw=0], SphereD60=[win=164, lose=86, draw=0], SchwefelD60=[win=50, lose=200, draw=0], GoldsteinPriceD2=[win=14, lose=34, draw=202]}
-ABC-NiaPy [win=1220, lose=1287, draw=493]
-	 Against:{ABC-pagmo2=[win=72, lose=492, draw=36], ABC-PlatEMO=[win=400, lose=109, draw=91], ABC-MEALPY=[win=354, lose=59, draw=187], ABC-Author-Matlab=[win=223, lose=336, draw=41], ABC-EARS=[win=171, lose=291, draw=138]}
-	 Problems:{RosenbrockD60=[win=164, lose=86, draw=0], SixHumpCamelBackD2=[win=100, lose=50, draw=100], GriewankD60=[win=137, lose=113, draw=0], AckleyD60=[win=139, lose=111, draw=0], ShekelsFoxholesD2=[win=0, lose=250, draw=0], SumOfSquaresD60=[win=151, lose=99, draw=0], BraninD2=[win=68, lose=36, draw=146], RastriginD60=[win=110, lose=140, draw=0], HartmanD3=[win=0, lose=200, draw=50], SphereD60=[win=141, lose=109, draw=0], SchwefelD60=[win=200, lose=50, draw=0], GoldsteinPriceD2=[win=10, lose=43, draw=197]}
-ABC-MEALPY [win=668, lose=1777, draw=555]
-	 Against:{ABC-NiaPy=[win=59, lose=354, draw=187], ABC-pagmo2=[win=91, lose=456, draw=53], ABC-PlatEMO=[win=360, lose=138, draw=102], ABC-Author-Matlab=[win=100, lose=450, draw=50], ABC-EARS=[win=58, lose=379, draw=163]}
-	 Problems:{RosenbrockD60=[win=46, lose=204, draw=0], SixHumpCamelBackD2=[win=100, lose=50, draw=100], GriewankD60=[win=48, lose=202, draw=0], AckleyD60=[win=47, lose=203, draw=0], ShekelsFoxholesD2=[win=104, lose=108, draw=38], SumOfSquaresD60=[win=0, lose=250, draw=0], BraninD2=[win=64, lose=46, draw=140], RastriginD60=[win=43, lose=207, draw=0], HartmanD3=[win=0, lose=200, draw=50], SphereD60=[win=48, lose=202, draw=0], SchwefelD60=[win=145, lose=105, draw=0], GoldsteinPriceD2=[win=23, lose=0, draw=227]}
-ABC-PlatEMO [win=538, lose=2066, draw=396]
-	 Against:{ABC-NiaPy=[win=109, lose=400, draw=91], ABC-pagmo2=[win=133, lose=421, draw=46], ABC-MEALPY=[win=138, lose=360, draw=102], ABC-Author-Matlab=[win=100, lose=450, draw=50], ABC-EARS=[win=58, lose=435, draw=107]}
-	 Problems:{RosenbrockD60=[win=4, lose=246, draw=0], SixHumpCamelBackD2=[win=50, lose=200, draw=0], GriewankD60=[win=2, lose=248, draw=0], AckleyD60=[win=3, lose=247, draw=0], ShekelsFoxholesD2=[win=76, lose=153, draw=21], SumOfSquaresD60=[win=50, lose=200, draw=0], BraninD2=[win=66, lose=36, draw=148], RastriginD60=[win=7, lose=243, draw=0], HartmanD3=[win=150, lose=100, draw=0], SphereD60=[win=2, lose=248, draw=0], SchwefelD60=[win=105, lose=145, draw=0], GoldsteinPriceD2=[win=23, lose=0, draw=227]}
+ABC-EARS [win=2587, lose=1030, draw=583]
+	 Against:{ABC-NiaPy=[win=261, lose=199, draw=140], ABC-pagmo2=[win=473, lose=87, draw=40], ABC-PlatEMO=[win=258, lose=200, draw=142], ABC-MEALPY=[win=362, lose=71, draw=167], ABC-metaheuristicOpt=[win=500, lose=100, draw=0], ABC-Author-Matlab=[win=286, lose=272, draw=42], ABC-YPEA=[win=447, lose=101, draw=52]}
+	 Problems:{ShiftedAckleyD60=[win=255, lose=95, draw=0], RosenbrockD60=[win=287, lose=63, draw=0], ShiftedRastriginD60=[win=317, lose=33, draw=0], SixHumpCamelBackD2=[win=200, lose=50, draw=100], ShiftedGriewankD60=[win=263, lose=87, draw=0], HartmanD3=[win=300, lose=50, draw=0], ShiftedSumOfSquaresD60=[win=264, lose=86, draw=0], BraninD2=[win=125, lose=29, draw=196], ShiftedSchwefelD60=[win=73, lose=277, draw=0], ShekelsFoxholesD2=[win=169, lose=100, draw=81], GoldsteinPriceD2=[win=105, lose=39, draw=206], ShiftedSphereD60=[win=229, lose=121, draw=0]}
+ABC-PlatEMO [win=2455, lose=1135, draw=610]
+	 Against:{ABC-NiaPy=[win=254, lose=249, draw=97], ABC-pagmo2=[win=404, lose=149, draw=47], ABC-MEALPY=[win=379, lose=97, draw=124], ABC-metaheuristicOpt=[win=544, lose=56, draw=0], ABC-Author-Matlab=[win=307, lose=243, draw=50], ABC-EARS=[win=200, lose=258, draw=142], ABC-YPEA=[win=367, lose=83, draw=150]}
+	 Problems:{ShiftedAckleyD60=[win=345, lose=5, draw=0], RosenbrockD60=[win=149, lose=201, draw=0], ShiftedRastriginD60=[win=165, lose=185, draw=0], SixHumpCamelBackD2=[win=100, lose=200, draw=50], ShiftedGriewankD60=[win=307, lose=43, draw=0], HartmanD3=[win=200, lose=100, draw=50], ShiftedSumOfSquaresD60=[win=296, lose=54, draw=0], BraninD2=[win=124, lose=29, draw=197], ShiftedSchwefelD60=[win=233, lose=117, draw=0], ShekelsFoxholesD2=[win=173, lose=100, draw=77], GoldsteinPriceD2=[win=114, lose=0, draw=236], ShiftedSphereD60=[win=249, lose=101, draw=0]}
+ABC-NiaPy [win=2404, lose=1225, draw=571]
+	 Against:{ABC-pagmo2=[win=374, lose=182, draw=44], ABC-PlatEMO=[win=249, lose=254, draw=97], ABC-MEALPY=[win=329, lose=78, draw=193], ABC-metaheuristicOpt=[win=550, lose=50, draw=0], ABC-Author-Matlab=[win=306, lose=247, draw=47], ABC-EARS=[win=199, lose=261, draw=140], ABC-YPEA=[win=397, lose=153, draw=50]}
+	 Problems:{ShiftedAckleyD60=[win=240, lose=110, draw=0], RosenbrockD60=[win=323, lose=27, draw=0], ShiftedRastriginD60=[win=278, lose=72, draw=0], SixHumpCamelBackD2=[win=200, lose=50, draw=100], ShiftedGriewankD60=[win=269, lose=81, draw=0], HartmanD3=[win=50, lose=250, draw=50], ShiftedSumOfSquaresD60=[win=266, lose=84, draw=0], BraninD2=[win=125, lose=29, draw=196], ShiftedSchwefelD60=[win=344, lose=6, draw=0], ShekelsFoxholesD2=[win=0, lose=350, draw=0], GoldsteinPriceD2=[win=111, lose=14, draw=225], ShiftedSphereD60=[win=198, lose=152, draw=0]}
+ABC-Author-Matlab [win=2466, lose=1498, draw=236]
+	 Against:{ABC-NiaPy=[win=247, lose=306, draw=47], ABC-pagmo2=[win=453, lose=100, draw=47], ABC-PlatEMO=[win=243, lose=307, draw=50], ABC-MEALPY=[win=380, lose=170, draw=50], ABC-metaheuristicOpt=[win=474, lose=126, draw=0], ABC-EARS=[win=272, lose=286, draw=42], ABC-YPEA=[win=397, lose=203, draw=0]}
+	 Problems:{ShiftedAckleyD60=[win=259, lose=91, draw=0], RosenbrockD60=[win=290, lose=60, draw=0], ShiftedRastriginD60=[win=305, lose=45, draw=0], SixHumpCamelBackD2=[win=24, lose=326, draw=0], ShiftedGriewankD60=[win=236, lose=114, draw=0], HartmanD3=[win=350, lose=0, draw=0], ShiftedSumOfSquaresD60=[win=249, lose=101, draw=0], BraninD2=[win=52, lose=298, draw=0], ShiftedSchwefelD60=[win=77, lose=273, draw=0], ShekelsFoxholesD2=[win=300, lose=50, draw=0], GoldsteinPriceD2=[win=114, lose=0, draw=236], ShiftedSphereD60=[win=210, lose=140, draw=0]}
+ABC-MEALPY [win=1642, lose=1923, draw=635]
+	 Against:{ABC-NiaPy=[win=78, lose=329, draw=193], ABC-pagmo2=[win=286, lose=262, draw=52], ABC-PlatEMO=[win=97, lose=379, draw=124], ABC-metaheuristicOpt=[win=548, lose=52, draw=0], ABC-Author-Matlab=[win=170, lose=380, draw=50], ABC-EARS=[win=71, lose=362, draw=167], ABC-YPEA=[win=392, lose=159, draw=49]}
+	 Problems:{ShiftedAckleyD60=[win=129, lose=221, draw=0], RosenbrockD60=[win=93, lose=257, draw=0], ShiftedRastriginD60=[win=94, lose=256, draw=0], SixHumpCamelBackD2=[win=200, lose=50, draw=100], ShiftedGriewankD60=[win=173, lose=177, draw=0], HartmanD3=[win=50, lose=250, draw=50], ShiftedSumOfSquaresD60=[win=158, lose=192, draw=0], BraninD2=[win=120, lose=44, draw=186], ShiftedSchwefelD60=[win=274, lose=76, draw=0], ShekelsFoxholesD2=[win=123, lose=164, draw=63], GoldsteinPriceD2=[win=114, lose=0, draw=236], ShiftedSphereD60=[win=114, lose=236, draw=0]}
+ABC-pagmo2 [win=1608, lose=2359, draw=233]
+	 Against:{ABC-NiaPy=[win=182, lose=374, draw=44], ABC-PlatEMO=[win=149, lose=404, draw=47], ABC-MEALPY=[win=262, lose=286, draw=52], ABC-metaheuristicOpt=[win=500, lose=100, draw=0], ABC-Author-Matlab=[win=100, lose=453, draw=47], ABC-EARS=[win=87, lose=473, draw=40], ABC-YPEA=[win=328, lose=269, draw=3]}
+	 Problems:{ShiftedAckleyD60=[win=110, lose=240, draw=0], RosenbrockD60=[win=189, lose=161, draw=0], ShiftedRastriginD60=[win=173, lose=177, draw=0], SixHumpCamelBackD2=[win=350, lose=0, draw=0], ShiftedGriewankD60=[win=59, lose=291, draw=0], HartmanD3=[win=150, lose=200, draw=0], ShiftedSumOfSquaresD60=[win=58, lose=292, draw=0], BraninD2=[win=244, lose=106, draw=0], ShiftedSchwefelD60=[win=0, lose=350, draw=0], ShekelsFoxholesD2=[win=115, lose=227, draw=8], GoldsteinPriceD2=[win=110, lose=15, draw=225], ShiftedSphereD60=[win=50, lose=300, draw=0]}
+ABC-YPEA [win=1464, lose=2432, draw=304]
+	 Against:{ABC-NiaPy=[win=153, lose=397, draw=50], ABC-pagmo2=[win=269, lose=328, draw=3], ABC-PlatEMO=[win=83, lose=367, draw=150], ABC-MEALPY=[win=159, lose=392, draw=49], ABC-metaheuristicOpt=[win=496, lose=104, draw=0], ABC-Author-Matlab=[win=203, lose=397, draw=0], ABC-EARS=[win=101, lose=447, draw=52]}
+	 Problems:{ShiftedAckleyD60=[win=62, lose=288, draw=0], RosenbrockD60=[win=65, lose=285, draw=0], ShiftedRastriginD60=[win=68, lose=282, draw=0], SixHumpCamelBackD2=[win=100, lose=200, draw=50], ShiftedGriewankD60=[win=93, lose=257, draw=0], HartmanD3=[win=200, lose=100, draw=50], ShiftedSumOfSquaresD60=[win=109, lose=241, draw=0], BraninD2=[win=124, lose=29, draw=197], ShiftedSchwefelD60=[win=241, lose=109, draw=0], ShekelsFoxholesD2=[win=52, lose=291, draw=7], GoldsteinPriceD2=[win=0, lose=350, draw=0], ShiftedSphereD60=[win=350, lose=0, draw=0]}
+ABC-metaheuristicOpt [win=588, lose=3612, draw=0]
+	 Against:{ABC-NiaPy=[win=50, lose=550, draw=0], ABC-pagmo2=[win=100, lose=500, draw=0], ABC-PlatEMO=[win=56, lose=544, draw=0], ABC-MEALPY=[win=52, lose=548, draw=0], ABC-Author-Matlab=[win=126, lose=474, draw=0], ABC-EARS=[win=100, lose=500, draw=0], ABC-YPEA=[win=104, lose=496, draw=0]}
+	 Problems:{ShiftedAckleyD60=[win=0, lose=350, draw=0], RosenbrockD60=[win=4, lose=346, draw=0], ShiftedRastriginD60=[win=0, lose=350, draw=0], SixHumpCamelBackD2=[win=26, lose=324, draw=0], ShiftedGriewankD60=[win=0, lose=350, draw=0], HartmanD3=[win=0, lose=350, draw=0], ShiftedSumOfSquaresD60=[win=0, lose=350, draw=0], BraninD2=[win=0, lose=350, draw=0], ShiftedSchwefelD60=[win=158, lose=192, draw=0], ShekelsFoxholesD2=[win=350, lose=0, draw=0], GoldsteinPriceD2=[win=50, lose=300, draw=0], ShiftedSphereD60=[win=0, lose=350, draw=0]}
