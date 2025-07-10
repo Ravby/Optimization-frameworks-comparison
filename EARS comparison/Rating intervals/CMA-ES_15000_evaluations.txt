@@ -1,37 +1,37 @@
 TrueSkill One-On-One rating:
-CMA-ES-pymoo - Mean(mu)=-30.66, Std-Dev(sigma)=0.77 RI=[-32.19, -29.13]
-CMA-ES-Author-Python - Mean(mu)=-31.59, Std-Dev(sigma)=0.77 RI=[-33.14, -30.04]
-CMA-ES-DEAP - Mean(mu)=-33.12, Std-Dev(sigma)=0.78 RI=[-34.68, -31.57]
-CMA-ES-pagmo2 - Mean(mu)=-33.62, Std-Dev(sigma)=0.79 RI=[-35.19, -32.05]
-CMA-ES-jMetal - Mean(mu)=-35.94, Std-Dev(sigma)=0.81 RI=[-37.56, -34.33]
+CMA-ES-pymoo - Mean(mu)=-36.74, Std-Dev(sigma)=0.77 RI=[-38.27, -35.2]
+CMA-ES-Author-Python - Mean(mu)=-37.85, Std-Dev(sigma)=0.77 RI=[-39.4, -36.31]
+CMA-ES-DEAP - Mean(mu)=-39.23, Std-Dev(sigma)=0.78 RI=[-40.79, -37.68]
+CMA-ES-pagmo2 - Mean(mu)=-40.04, Std-Dev(sigma)=0.79 RI=[-41.61, -38.47]
+CMA-ES-jMetal - Mean(mu)=-42.1, Std-Dev(sigma)=0.81 RI=[-43.72, -40.48]
 
 TrueSkill Free-For-All rating:
-CMA-ES-pymoo - Mean(mu)=26.85, Std-Dev(sigma)=0.65 RI=[25.56, 28.15]
-CMA-ES-Author-Python - Mean(mu)=25.95, Std-Dev(sigma)=0.64 RI=[24.66, 27.24]
-CMA-ES-pagmo2 - Mean(mu)=25.17, Std-Dev(sigma)=0.66 RI=[23.86, 26.49]
-CMA-ES-DEAP - Mean(mu)=24.39, Std-Dev(sigma)=0.64 RI=[23.1, 25.67]
-CMA-ES-jMetal - Mean(mu)=22.08, Std-Dev(sigma)=0.67 RI=[20.75, 23.42]
+CMA-ES-pymoo - Mean(mu)=27.05, Std-Dev(sigma)=0.65 RI=[25.75, 28.35]
+CMA-ES-Author-Python - Mean(mu)=26.04, Std-Dev(sigma)=0.64 RI=[24.76, 27.33]
+CMA-ES-pagmo2 - Mean(mu)=25.16, Std-Dev(sigma)=0.66 RI=[23.84, 26.48]
+CMA-ES-DEAP - Mean(mu)=24.58, Std-Dev(sigma)=0.64 RI=[23.29, 25.86]
+CMA-ES-jMetal - Mean(mu)=22.19, Std-Dev(sigma)=0.67 RI=[20.86, 23.53]
 
 Glicko2 rating:
-CMA-ES-pymoo - Rating=1,653.7 RD=30 ro=0.06 RI=[1593.7, 1713.7]
-CMA-ES-Author-Python - Rating=1,544.7 RD=30 ro=0.06 RI=[1484.75, 1604.75]
+CMA-ES-pymoo - Rating=1,661.7 RD=30 ro=0.06 RI=[1601.69, 1721.69]
+CMA-ES-Author-Python - Rating=1,545.2 RD=30 ro=0.06 RI=[1485.18, 1605.18]
 CMA-ES-pagmo2 - Rating=1,530.7 RD=30 ro=0.06 RI=[1470.7, 1590.7]
-CMA-ES-DEAP - Rating=1,478.4 RD=30 ro=0.06 RI=[1418.38, 1538.38]
-CMA-ES-jMetal - Rating=1,292.5 RD=30 ro=0.06 RI=[1232.48, 1352.48]
+CMA-ES-DEAP - Rating=1,486.8 RD=30 ro=0.06 RI=[1426.81, 1546.81]
+CMA-ES-jMetal - Rating=1,275.6 RD=30 ro=0.06 RI=[1215.62, 1335.62]
 
 Game results:
-CMA-ES-pymoo [win=1279, lose=568, draw=553]
-	 Against:{CMA-ES-pagmo2=[win=302, lose=249, draw=49], CMA-ES-DEAP=[win=292, lose=109, draw=199], CMA-ES-jMetal=[win=448, lose=96, draw=56], CMA-ES-Author-Python=[win=237, lose=114, draw=249]}
-	 Problems:{ShiftedAckleyD60=[win=200, lose=0, draw=0], ShiftedRastriginD60=[win=58, lose=142, draw=0], RosenbrockD60=[win=192, lose=8, draw=0], SixHumpCamelBackD2=[win=51, lose=50, draw=99], ShiftedGriewankD60=[win=135, lose=64, draw=1], BraninD2=[win=44, lose=50, draw=106], ShiftedSumOfSquaresD60=[win=149, lose=51, draw=0], ShiftedSchwefelD60=[win=142, lose=58, draw=0], ShekelsFoxholesD2=[win=56, lose=141, draw=3], HartmanD3=[win=150, lose=0, draw=50], GoldsteinPriceD2=[win=52, lose=4, draw=144], ShiftedSphereD60=[win=50, lose=0, draw=150]}
-CMA-ES-Author-Python [win=1028, lose=821, draw=551]
-	 Against:{CMA-ES-pymoo=[win=114, lose=237, draw=249], CMA-ES-pagmo2=[win=290, lose=261, draw=49], CMA-ES-DEAP=[win=239, lose=164, draw=197], CMA-ES-jMetal=[win=385, lose=159, draw=56]}
-	 Problems:{ShiftedAckleyD60=[win=107, lose=93, draw=0], ShiftedRastriginD60=[win=96, lose=104, draw=0], RosenbrockD60=[win=88, lose=112, draw=0], SixHumpCamelBackD2=[win=51, lose=50, draw=99], ShiftedGriewankD60=[win=95, lose=105, draw=0], BraninD2=[win=44, lose=50, draw=106], ShiftedSumOfSquaresD60=[win=84, lose=116, draw=0], ShiftedSchwefelD60=[win=106, lose=94, draw=0], ShekelsFoxholesD2=[win=105, lose=93, draw=2], HartmanD3=[win=150, lose=0, draw=50], GoldsteinPriceD2=[win=52, lose=4, draw=144], ShiftedSphereD60=[win=50, lose=0, draw=150]}
+CMA-ES-pymoo [win=1317, lose=569, draw=514]
+	 Against:{CMA-ES-pagmo2=[win=302, lose=249, draw=49], CMA-ES-jMetal=[win=478, lose=96, draw=26], CMA-ES-DEAP=[win=292, lose=110, draw=198], CMA-ES-Author-Python=[win=245, lose=114, draw=241]}
+	 Problems:{ShiftedAckleyD60=[win=200, lose=0, draw=0], ShiftedRastriginD60=[win=58, lose=142, draw=0], RosenbrockD60=[win=192, lose=8, draw=0], SixHumpCamelBackD2=[win=51, lose=50, draw=99], ShiftedGriewankD60=[win=135, lose=65, draw=0], ShekelsFoxholesD2=[win=56, lose=141, draw=3], BraninD2=[win=49, lose=50, draw=101], HartmanD3=[win=150, lose=0, draw=50], ShiftedSumOfSquaresD60=[win=149, lose=51, draw=0], ShiftedSchwefelD60=[win=142, lose=58, draw=0], GoldsteinPriceD2=[win=52, lose=4, draw=144], ShiftedSphereD60=[win=83, lose=0, draw=117]}
+CMA-ES-Author-Python [win=1048, lose=839, draw=513]
+	 Against:{CMA-ES-pymoo=[win=114, lose=245, draw=241], CMA-ES-pagmo2=[win=290, lose=261, draw=49], CMA-ES-jMetal=[win=405, lose=161, draw=34], CMA-ES-DEAP=[win=239, lose=172, draw=189]}
+	 Problems:{ShiftedAckleyD60=[win=107, lose=93, draw=0], ShiftedRastriginD60=[win=96, lose=104, draw=0], RosenbrockD60=[win=88, lose=112, draw=0], SixHumpCamelBackD2=[win=51, lose=50, draw=99], ShiftedGriewankD60=[win=95, lose=105, draw=0], ShekelsFoxholesD2=[win=105, lose=93, draw=2], BraninD2=[win=49, lose=50, draw=101], HartmanD3=[win=150, lose=0, draw=50], ShiftedSumOfSquaresD60=[win=84, lose=116, draw=0], ShiftedSchwefelD60=[win=106, lose=94, draw=0], GoldsteinPriceD2=[win=52, lose=4, draw=144], ShiftedSphereD60=[win=65, lose=18, draw=117]}
 CMA-ES-pagmo2 [win=1198, lose=1056, draw=146]
-	 Against:{CMA-ES-pymoo=[win=249, lose=302, draw=49], CMA-ES-DEAP=[win=318, lose=234, draw=48], CMA-ES-jMetal=[win=370, lose=230, draw=0], CMA-ES-Author-Python=[win=261, lose=290, draw=49]}
-	 Problems:{ShiftedAckleyD60=[win=2, lose=198, draw=0], ShiftedRastriginD60=[win=115, lose=85, draw=0], RosenbrockD60=[win=56, lose=144, draw=0], SixHumpCamelBackD2=[win=200, lose=0, draw=0], ShiftedGriewankD60=[win=190, lose=10, draw=0], BraninD2=[win=200, lose=0, draw=0], ShiftedSumOfSquaresD60=[win=155, lose=45, draw=0], ShiftedSchwefelD60=[win=0, lose=200, draw=0], ShekelsFoxholesD2=[win=126, lose=74, draw=0], HartmanD3=[win=100, lose=100, draw=0], GoldsteinPriceD2=[win=54, lose=0, draw=146], ShiftedSphereD60=[win=0, lose=200, draw=0]}
-CMA-ES-DEAP [win=900, lose=1000, draw=500]
-	 Against:{CMA-ES-pymoo=[win=109, lose=292, draw=199], CMA-ES-pagmo2=[win=234, lose=318, draw=48], CMA-ES-jMetal=[win=393, lose=151, draw=56], CMA-ES-Author-Python=[win=164, lose=239, draw=197]}
-	 Problems:{ShiftedAckleyD60=[win=82, lose=118, draw=0], ShiftedRastriginD60=[win=119, lose=81, draw=0], RosenbrockD60=[win=79, lose=121, draw=0], SixHumpCamelBackD2=[win=49, lose=53, draw=98], ShiftedGriewankD60=[win=76, lose=123, draw=1], BraninD2=[win=44, lose=50, draw=106], ShiftedSumOfSquaresD60=[win=54, lose=146, draw=0], ShiftedSchwefelD60=[win=133, lose=67, draw=0], ShekelsFoxholesD2=[win=114, lose=83, draw=3], HartmanD3=[win=50, lose=150, draw=0], GoldsteinPriceD2=[win=50, lose=8, draw=142], ShiftedSphereD60=[win=50, lose=0, draw=150]}
-CMA-ES-jMetal [win=636, lose=1596, draw=168]
-	 Against:{CMA-ES-pymoo=[win=96, lose=448, draw=56], CMA-ES-pagmo2=[win=230, lose=370, draw=0], CMA-ES-DEAP=[win=151, lose=393, draw=56], CMA-ES-Author-Python=[win=159, lose=385, draw=56]}
-	 Problems:{ShiftedAckleyD60=[win=109, lose=91, draw=0], ShiftedRastriginD60=[win=112, lose=88, draw=0], RosenbrockD60=[win=85, lose=115, draw=0], SixHumpCamelBackD2=[win=1, lose=199, draw=0], ShiftedGriewankD60=[win=3, lose=197, draw=0], BraninD2=[win=0, lose=182, draw=18], ShiftedSumOfSquaresD60=[win=58, lose=142, draw=0], ShiftedSchwefelD60=[win=119, lose=81, draw=0], ShekelsFoxholesD2=[win=95, lose=105, draw=0], HartmanD3=[win=0, lose=200, draw=0], GoldsteinPriceD2=[win=4, lose=196, draw=0], ShiftedSphereD60=[win=50, lose=0, draw=150]}
+	 Against:{CMA-ES-pymoo=[win=249, lose=302, draw=49], CMA-ES-jMetal=[win=370, lose=230, draw=0], CMA-ES-DEAP=[win=318, lose=234, draw=48], CMA-ES-Author-Python=[win=261, lose=290, draw=49]}
+	 Problems:{ShiftedAckleyD60=[win=2, lose=198, draw=0], ShiftedRastriginD60=[win=115, lose=85, draw=0], RosenbrockD60=[win=56, lose=144, draw=0], SixHumpCamelBackD2=[win=200, lose=0, draw=0], ShiftedGriewankD60=[win=190, lose=10, draw=0], ShekelsFoxholesD2=[win=126, lose=74, draw=0], BraninD2=[win=200, lose=0, draw=0], HartmanD3=[win=100, lose=100, draw=0], ShiftedSumOfSquaresD60=[win=155, lose=45, draw=0], ShiftedSchwefelD60=[win=0, lose=200, draw=0], GoldsteinPriceD2=[win=54, lose=0, draw=146], ShiftedSphereD60=[win=0, lose=200, draw=0]}
+CMA-ES-DEAP [win=939, lose=1000, draw=461]
+	 Against:{CMA-ES-pymoo=[win=110, lose=292, draw=198], CMA-ES-pagmo2=[win=234, lose=318, draw=48], CMA-ES-jMetal=[win=423, lose=151, draw=26], CMA-ES-Author-Python=[win=172, lose=239, draw=189]}
+	 Problems:{ShiftedAckleyD60=[win=82, lose=118, draw=0], ShiftedRastriginD60=[win=119, lose=81, draw=0], RosenbrockD60=[win=79, lose=121, draw=0], SixHumpCamelBackD2=[win=49, lose=53, draw=98], ShiftedGriewankD60=[win=77, lose=123, draw=0], ShekelsFoxholesD2=[win=114, lose=83, draw=3], BraninD2=[win=49, lose=50, draw=101], HartmanD3=[win=50, lose=150, draw=0], ShiftedSumOfSquaresD60=[win=54, lose=146, draw=0], ShiftedSchwefelD60=[win=133, lose=67, draw=0], GoldsteinPriceD2=[win=50, lose=8, draw=142], ShiftedSphereD60=[win=83, lose=0, draw=117]}
+CMA-ES-jMetal [win=638, lose=1676, draw=86]
+	 Against:{CMA-ES-pymoo=[win=96, lose=478, draw=26], CMA-ES-pagmo2=[win=230, lose=370, draw=0], CMA-ES-DEAP=[win=151, lose=423, draw=26], CMA-ES-Author-Python=[win=161, lose=405, draw=34]}
+	 Problems:{ShiftedAckleyD60=[win=109, lose=91, draw=0], ShiftedRastriginD60=[win=112, lose=88, draw=0], RosenbrockD60=[win=85, lose=115, draw=0], SixHumpCamelBackD2=[win=1, lose=199, draw=0], ShiftedGriewankD60=[win=3, lose=197, draw=0], ShekelsFoxholesD2=[win=95, lose=105, draw=0], BraninD2=[win=0, lose=197, draw=3], HartmanD3=[win=0, lose=200, draw=0], ShiftedSumOfSquaresD60=[win=58, lose=142, draw=0], ShiftedSchwefelD60=[win=119, lose=81, draw=0], GoldsteinPriceD2=[win=4, lose=196, draw=0], ShiftedSphereD60=[win=52, lose=65, draw=83]}

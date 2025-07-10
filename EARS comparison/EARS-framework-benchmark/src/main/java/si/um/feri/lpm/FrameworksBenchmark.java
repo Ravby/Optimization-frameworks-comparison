@@ -8,7 +8,7 @@ public class FrameworksBenchmark extends SOBenchmark<NumberSolution<Double>, Num
     protected int dimension = 3;
 
     public FrameworksBenchmark() {
-        this(1e-7);
+        this(1e-8);
     }
 
     public FrameworksBenchmark(double drawLimit) {

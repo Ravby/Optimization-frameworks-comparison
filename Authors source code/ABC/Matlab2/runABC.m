@@ -19,6 +19,8 @@
 %Bahriye Basturk Akay (bahriye@erciyes.edu.tr)
 %*/
 
+rng('shuffle');
+
 clear all
 close all
 clc

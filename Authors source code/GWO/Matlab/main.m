@@ -32,6 +32,8 @@
 % To run GWO: [Best_score,Best_pos,GWO_cg_curve]=GWO(SearchAgents_no,Max_iteration,lb,ub,dim,fobj)
 %__________________________________________
 
+rng('shuffle');
+
 clear all 
 clc
 
