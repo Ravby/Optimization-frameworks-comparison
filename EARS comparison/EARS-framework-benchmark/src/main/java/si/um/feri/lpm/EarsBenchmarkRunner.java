@@ -73,17 +73,17 @@ public class EarsBenchmarkRunner {
         }
 
         players.clear();
+        //players.add(new DummyAlgorithm("GA-NiaPy", algorithmResultsDir));
+        //players.add(new DummyAlgorithm("GA-MEALPY", algorithmResultsDir));
+        //players.add(new DummyAlgorithm("GA-EvoloPy", algorithmResultsDir));
+        //players.add(new DummyAlgorithm("GA-metaheuristicOpt", algorithmResultsDir));
+        //players.add(new DummyAlgorithm("GA-YPEA", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-PlatEMO", algorithmResultsDir));
-        players.add(new DummyAlgorithm("GA-MEALPY", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-jMetal", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-MOEA", algorithmResultsDir));
-        players.add(new DummyAlgorithm("GA-NiaPy", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-DEAP", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-pagmo2", algorithmResultsDir));
         players.add(new DummyAlgorithm("GA-pymoo", algorithmResultsDir));
-        players.add(new DummyAlgorithm("GA-metaheuristicOpt", algorithmResultsDir));
-        players.add(new DummyAlgorithm("GA-YPEA", algorithmResultsDir));
-        players.add(new DummyAlgorithm("GA-EvoloPy", algorithmResultsDir));
 
         frameworksBenchmark = new FrameworksBenchmark();
         frameworksBenchmark.setDisplayRatingCharts(false);

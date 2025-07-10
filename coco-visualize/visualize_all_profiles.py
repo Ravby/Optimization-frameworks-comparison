@@ -247,7 +247,7 @@ def generate_plots_for_algorithm_group(group_name, algorithms, functions_d60, fu
 # Algorithm lists
 PSO = ["PSO-EARS", "PSO-pymoo", "PSO-jMetal", "PSO-PlatEMO", "PSO-pagmo2", "PSO-YPEA", "PSO-EvoloPy", "PSO-MEALPY", "PSO-NiaPy", "PSO-DEAP", "PSO-metaheuristicOpt", "PSO-Nevergrad"]
 ABC = ["ABC-EARS", "ABC-MEALPY", "ABC-PlatEMO", "ABC-NiaPy", "ABC-Author-Matlab", "ABC-YPEA", "ABC-metaheuristicOpt", "ABC-pagmo2"]
-GA = ["GA-PlatEMO", "GA-MEALPY", "GA-jMetal", "GA-MOEA", "GA-NiaPy", "GA-pagmo2", "GA-pymoo", "GA-metaheuristicOpt", "GA-YPEA", "GA-EvoloPy", "GA-DEAP"]
+GA = ["GA-PlatEMO", "GA-jMetal", "GA-MOEA", "GA-pagmo2", "GA-pymoo", "GA-DEAP"] # "GA-MEALPY", "GA-NiaPy", "GA-metaheuristicOpt", "GA-YPEA", "GA-EvoloPy"
 DE = ["DE-EARS", "DE-jMetal", "DE-MEALPY", "DE-MOEA", "DE-NiaPy", "DE-PlatEMO", "DE-pagmo2", "DE-Author-Java", "DE-pymoo", "DE-metaheuristicOpt", "DE-YPEA", "DE-EvoloPy", "DE-Nevergrad", "DE-DEAP"]
 GWO = ["GWO-EARS", "GWO-NiaPy", "GWO-MEALPY", "GWO-pagmo2", "GWO-Author-Matlab", "GWO-PlatEMO", "GWO-metaheuristicOpt", "GWO-EvoloPy"]
 CMAES = ["CMA-ES-jMetal", "CMA-ES-pagmo2", "CMA-ES-Author-Python", "CMA-ES-pymoo", "CMA-ES-DEAP"]
